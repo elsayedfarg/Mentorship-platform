@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Edit Student Profile - MentorHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fcf9f6",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#50392b",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#50453e",
+                      "surface-container": "#f0edea",
+                      "on-tertiary-fixed": "#29170b",
+                      "on-secondary-fixed-variant": "#5d4200",
+                      "on-primary-container": "#eec1a4",
+                      "on-secondary-fixed": "#261900",
+                      "surface-container-low": "#f6f3f0",
+                      "outline": "#82746d",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-highest": "#e5e2df",
+                      "surface-bright": "#fcf9f6",
+                      "on-secondary-container": "#755400",
+                      "tertiary-fixed": "#ffdbc7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#5f402a",
+                      "surface-dim": "#dcdad7",
+                      "tertiary-fixed-dim": "#e1c0ac",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#eabda0",
+                      "secondary-fixed-dim": "#f0bf5c",
+                      "primary-fixed": "#ffdcc6",
+                      "surface": "#fcf9f6",
+                      "primary-fixed-dim": "#eabda0",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#2d1604",
+                      "surface-variant": "#e5e2df",
+                      "surface-tint": "#79573f",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#695041",
+                      "surface-container-high": "#eae8e5",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffdea4",
+                      "inverse-surface": "#31302f",
+                      "on-tertiary-container": "#e6c4b0",
+                      "outline-variant": "#d4c3ba",
+                      "on-surface": "#1c1c1a",
+                      "secondary-container": "#fcca66",
+                      "primary": "#553722",
+                      "secondary": "#7b5900",
+                      "primary-container": "#6f4e37",
+                      "inverse-on-surface": "#f3f0ed",
+                      "on-background": "#1c1c1a",
+                      "on-tertiary-fixed-variant": "#594233"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "top-nav-height": "72px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "sidebar-width": "280px",
+                      "gutter": "24px",
+                      "base-unit": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "body-lg": ["Inter"],
+                      "headline-sm": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for clean aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4c3ba;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md h-full flex overflow-hidden">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant py-6 z-20">
+<div class="px-6 mb-8">
+<h1 class="font-headline-sm text-headline-sm text-primary">MentorHub</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm mt-1">Student Portal</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">explore</span>
+                Browse Mentors
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">event_note</span>
+                My Sessions
+            </a>
+<!-- Active State for Profile -->
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container-high text-primary border-l-4 border-primary font-label-md text-label-md opacity-80 translate-x-1 transition-transform shadow-[inset_0_1px_0_0_rgba(255,255,255,0.5)]" href="#">
+<span class="material-symbols-outlined icon-fill text-primary">person</span>
+                Profile
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-sidebar-width flex flex-col h-full bg-background overflow-y-auto">
+<!-- TopAppBar (Mobile Only - usually TopNavBar on desktop, but instructions allow adapting for best layout) -->
+<header class="md:hidden flex items-center justify-between px-margin-mobile h-top-nav-height bg-surface border-b border-outline-variant sticky top-0 z-10">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">MentorHub</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Student Portal</span>
+</div>
+<button class="text-on-surface p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- TopNavBar (Desktop) - Recreated from JSON -->
+<header class="hidden md:flex justify-between items-center w-full px-gutter max-w-container-max mx-auto bg-surface h-top-nav-height border-b border-outline-variant sticky top-0 z-10 shadow-[0_4px_12px_rgba(74,52,38,0.02)]">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Edit Profile</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-1 rounded-full border border-outline-variant overflow-hidden hover:border-primary transition-colors">
+<img alt="User Profile" class="w-8 h-8 object-cover rounded-full" data-alt="A detailed close-up portrait of a young, ambitious university student wearing smart-casual attire in a warmly lit, modern library setting. The lighting is soft and natural, emphasizing a professional yet approachable demeanor, fitting for a premium educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwbaUg3Bv-Q5B9rOyxIh0DWsGVzH6aFjPkkG7FYssVOiF3RVVZzVRZtff5y3xeRAYk7HBTMEuvnGSq8-iMjsxPeq6GLM45t_QTEXa8OM2UVAvDMSYSwHHs-RkcscP_V-nZePutVxe-fMCPLZbSmtJ1ieAzXVh2z0OqQiiacLiWYdIdzKu_9UVv-pmg7DcdGtZ0JsuHlu6TYNfLHeJMRpl3S3cDRu4ZyS3h8JutnwUTCBwu9MzTM0CRRZPBveXEpVXyWL4ogEw9868"/>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Container -->
+<div class="flex-1 w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8">
+<div class="max-w-4xl mx-auto">
+<!-- Page Header -->
+<div class="mb-8 border-b border-outline-variant pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Student Profile</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Update your personal information, academic goals, and mentorship preferences to help us match you with the right guides.</p>
+</div>
+<button class="px-6 py-2.5 bg-primary-container text-on-primary rounded font-label-md text-label-md hover:bg-primary transition-colors shadow-[0_2px_8px_rgba(74,52,38,0.08)] whitespace-nowrap self-start md:self-auto">
+                        Save Changes
+                    </button>
+</div>
+<!-- Bento Grid Layout for Forms -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Avatar & Basic Info -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Avatar Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-[0_4px_24px_rgba(74,52,38,0.04)] relative overflow-hidden group">
+<!-- Subtle decorative background element -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-secondary-container opacity-10 rounded-full blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-4 relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">account_circle</span>
+                                Profile Picture
+                            </h3>
+<div class="flex flex-col items-center text-center relative z-10">
+<div class="relative mb-4">
+<div class="w-32 h-32 rounded-full border-2 border-outline-variant overflow-hidden group-hover:border-primary transition-colors">
+<img alt="Current Avatar" class="w-full h-full object-cover" data-alt="A detailed close-up portrait of a young, ambitious university student wearing smart-casual attire in a warmly lit, modern library setting. Soft, natural lighting. High-end professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxVLrGe9HuYirn5BAMdiC1kqnhkefq4oABBRY9_zVkxdq1IS5bxzdSs8DPS5KaywtRbgoDU59TjP87Bc83h1KTPePQ3kFyWDiWDCTTAUL4RotEhqTPUqzLpafsB7vpXlmWAQVqQeK6VY5NU6OiqI6iUtcO_x63_pnbKlLS4Zu6ZDsTgepEbHhv7i-UVTcLH32VObmaYicsah-KtISbpePQInzjnP-gMVhd7ADu95dZw6kDeDzQRxETQ-6XgHyB0A6wN2seaJw9Z4E"/>
+</div>
+<button class="absolute bottom-0 right-0 p-2 bg-primary-container text-on-primary rounded-full shadow-md hover:bg-primary transition-colors border border-surface-container-lowest">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">JPG, GIF or PNG. Max size of 800K</p>
+<button class="px-4 py-2 border border-primary text-primary rounded font-label-md text-label-md hover:bg-surface-container transition-colors w-full">
+                                    Upload New
+                                </button>
+</div>
+</div>
+<!-- Quick Stats/Info Card (Decorative) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-lg p-6">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4 border-b border-outline-variant pb-2">Mentorship Status</h4>
+<ul class="space-y-3">
+<li class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">Active Mentors</span>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed px-2 py-0.5 rounded">2</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">Completed Sessions</span>
+<span class="font-label-md text-label-md text-on-surface-variant">14</span>
+</li>
+<li class="flex justify-between items-center">
+<span class="font-body-sm text-body-sm text-on-surface">Current Track</span>
+<span class="font-label-md text-label-md text-secondary border border-secondary-container px-2 py-0.5 rounded text-[11px]">Product Design</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Right Column: Details Forms -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Personal Details & Bio -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 md:p-8 shadow-[0_4px_24px_rgba(74,52,38,0.04)]">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">edit_document</span>
+                                Personal Details &amp; Bio
+                            </h3>
+<form class="space-y-5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block" for="firstName">First Name</label>
+<input class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]" id="firstName" type="text" value="Alex"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block" for="lastName">Last Name</label>
+<input class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]" id="lastName" type="text" value="Chen"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface block" for="headline">Professional Headline</label>
+<input class="w-full px-4 py-2.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]" id="headline" type="text" value="UX Design Student at RISD | Seeking Product Mentorship"/>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between">
+<label class="font-label-md text-label-md text-on-surface block" for="bio">Update Bio</label>
+<span class="font-body-sm text-body-sm text-on-surface-variant">250 chars max</span>
+</div>
+<textarea class="w-full px-4 py-3 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] resize-y" id="bio" rows="4">I am a third-year design student passionate about creating accessible digital experiences. I am looking for a mentor to help me refine my portfolio and navigate the transition from academia to the tech industry, specifically in early-stage startups.</textarea>
+</div>
+</form>
+</div>
+<!-- Goals & Focus Areas -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 md:p-8 shadow-[0_4px_24px_rgba(74,52,38,0.04)]">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">target</span>
+                                Update Goals &amp; Interests
+                            </h3>
+<div class="space-y-6">
+<div class="space-y-3">
+<label class="font-label-md text-label-md text-on-surface block">Primary Mentorship Goals</label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+<label class="flex items-start gap-3 p-3 border border-outline-variant rounded cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input checked="" class="mt-1 text-primary focus:ring-primary border-outline-variant rounded text-primary-container" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Portfolio Review</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Constructive feedback on current work</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-primary rounded cursor-pointer bg-primary-fixed-dim/20 transition-colors">
+<input checked="" class="mt-1 text-primary focus:ring-primary border-outline-variant rounded text-primary-container" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Career Strategy</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Navigating job hunts and interviews</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-outline-variant rounded cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input class="mt-1 text-primary focus:ring-primary border-outline-variant rounded text-primary-container" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Technical Skills</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Learning specific tools or languages</span>
+</div>
+</label>
+<label class="flex items-start gap-3 p-3 border border-outline-variant rounded cursor-pointer hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<input class="mt-1 text-primary focus:ring-primary border-outline-variant rounded text-primary-container" type="checkbox"/>
+<div>
+<span class="font-label-md text-label-md text-on-surface block">Networking</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Expanding professional connections</span>
+</div>
+</label>
+</div>
+</div>
+<div class="space-y-3 pt-4 border-t border-outline-variant">
+<label class="font-label-md text-label-md text-on-surface block">Stack Interests &amp; Technologies</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-2">Select the areas you want to discuss with your mentor.</p>
+<div class="flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container-high border border-outline-variant rounded-full font-body-sm text-body-sm text-on-surface">
+                                            Figma <button class="material-symbols-outlined text-[16px] hover:text-error transition-colors">close</button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container-high border border-outline-variant rounded-full font-body-sm text-body-sm text-on-surface">
+                                            User Research <button class="material-symbols-outlined text-[16px] hover:text-error transition-colors">close</button>
+</span>
+<span class="inline-flex items-center gap-1 px-3 py-1.5 bg-surface-container-high border border-outline-variant rounded-full font-body-sm text-body-sm text-on-surface">
+                                            Prototyping <button class="material-symbols-outlined text-[16px] hover:text-error transition-colors">close</button>
+</span>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 border border-dashed border-primary text-primary rounded-full font-label-sm text-label-sm hover:bg-primary-fixed/30 transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Topic
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Preferences & Notifications -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 md:p-8 shadow-[0_4px_24px_rgba(74,52,38,0.04)]">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">tune</span>
+                                Update Preferences
+                            </h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between py-3 border-b border-outline-variant">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Email Notifications</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Receive updates about session requests and messages.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between py-3 border-b border-outline-variant">
+<div>
+<p class="font-label-md text-label-md text-on-surface">Public Profile Visibility</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Allow mentors to find you in the student directory.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-dim peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/50 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="pt-2">
+<label class="font-label-md text-label-md text-on-surface block mb-2" for="timezone">Timezone Preference</label>
+<div class="relative">
+<select class="w-full appearance-none px-4 py-2.5 bg-surface border border-outline-variant rounded font-body-sm text-body-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none" id="timezone">
+<option>Eastern Time (ET)</option>
+<option>Pacific Time (PT)</option>
+<option>Central European Time (CET)</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Actions (Bottom) -->
+<div class="flex justify-end gap-4 pt-6 border-t border-outline-variant mt-8">
+<button class="px-6 py-2.5 border border-outline text-on-surface rounded font-label-md text-label-md hover:bg-surface-container transition-colors">
+                                Cancel
+                            </button>
+<button class="px-6 py-2.5 bg-primary-container text-on-primary rounded font-label-md text-label-md hover:bg-primary transition-colors shadow-[0_2px_8px_rgba(74,52,38,0.08)] flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                                Save Changes
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer spacing -->
+<div class="h-16"></div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Session Details - MentorHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fcf9f6",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#50392b",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#50453e",
+                    "surface-container": "#f0edea",
+                    "on-tertiary-fixed": "#29170b",
+                    "on-secondary-fixed-variant": "#5d4200",
+                    "on-primary-container": "#eec1a4",
+                    "on-secondary-fixed": "#261900",
+                    "surface-container-low": "#f6f3f0",
+                    "outline": "#82746d",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-highest": "#e5e2df",
+                    "surface-bright": "#fcf9f6",
+                    "on-secondary-container": "#755400",
+                    "tertiary-fixed": "#ffdbc7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#5f402a",
+                    "surface-dim": "#dcdad7",
+                    "tertiary-fixed-dim": "#e1c0ac",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#eabda0",
+                    "secondary-fixed-dim": "#f0bf5c",
+                    "primary-fixed": "#ffdcc6",
+                    "surface": "#fcf9f6",
+                    "primary-fixed-dim": "#eabda0",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#2d1604",
+                    "surface-variant": "#e5e2df",
+                    "surface-tint": "#79573f",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#695041",
+                    "surface-container-high": "#eae8e5",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#ffdea4",
+                    "inverse-surface": "#31302f",
+                    "on-tertiary-container": "#e6c4b0",
+                    "outline-variant": "#d4c3ba",
+                    "on-surface": "#1c1c1a",
+                    "secondary-container": "#fcca66",
+                    "primary": "#553722",
+                    "secondary": "#7b5900",
+                    "primary-container": "#6f4e37",
+                    "inverse-on-surface": "#f3f0ed",
+                    "on-background": "#1c1c1a",
+                    "on-tertiary-fixed-variant": "#594233"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "top-nav-height": "72px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "sidebar-width": "280px",
+                    "gutter": "24px",
+                    "base-unit": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "14px",
+                                    "letterSpacing": "0.04em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "60px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fcf9f6; color: #1c1c1a; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(221, 214, 207, 0.5);
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .soft-shadow {
+            box-shadow: 0 4px 24px rgba(74, 52, 38, 0.04);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex antialiased">
+<!-- SideNavBar (Student Portal) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant py-6 z-20">
+<div class="px-6 mb-8 flex flex-col gap-1">
+<h1 class="font-headline-sm text-headline-sm text-primary">MentorHub</h1>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Student Portal</span>
+</div>
+<div class="flex flex-col flex-1 gap-2 mt-4 px-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">explore</span>
+<span class="font-label-md text-label-md">Browse Mentors</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT bg-surface-container-high text-primary border-l-4 border-primary translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_note</span>
+<span class="font-label-md text-label-md font-bold">My Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="px-2 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-DEFAULT text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar-width min-h-screen">
+<!-- TopNavBar (Mobile only for student context, or a contextual header for details) -->
+<header class="flex md:hidden items-center justify-between h-top-nav-height bg-surface border-b border-outline-variant px-margin-mobile w-full z-10 sticky top-0">
+<button class="text-on-surface">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm text-primary">Session Detail</h1>
+<div class="w-6"></div> <!-- Spacer for centering -->
+</header>
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8 md:py-12">
+<!-- Page Header -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline-variant pb-6">
+<div>
+<div class="flex items-center gap-2 mb-2 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">event_note</span>
+<span>My Sessions</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span>Session #8924</span>
+</div>
+<h2 class="font-display-lg text-display-lg text-on-surface">Strategic Planning Review</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">A comprehensive deep dive into Q4 product strategy and resource allocation.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 rounded-DEFAULT border border-primary-container text-primary-container font-label-md text-label-md hover:bg-surface-container transition-colors">
+                        Download Notes
+                    </button>
+<button class="px-6 py-3 rounded-DEFAULT bg-primary-container text-on-primary font-label-md text-label-md shadow-sm hover:-translate-y-0.5 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+                        Book Follow-up
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Mentor Information Card (Col span 4) -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 soft-shadow flex flex-col gap-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">pattern</span>
+                        Mentor Information
+                    </h3>
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-outline-variant shrink-0 bg-surface-container">
+<img alt="Mentor Headshot" class="w-full h-full object-cover" data-alt="A professional headshot of a mature, sophisticated corporate mentor in a softly lit, modern executive office with warm wooden tones and a subtle light-mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvDx0jfb4Y0Z8ITC5DsKcsRx1qpdNf3brrzhwKms6iFEfau5b8zI4SaSkunV75LdwWUns9JRWMsRrROI3upyyRYnJYKLZgU-ldDEOjej0jKo-V-vKn4ASQyc-MtnuqRBHfmtu7yNnyw5l_XdDoGnZAoGu_RKcnmgFa87zjpyfqcATJhhPhyLiPOYfEDurzVjbjdWN1oIvglT0K6GmAZAopigUaKNWFXkejjOVH2gn3c-V6mF1mKhE5pKjogqvZkYrvZ0nVwIsah5U"/>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Elena Rostova</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">VP of Product Strategy</p>
+</div>
+</div>
+<div class="flex flex-col gap-3 mt-2">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">corporate_fare</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current Role</p>
+<p class="font-body-md text-body-md text-on-surface">Acme Corp Global</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline text-[20px] mt-0.5">diamond</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Expertise</p>
+<div class="flex flex-wrap gap-2 mt-1">
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface">Product Vision</span>
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface">Scaling</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Booking Information Card (Col span 4) -->
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 soft-shadow flex flex-col gap-6">
+<h3 class="font-headline-sm text-headline-sm text-on-surface border-b border-outline-variant pb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">schedule</span>
+                        Booking Information
+                    </h3>
+<div class="flex flex-col gap-5">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">October 24, 2023</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time &amp; Duration</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">10:00 AM PST (60 min)</p>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Location</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">MentorHub Video</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Confidence Score Widget (Col span 4) -->
+<div class="col-span-12 md:col-span-4 bg-primary-container text-on-primary rounded-lg p-6 soft-shadow flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-6 -top-6 opacity-10">
+<span class="material-symbols-outlined text-[120px]">trending_up</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-1 flex items-center gap-2">
+<span class="material-symbols-outlined">insights</span>
+                            Confidence Score
+                        </h3>
+<p class="font-body-sm text-body-sm text-on-primary-container opacity-90">Post-session mentor evaluation</p>
+</div>
+<div class="mt-8 flex items-end gap-4">
+<span class="font-display-lg text-display-lg leading-none">92</span>
+<span class="font-body-lg text-body-lg mb-1 opacity-80">/ 100</span>
+</div>
+<div class="mt-4">
+<div class="w-full bg-tertiary-container rounded-full h-2 mb-2 overflow-hidden">
+<div class="bg-secondary-container h-2 rounded-full" style="width: 92%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-primary-container">Top 5% for Executive Communication</p>
+</div>
+</div>
+<!-- AI Audit Analysis (Col span 12) -->
+<div class="col-span-12 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 md:p-8 soft-shadow mt-4">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4 mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container">spark</span>
+                            AI Audit Analysis
+                        </h3>
+<span class="px-3 py-1 bg-surface-container-high rounded-full font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span> Generated from transcript
+                        </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Key Takeaways -->
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">key</span>
+                                Key Takeaways
+                            </h4>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-primary-container">check</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">The proposed Q4 roadmap is solid, but needs clearer milestones for the engineering team to prevent bottlenecks.</p>
+</li>
+<li class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-primary-container">check</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Elena suggested reframing the go-to-market narrative to focus more on enterprise value rather than specific features.</p>
+</li>
+<li class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-primary-container">check</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface">Identified a potential gap in user research regarding the new compliance module.</p>
+</li>
+</ul>
+</div>
+<!-- Action Items -->
+<div class="bg-surface-container-low rounded-lg p-5 border border-outline-variant">
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">task_alt</span>
+                                Recommended Action Items
+                            </h4>
+<div class="space-y-3">
+<label class="flex items-start gap-3 p-3 bg-surface-container-lowest rounded border border-outline-variant cursor-pointer hover:border-primary-container transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Draft revised milestone timeline for engineering sync on Tuesday.</span>
+</label>
+<label class="flex items-start gap-3 p-3 bg-surface-container-lowest rounded border border-outline-variant cursor-pointer hover:border-primary-container transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Schedule 3 enterprise customer interviews to validate compliance features.</span>
+</label>
+<label class="flex items-start gap-3 p-3 bg-surface-container-lowest rounded border border-outline-variant cursor-pointer hover:border-primary-container transition-colors">
+<input class="mt-1 rounded-sm border-outline text-primary-container focus:ring-primary-container" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface">Review Elena's recommended reading on narrative framing (link in notes).</span>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Full Transcript Excerpt</h4>
+<div class="bg-surface-container p-4 rounded-DEFAULT font-body-sm text-body-sm text-on-surface-variant max-h-32 overflow-y-auto italic">
+                            "...I think you're looking at the timeline correctly, but you need to factor in the holidays in Q4. It always slows down enterprise procurement. If you don't have those milestones locked by mid-November, that revenue pushes to Q1. Let's look at how we can pull the compliance module forward..."
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

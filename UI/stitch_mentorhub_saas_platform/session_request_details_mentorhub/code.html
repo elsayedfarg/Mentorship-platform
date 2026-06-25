@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MentorHub - Session Request Details</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcdad7",
+                        "background": "#fcf9f6",
+                        "tertiary": "#50392b",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#e1c0ac",
+                        "secondary": "#7b5900",
+                        "surface-container-low": "#f6f3f0",
+                        "primary": "#553722",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#eabda0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#79573f",
+                        "surface-variant": "#e5e2df",
+                        "outline-variant": "#d4c3ba",
+                        "on-background": "#1c1c1a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#5f402a",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed-dim": "#f0bf5c",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae8e5",
+                        "on-surface-variant": "#50453e",
+                        "on-surface": "#1c1c1a",
+                        "inverse-primary": "#eabda0",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#755400",
+                        "secondary-container": "#fcca66",
+                        "secondary-fixed": "#ffdea4",
+                        "primary-container": "#6f4e37",
+                        "on-tertiary-container": "#e6c4b0",
+                        "on-primary-fixed": "#2d1604",
+                        "inverse-surface": "#31302f",
+                        "on-tertiary-fixed-variant": "#594233",
+                        "outline": "#82746d",
+                        "surface-container": "#f0edea",
+                        "on-secondary-fixed": "#261900",
+                        "primary-fixed": "#ffdcc6",
+                        "on-tertiary-fixed": "#29170b",
+                        "surface": "#fcf9f6",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eec1a4",
+                        "surface-container-highest": "#e5e2df",
+                        "inverse-on-surface": "#f3f0ed",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "tertiary-container": "#695041",
+                        "surface-bright": "#fcf9f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "base-unit": "8px",
+                        "sidebar-width": "280px",
+                        "top-nav-height": "72px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f6;
+            color: #1c1c1a;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex flex-col md:flex-row font-body-md text-body-md text-on-background">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile h-[72px] bg-surface border-b border-outline-variant">
+<div class="font-headline-md text-headline-md font-bold text-primary">MentorHub</div>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined">notifications</span>
+<span class="material-symbols-outlined">account_circle</span>
+<button class="material-symbols-outlined" id="mobile-menu-btn">menu</button>
+</div>
+</header>
+<!-- SideNavBar (Mentor Portal) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant flex-col py-6 z-10" id="sidebar">
+<div class="px-6 mb-8">
+<div class="font-headline-sm text-headline-sm text-primary font-bold">MentorHub</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-1">Mentor Portal</div>
+</div>
+<div class="flex flex-col gap-2 flex-grow">
+<!-- Inactive -->
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 mx-2 rounded hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 mx-2 rounded hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                Availability
+            </a>
+<!-- Active: Mapping "Session Request Details" to "Sessions" -->
+<a class="bg-surface-container-high text-primary border-l-4 border-primary flex items-center gap-3 px-4 py-3 font-label-md text-label-md translate-x-1" href="#">
+<span class="material-symbols-outlined filled">video_chat</span>
+                Sessions
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 mx-2 rounded hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">visibility</span>
+                Public Profile
+            </a>
+<!-- Inactive -->
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 mx-2 rounded hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto px-2">
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 rounded hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] w-full max-w-container-max mx-auto">
+<!-- TopNavBar (Web) -->
+<header class="hidden md:flex justify-end items-center w-full px-gutter h-[72px] bg-surface border-b border-outline-variant sticky top-0 z-10">
+<div class="flex items-center gap-6 text-primary">
+<button class="hover:bg-surface-container-high p-2 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center gap-3 hover:bg-surface-container-high p-2 rounded-lg transition-colors cursor-pointer">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a seasoned executive mentor, subtly lit in a modern office environment. High-key light-mode aesthetic with warm, luxurious earthy tones in the background. The lighting is soft and flattering, emphasizing a trustworthy and approachable demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKfP9JMkHzpieoqN-M4OZdTB88PZnTlP-NpjhNIdMs0PLV6V8zVWKEFGqTxgpE8h73qSvHKFy2wzBDCatM1cqVeKxbIKuSRCYpsid79xztrjtjyxwLxY2aI3N3VSRA8XfYF79k7XIig10WMFCFqJwHOqcTiCoD2poWcrwB0lslO1ASE4ZZIXCtejtBDf6LBPkQdqxpq8L_fZ_NpzHigFnmpTQS8pgFoA7Ne0tJ7uMn03p6kA5m7WpwClVD9av9Rf4BJRtM2kn8peE"/>
+<span class="font-label-md text-label-md text-primary">Eleanor Vance</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+</div>
+</header>
+<div class="p-margin-mobile md:p-[40px] max-w-4xl mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant mb-6">
+<a class="hover:text-primary transition-colors" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Session Requests</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Marcus Chen</span>
+</nav>
+<!-- Header -->
+<div class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-on-background">Session Request: Career Transition Strategy</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2">Review the details below to prepare for the introductory session.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column: Student Info & Request Details (Bento-style) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Student Information Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(74,52,38,0.04)] relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full -z-10 transition-transform duration-500 group-hover:scale-110"></div>
+<h2 class="font-headline-sm text-headline-sm text-on-background border-b border-outline-variant pb-4 mb-6">Mentee Profile</h2>
+<div class="flex flex-col sm:flex-row gap-6 items-start">
+<img alt="Student Photo" class="w-24 h-24 rounded-full object-cover border-2 border-surface-variant shadow-sm" data-alt="A bright, professional headshot of a young, ambitious software engineer looking to transition into product management. Warm, inviting lighting in a modern co-working space. The image exudes quiet luxury and focus, aligning perfectly with a premium mentoring platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQNeQY_1XHUHOrqE_jQIsguWpWPxRNkfk2uMovgr-E-nA0Z8JIYqI3P3z22YOPVvPbb_OHujSXBva1lB7Z5hRo5did7YkRGSaT77ZOFzWKOOotQr1S25rB4oxxH_1rsMuAnZc2vcOWqGKXXmSfa_6czbBGe2vG_AIpzNOtyL5XYVSNs4S7O4koIMhPERlUwvWziMc7RM1Rtfg2sWF7_NWGLxEz4MRyTKPif-jqGHryh6HYlkrSWSUkzcrrVq0P786IYepHmw0kZtE"/>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-primary">Marcus Chen</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Senior Software Engineer at TechFlow Solutions</p>
+<div class="bg-surface-container-low p-4 rounded-lg border border-outline-variant/50">
+<h4 class="font-label-md text-label-md text-on-surface mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">flag</span>
+                                        Learning Goals
+                                    </h4>
+<ul class="list-disc list-inside font-body-sm text-body-sm text-on-surface-variant space-y-1">
+<li>Understand the day-to-day responsibilities of a Senior PM.</li>
+<li>Identify gaps in current skill set for a transition.</li>
+<li>Develop a 6-month roadmap for internal transfer or external application.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Student Notes -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(74,52,38,0.04)] relative">
+<h2 class="font-headline-sm text-headline-sm text-on-background border-b border-outline-variant pb-4 mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">format_quote</span>
+                            Message from Marcus
+                        </h2>
+<div class="font-body-md text-body-md text-on-surface-variant italic leading-relaxed pl-4 border-l-2 border-outline-variant">
+                            "Hi Eleanor, I've been following your posts on LinkedIn regarding product strategy and cross-functional leadership. I've spent the last 5 years as a backend engineer and I'm looking to make a pivot into Product Management. I'd love to get your insights on how to frame my engineering background as a strength rather than a pivot from scratch, and what resources you recommend for building product sense."
+                        </div>
+</div>
+</div>
+<!-- Right Column: Request Details & Actions -->
+<div class="space-y-6">
+<!-- Request Details Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(74,52,38,0.04)]">
+<h2 class="font-headline-sm text-headline-sm text-on-background border-b border-outline-variant pb-4 mb-6">Proposed Logistics</h2>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">event</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date</p>
+<p class="font-body-md text-body-md text-on-background font-medium">Thursday, October 26th</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time</p>
+<p class="font-body-md text-body-md text-on-background font-medium">2:00 PM - 2:45 PM (PST)</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">hourglass_empty</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Duration</p>
+<p class="font-body-md text-body-md text-on-background font-medium">45 Minutes</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">videocam</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Format</p>
+<p class="font-body-md text-body-md text-on-background font-medium">Video Call (MentorHub Native)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions Sticky Container -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-6 sticky top-[96px]">
+<h3 class="font-label-md text-label-md text-on-surface mb-4">Decision</h3>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary-container text-on-primary py-3 px-6 rounded hover:bg-primary-container/90 transition-all font-label-md text-label-md flex justify-center items-center gap-2 shadow-sm hover:shadow-md">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                                Accept Request
+                            </button>
+<button class="w-full bg-transparent border border-outline text-primary py-3 px-6 rounded hover:bg-surface-container transition-all font-label-md text-label-md flex justify-center items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+                                Decline
+                            </button>
+<div class="text-center mt-2">
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-fixed-dim underline underline-offset-2 transition-colors" href="#">
+                                    Propose New Time
+                                </a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Mobile Menu Toggle Script -->
+<script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar.classList.contains('hidden')) {
+                sidebar.classList.remove('hidden');
+                sidebar.classList.add('flex', 'w-full', 'z-50');
+            } else {
+                sidebar.classList.add('hidden');
+                sidebar.classList.remove('flex', 'w-full', 'z-50');
+            }
+        });
+    </script>
+</body></html>

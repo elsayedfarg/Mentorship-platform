@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mentor Approvals - MentorHub Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#79573f",
+                      "tertiary-fixed-dim": "#e1c0ac",
+                      "surface-container-high": "#eae8e5",
+                      "error": "#ba1a1a",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#eabda0",
+                      "on-primary-container": "#eec1a4",
+                      "inverse-on-surface": "#f3f0ed",
+                      "tertiary": "#50392b",
+                      "surface-bright": "#fcf9f6",
+                      "on-surface": "#1c1c1a",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed": "#261900",
+                      "secondary-fixed-dim": "#f0bf5c",
+                      "surface-variant": "#e5e2df",
+                      "primary-container": "#6f4e37",
+                      "outline": "#82746d",
+                      "on-background": "#1c1c1a",
+                      "on-tertiary-fixed": "#29170b",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#d4c3ba",
+                      "on-tertiary-fixed-variant": "#594233",
+                      "primary-fixed-dim": "#eabda0",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0edea",
+                      "on-secondary-container": "#755400",
+                      "surface": "#fcf9f6",
+                      "tertiary-container": "#695041",
+                      "inverse-surface": "#31302f",
+                      "primary": "#553722",
+                      "on-tertiary-container": "#e6c4b0",
+                      "on-primary-fixed-variant": "#5f402a",
+                      "secondary-container": "#fcca66",
+                      "on-primary-fixed": "#2d1604",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f6f3f0",
+                      "on-surface-variant": "#50453e",
+                      "primary-fixed": "#ffdcc6",
+                      "background": "#fcf9f6",
+                      "secondary": "#7b5900",
+                      "surface-container-highest": "#e5e2df",
+                      "surface-dim": "#dcdad7",
+                      "secondary-fixed": "#ffdea4",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed": "#ffdbc7",
+                      "on-secondary-fixed-variant": "#5d4200"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "top-nav-height": "72px",
+                      "sidebar-width": "280px",
+                      "container-max": "1440px",
+                      "margin-mobile": "16px",
+                      "gutter": "24px",
+                      "base-unit": "8px"
+              },
+              "fontFamily": {
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "60px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "14px",
+                                      "letterSpacing": "0.04em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8F5F2; /* Base Level 0 */
+        }
+    </style>
+</head>
+<body class="text-on-background font-body-md bg-surface-bright flex min-h-screen">
+<!-- TopNavBar (Hidden on desktop, shown on mobile) -->
+<nav class="md:hidden fixed top-0 w-full h-[72px] bg-surface border-b border-outline-variant flex justify-between items-center px-gutter z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<span class="font-headline-md text-headline-md text-primary">MentorHub</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<img alt="Administrator Profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, circular avatar portrait of an administrative user. They are wearing professional attire in a modern, well-lit office setting. The aesthetic is clean, corporate, and trustworthy, matching a premium business software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvUK-jW078pL6nVxvAG7ZTMHLI0CvSKWNAG-EhyWrPqemX-AaIywTU8TXXON5QWJsPU7obOlTYEktiFxuEo7FtjZjuIXa6mFxgBOViDftD5cI0goo2x9dGUKkHvMKKRnotWtDshXAFRzUMP5VgwcjyPQeYFJjvSPZf0036FkAwxqQX6wm92Oq2bNOmnA1jV_HFd-aDY6c6FiwZrAqR5q2q_rPE6lt3xJVdHDyTX02yeUHzkhhBV814bSRg4DLluZFN9I34fw7IqjI"/>
+</div>
+</nav>
+<!-- SideNavBar (Hidden on mobile, shown on desktop) -->
+<aside class="hidden md:flex flex-col py-base-unit h-full fixed left-0 top-0 w-[280px] bg-surface border-r border-outline-variant transition-all duration-200 ease-in-out z-40">
+<!-- Header -->
+<div class="px-gutter py-6 border-b border-outline-variant mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-primary" data-icon="admin_panel_settings">admin_panel_settings</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary">MentorHub Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">System Control Panel</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-md text-label-md">Users</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-md bg-surface-container text-primary border-l-4 border-primary shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md">Mentor Approvals</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+<span class="font-label-md text-label-md">Technical Stacks</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<!-- Footer / Logout -->
+<div class="p-4 border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-md text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[280px] pt-[72px] md:pt-0 min-h-screen">
+<!-- Header section within content -->
+<header class="hidden md:flex items-center justify-between px-[40px] py-[24px] bg-surface border-b border-outline-variant sticky top-0 z-30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Mentor Approvals</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Review and manage incoming mentor applications.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-md font-body-sm text-body-sm bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow shadow-sm" placeholder="Search applications..." type="text"/>
+</div>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center bg-surface-container-lowest hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</header>
+<!-- Content Container -->
+<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-[40px] py-[24px] md:py-[40px]">
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Application List (Left Column) -->
+<div class="lg:col-span-2 space-y-4">
+<!-- Application Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<img alt="Applicant Photo" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a mature woman with glasses, wearing a tailored navy blazer. She is smiling confidently in a bright, modern corporate office environment with subtle greenery in the background. The aesthetic is high-end corporate lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_nDapnXxvhwU81sX-1rJcjm3UshBSxHJyzqvQ6idQXk87qKA8A54mY-ecAHyT7XT49voF8CChT-uvkDqGwvVSJVimYTb31Jys_6yGiQGAWsHO3sT9Nt7i3U5xCZ8ApbQnchH7pia9wsOh_QUGDHNXVyZL1f5Yklg5GkXJmSQI1X7APqBwolxx3dIFzjUgFoh3iHbLrXi7ShcgNDRxUeA47T3nmpPLy51V5Tb5ybqMTUo4LAyOxqMerCcHcG5xcV5RyWqxhFbslRM"/>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Dr. Sarah Jenkins</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">VP of Engineering at CloudScale Inc.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">System Architecture</span>
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">Team Leadership</span>
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">Cloud Infrastructure</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 2 hrs ago
+                                </span>
+<button class="mt-2 px-4 py-2 bg-primary text-on-primary rounded-md font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm active:translate-y-[1px]">
+                                    Review
+                                </button>
+</div>
+</div>
+</div>
+<!-- Application Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<img alt="Applicant Photo" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a middle-aged man with short hair and a neat beard, wearing a crisp white collared shirt. He is looking directly at the camera with a calm, approachable expression. The background is a slightly blurred, high-end architectural space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB47Fg8rUfX3phsIcr02xiOhQSkfr9pEU2-BfkBVR7JCkyr-ErdoW0PsoM82n2xyF08SP9UeqXU33egHY_ScN8z5O18wv0RgLrtASDRVgNPklfFkJat0--XG2y_nrMV3VtBoneYJxUPmqWLl9SP55agLxvEM48Uyn5ZHFxFvhqqfuO_3pH4Y0xvanVpMNR-mGWNR-j1nMbtklwrQhQXKqq7vh1LixKvJS0IW4ZM0J2Y_FMG0s5L5os0rJAxk0gyNeX27Ve-aEZ3UOk"/>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Marcus Chen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Director of Product Design, FinTech Solutions</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">UX Strategy</span>
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">Design Systems</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 5 hrs ago
+                                </span>
+<button class="mt-2 px-4 py-2 border border-primary text-primary rounded-md font-label-md text-label-md hover:bg-surface-container-low transition-colors active:translate-y-[1px]">
+                                    Review
+                                </button>
+</div>
+</div>
+</div>
+<!-- Application Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:shadow-sm transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-outline-variant">
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">EL</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Elena Rodriguez</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior Data Scientist</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">Machine Learning</span>
+<span class="px-2 py-1 bg-surface-container rounded-sm font-label-sm text-label-sm text-on-surface-variant border border-outline-variant">Python</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> 1 day ago
+                                </span>
+<button class="mt-2 px-4 py-2 border border-primary text-primary rounded-md font-label-md text-label-md hover:bg-surface-container-low transition-colors active:translate-y-[1px]">
+                                    Review
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Review Detail Panel (Right Column - Conceptual Active State) -->
+<div class="lg:col-span-1">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm sticky top-[120px] overflow-hidden">
+<!-- Header Detail -->
+<div class="p-6 border-b border-outline-variant bg-surface-container-low">
+<div class="flex items-center gap-4 mb-4">
+<img alt="Applicant Photo Detail" class="w-16 h-16 rounded-full object-cover border-2 border-surface-container-lowest shadow-sm" data-alt="A professional headshot of a mature woman with glasses, wearing a tailored navy blazer. She is smiling confidently in a bright, modern corporate office environment with subtle greenery in the background. The aesthetic is high-end corporate lifestyle." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAry0FQ8elkiZMicRZQsWqyJjb36KnrlL3lY3Nx0aii1PSJgQy1PHvQ2xH9jlbUZw8YqTC3N6A1VSgOfidgkuyg-2h--Nzs8MInCWtWGGfGkFGLInc9BK49_eT6EhsAkGFAZV2Q96862NythUC_Vhvoi7lVAKgWo1vVxNZdm_LwYQA4qQka1pdQ9xoFVqx6ZpY0Yy99OlmNp47GzYLjiEq14oSt8uRUJJ2QqxJXerhnSPb4qZa_YmMFoSwDPHXSd7Sih9McRSU7KqY"/>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Dr. Sarah Jenkins</h2>
+<a class="font-body-sm text-body-sm text-primary flex items-center gap-1 hover:underline" href="#">
+<span class="material-symbols-outlined text-[16px]" data-icon="link">link</span> LinkedIn Profile
+                                    </a>
+</div>
+</div>
+</div>
+<!-- Content Detail -->
+<div class="p-6 space-y-6">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Professional Summary</h4>
+<p class="font-body-sm text-body-sm text-on-surface">
+                                    Experienced engineering leader with over 15 years in building scalable cloud architectures and leading high-performing technical teams. Passionate about guiding the next generation of female engineers into leadership roles.
+                                </p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Mentorship Intent</h4>
+<div class="bg-surface-container p-4 rounded-md border border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface italic">
+                                        "I want to help mid-level developers transition into management and architectural roles. Often, the technical skills are there, but the strategic communication and leadership frameworks are missing."
+                                    </p>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-2">Availability</h4>
+<p class="font-body-sm text-body-sm text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+                                    2-4 hours per week (Evenings &amp; Weekends)
+                                </p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="p-6 border-t border-outline-variant bg-surface-bright flex gap-3">
+<button class="flex-1 py-2 px-4 border border-outline-variant rounded-md font-label-md text-label-md text-on-surface hover:bg-error-container hover:text-on-error-container hover:border-error-container transition-colors">
+                                Reject
+                            </button>
+<button class="flex-1 py-2 px-4 bg-primary text-on-primary rounded-md font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm">
+                                Approve Mentor
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
