@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MentorHub - Student Profile Setup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#6f4e37",
+                        "secondary-container": "#fcca66",
+                        "surface-container-high": "#eae8e5",
+                        "primary": "#553722",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#d4c3ba",
+                        "surface-container": "#f0edea",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed-dim": "#f0bf5c",
+                        "inverse-primary": "#eabda0",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#eec1a4",
+                        "surface": "#fcf9f6",
+                        "inverse-surface": "#31302f",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "tertiary-fixed-dim": "#e1c0ac",
+                        "on-tertiary-container": "#e6c4b0",
+                        "surface-variant": "#e5e2df",
+                        "inverse-on-surface": "#f3f0ed",
+                        "secondary": "#7b5900",
+                        "tertiary": "#50392b",
+                        "surface-container-low": "#f6f3f0",
+                        "tertiary-container": "#695041",
+                        "surface-container-highest": "#e5e2df",
+                        "primary-fixed": "#ffdcc6",
+                        "on-primary-fixed-variant": "#5f402a",
+                        "secondary-fixed": "#ffdea4",
+                        "on-secondary-container": "#755400",
+                        "background": "#fcf9f6",
+                        "outline": "#82746d",
+                        "on-surface-variant": "#50453e",
+                        "on-surface": "#1c1c1a",
+                        "surface-tint": "#79573f",
+                        "surface-dim": "#dcdad7",
+                        "on-tertiary-fixed": "#29170b",
+                        "on-background": "#1c1c1a",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#eabda0",
+                        "surface-bright": "#fcf9f6",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#261900",
+                        "on-tertiary-fixed-variant": "#594233",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed": "#2d1604",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base-unit": "8px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "sidebar-width": "280px",
+                        "top-nav-height": "72px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .wizard-step { display: none; }
+        .wizard-step.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .tag-checkbox:checked + label {
+            background-color: theme('colors.primary-container');
+            color: theme('colors.on-primary-container');
+            border-color: theme('colors.primary-container');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- Sidebar (Student) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant flex-col py-6 z-20">
+<div class="px-6 mb-8 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm font-bold">M</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary">MentorHub</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Student Portal</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all mx-2 rounded-DEFAULT font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all mx-2 rounded-DEFAULT font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span>Browse Mentors</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all mx-2 rounded-DEFAULT font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span>
+<span>My Sessions</span>
+</a>
+<a class="bg-surface-container-high text-primary border-l-4 border-primary flex items-center gap-3 px-4 py-3 transition-all mx-2 rounded-r-DEFAULT font-label-md text-label-md translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span>Profile</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all mx-2 rounded-DEFAULT font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4">
+<a class="text-on-surface-variant flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all rounded-DEFAULT font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-sidebar-width min-h-screen relative">
+<!-- Top Nav -->
+<header class="bg-surface dark:bg-surface-dim top-0 h-[72px] border-b border-outline-variant flex justify-between items-center w-full px-gutter max-w-container-max mx-auto z-10 sticky">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed md:hidden">MentorHub</h2>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed hidden md:block">Profile Setup</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 p-margin-mobile md:p-[40px] max-w-container-max mx-auto w-full flex justify-center items-center">
+<!-- Wizard Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 md:p-8 w-full max-w-2xl shadow-sm relative overflow-hidden">
+<!-- Progress Bar -->
+<div class="absolute top-0 left-0 w-full h-1 bg-surface-variant" id="progress-container" style="display: block;">
+<div class="h-full bg-primary transition-all duration-300 w-1/3" id="progress-bar"></div>
+</div>
+<!-- Step 1: Basic Info -->
+<div class="wizard-step active" id="step-1">
+<div class="mb-8">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Welcome! Let's get to know you.</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Set up your profile to connect with the right mentors.</p>
+</div>
+<div class="space-y-6">
+<!-- Avatar Upload -->
+<div class="flex flex-col items-center sm:items-start gap-4">
+<label class="font-label-md text-label-md text-on-surface">Profile Picture</label>
+<div class="flex items-center gap-6">
+<div class="w-24 h-24 rounded-full bg-surface-variant flex items-center justify-center border border-dashed border-outline text-on-surface-variant overflow-hidden relative group cursor-pointer">
+<span class="material-symbols-outlined text-3xl group-hover:opacity-0 transition-opacity">add_photo_alternate</span>
+<div class="absolute inset-0 bg-primary/10 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">upload</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<button class="bg-transparent border border-primary text-primary px-4 py-2 rounded-DEFAULT font-label-md text-label-md hover:bg-surface-container transition-colors">Upload Image</button>
+<p class="font-body-sm text-body-sm text-on-surface-variant">JPG, PNG or GIF. Max size 2MB.</p>
+</div>
+</div>
+</div>
+<!-- Name -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="fullName">Full Name</label>
+<input class="w-full px-4 py-3 rounded-DEFAULT border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow font-body-md text-body-md text-on-surface" id="fullName" placeholder="Jane Doe" type="text"/>
+</div>
+</div>
+<div class="mt-8 flex justify-end">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-label-md text-label-md hover:bg-tertiary transition-colors flex items-center gap-2" onclick="nextStep(2)">
+                            Continue <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Experience & Goals -->
+<div class="wizard-step" id="step-2">
+<div class="mb-8">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Your Journey So Far</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Help us understand where you are and where you want to go.</p>
+</div>
+<div class="space-y-6">
+<!-- Experience Level -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="experience">Current Experience Level</label>
+<div class="relative">
+<select class="w-full px-4 py-3 rounded-DEFAULT border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none appearance-none font-body-md text-body-md text-on-surface cursor-pointer" id="experience">
+<option disabled="" selected="" value="">Select your level...</option>
+<option value="beginner">Beginner (0-1 years)</option>
+<option value="intermediate">Intermediate (1-3 years)</option>
+<option value="advanced">Advanced (3+ years)</option>
+<option value="career-switcher">Career Switcher</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Learning Goals -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface" for="goals">Primary Learning Goals</label>
+<textarea class="w-full px-4 py-3 rounded-DEFAULT border border-outline-variant bg-surface-container-lowest focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-shadow font-body-md text-body-md text-on-surface resize-none" id="goals" placeholder="What are you hoping to achieve with a mentor? (e.g., Learn React, prepare for interviews, transition to product management...)" rows="4"></textarea>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<button class="text-on-surface-variant hover:text-primary px-4 py-2 rounded-DEFAULT font-label-md text-label-md transition-colors flex items-center gap-2" onclick="prevStep(1)">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
+                        </button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-label-md text-label-md hover:bg-tertiary transition-colors flex items-center gap-2" onclick="nextStep(3)">
+                            Continue <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Interests (Tags) -->
+<div class="wizard-step" id="step-3">
+<div class="mb-8">
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-2">Technical Interests</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Select the stacks or areas you want to focus on.</p>
+</div>
+<div class="space-y-6">
+<div class="flex flex-wrap gap-3">
+<!-- Tags using checkboxes for semantic accessibility, styled as pills -->
+<div>
+<input class="tag-checkbox hidden" id="tag-frontend" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-frontend">Frontend Dev</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-backend" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-backend">Backend Dev</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-fullstack" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-fullstack">Fullstack</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-design" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-design">UI/UX Design</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-data" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-data">Data Science</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-mobile" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-mobile">Mobile (iOS/Android)</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-cloud" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-cloud">Cloud/DevOps</label>
+</div>
+<div>
+<input class="tag-checkbox hidden" id="tag-leadership" type="checkbox"/>
+<label class="cursor-pointer border border-outline-variant text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md hover:bg-surface-container transition-colors inline-block select-none" for="tag-leadership">Leadership</label>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<button class="text-on-surface-variant hover:text-primary px-4 py-2 rounded-DEFAULT font-label-md text-label-md transition-colors flex items-center gap-2" onclick="prevStep(2)">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span> Back
+                        </button>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-DEFAULT font-label-md text-label-md hover:bg-tertiary transition-colors flex items-center gap-2 shadow-[0_4px_12px_rgba(74,52,38,0.15)]" onclick="finishSetup()">
+                            Complete Setup <span class="material-symbols-outlined text-[18px]">check_circle</span>
+</button>
+</div>
+</div>
+<!-- Success State -->
+<div class="wizard-step text-center py-12" id="step-success">
+<div class="w-20 h-20 rounded-full bg-surface-container-high flex items-center justify-center mx-auto mb-6 text-primary">
+<span class="material-symbols-outlined text-[48px]">diamond</span>
+</div>
+<h3 class="font-display-lg text-display-lg text-on-surface mb-4">Profile Created!</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8 max-w-md mx-auto">Your journey begins now. We've matched you with potential mentors based on your profile.</p>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-DEFAULT font-label-md text-label-md hover:bg-tertiary transition-colors shadow-[0_4px_12px_rgba(74,52,38,0.15)] inline-flex items-center gap-2">
+                        Go to Dashboard <span class="material-symbols-outlined text-[18px]">dashboard</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<script>
+        function nextStep(step) {
+            document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            updateProgress(step);
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            updateProgress(step);
+        }
+
+        function finishSetup() {
+            document.querySelectorAll('.wizard-step').forEach(el => el.classList.remove('active'));
+            document.getElementById('step-success').classList.add('active');
+            document.getElementById('progress-container').style.display = 'none';
+        }
+
+        function updateProgress(step) {
+            const progressBar = document.getElementById('progress-bar');
+            if(step === 1) progressBar.style.width = '33%';
+            if(step === 2) progressBar.style.width = '66%';
+            if(step === 3) progressBar.style.width = '100%';
+        }
+    </script>
+</body></html>

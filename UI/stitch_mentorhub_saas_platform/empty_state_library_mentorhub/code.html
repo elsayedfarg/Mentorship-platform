@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MentorHub - Empty State Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#79573f",
+                    "tertiary-fixed-dim": "#e1c0ac",
+                    "surface-container-high": "#eae8e5",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#eabda0",
+                    "on-primary-container": "#eec1a4",
+                    "inverse-on-surface": "#f3f0ed",
+                    "tertiary": "#50392b",
+                    "surface-bright": "#fcf9f6",
+                    "on-surface": "#1c1c1a",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#261900",
+                    "secondary-fixed-dim": "#f0bf5c",
+                    "surface-variant": "#e5e2df",
+                    "primary-container": "#6f4e37",
+                    "outline": "#82746d",
+                    "on-background": "#1c1c1a",
+                    "on-tertiary-fixed": "#29170b",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#d4c3ba",
+                    "on-tertiary-fixed-variant": "#594233",
+                    "primary-fixed-dim": "#eabda0",
+                    "on-error": "#ffffff",
+                    "surface-container": "#f0edea",
+                    "on-secondary-container": "#755400",
+                    "surface": "#fcf9f6",
+                    "tertiary-container": "#695041",
+                    "inverse-surface": "#31302f",
+                    "primary": "#553722",
+                    "on-tertiary-container": "#e6c4b0",
+                    "on-primary-fixed-variant": "#5f402a",
+                    "secondary-container": "#fcca66",
+                    "on-primary-fixed": "#2d1604",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f6f3f0",
+                    "on-surface-variant": "#50453e",
+                    "primary-fixed": "#ffdcc6",
+                    "background": "#fcf9f6",
+                    "secondary": "#7b5900",
+                    "surface-container-highest": "#e5e2df",
+                    "surface-dim": "#dcdad7",
+                    "secondary-fixed": "#ffdea4",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbc7",
+                    "on-secondary-fixed-variant": "#5d4200"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "top-nav-height": "72px",
+                    "sidebar-width": "280px",
+                    "container-max": "1440px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "base-unit": "8px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "60px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "14px",
+                                    "letterSpacing": "0.04em",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface fixed top-0 w-full h-[72px] border-b border-outline-variant dark:border-outline z-[60] flex justify-between items-center px-gutter w-full">
+<!-- Brand -->
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim tracking-tight">MentorHub</span>
+</div>
+<!-- Search Bar (on_left configuration relative to actions) -->
+<div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer transition-all duration-200 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all duration-200" placeholder="Search..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer transition-all duration-200 hover:border-primary ml-2">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a seasoned executive mentor in a warmly lit, modern corporate office. High-key lighting, luxurious aesthetic, wearing a tailored dark suit. Clean, sophisticated composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBLnHP1xcaEWmsEtu4bli1AviIvRTDDPEcYK0wN_wxhXwkIMc9ac2qMeIgQqvttXCnlYB5sfdBTcY8ema0y8HmAkotl79TeFks1crQ03eXg1UOOzc4cJKZk_HR4eZldRKZSHQQikAC1U63EC5IIfWKrCwrVVtVbpPHJkX5foOx2Dfn3E74apAsxWSbZHaW-60kH9-NJai_WwkHOzNTqx0LiOjsNdKFDQwOBWjb_Nwxl6gns3pTJdYeOtEyzXs4pt5gcKAlto883h4"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface fixed left-0 top-0 h-full w-[280px] border-r border-outline-variant dark:border-outline z-[50] pt-[72px] flex flex-col py-base-unit h-full">
+<!-- Header area inside sidebar, slightly redundant given top nav but following JSON structure -->
+<div class="px-6 py-6 border-b border-outline-variant dark:border-outline mb-4">
+<div class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim">MentorHub Admin</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mt-1">System Control Panel</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 flex flex-col gap-2">
+<!-- Active Item: Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md bg-surface-container dark:bg-tertiary-container text-primary dark:text-on-tertiary-container border-l-4 border-primary transition-all duration-200 ease-in-out cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+                Users
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="verified">verified</span>
+                Mentor Approvals
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="layers">layers</span>
+                Technical Stacks
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-4 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg font-label-md text-label-md text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-low dark:hover:bg-surface-variant transition-all duration-200 ease-in-out cursor-pointer hover:bg-surface-container-low" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-0 md:ml-[280px] pt-[72px] min-h-screen">
+<div class="max-w-container-max mx-auto p-gutter md:p-[40px]">
+<!-- Header -->
+<div class="mb-10">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Empty State Library</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">A curated collection of quiet luxury empty states, designed to gently guide users while maintaining a premium, editorial aesthetic.</p>
+</div>
+<!-- Bento Grid Showcase -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+<!-- 1. No Sessions (Telescope) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-[48px] flex flex-col items-center justify-center text-center shadow-[0_4px_12px_rgba(74,52,38,0.03)] transition-transform hover:-translate-y-1 duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[40px] text-primary" data-icon="telescope">file_copy</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">No Active Sessions</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 max-w-[240px]">Your vision is clear, but your schedule is open. Plan your next strategic session to continue your journey.</p>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-6 py-2.5 rounded hover:bg-tertiary-container transition-colors shadow-sm">Schedule Session</button>
+</div>
+<!-- 2. No Mentors Found (Compass) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-[48px] flex flex-col items-center justify-center text-center shadow-[0_4px_12px_rgba(74,52,38,0.03)] transition-transform hover:-translate-y-1 duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[40px] text-tertiary" data-icon="explore">explore</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">No Mentors Found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 max-w-[240px]">We couldn't locate any guides in this immediate territory. Adjust your parameters to expand the horizon.</p>
+<button class="bg-transparent border border-primary text-primary font-label-md text-label-md px-6 py-2.5 rounded hover:bg-surface-container transition-colors">Clear Filters</button>
+</div>
+<!-- 3. No Users (Coffee Bean) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-[48px] flex flex-col items-center justify-center text-center shadow-[0_4px_12px_rgba(74,52,38,0.03)] transition-transform hover:-translate-y-1 duration-300">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[40px] text-secondary-fixed-dim" data-icon="local_cafe">local_cafe</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">No Community Members</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 max-w-[240px]">The community lounge is currently quiet. Invite ambitious peers to start brewing meaningful conversations.</p>
+<button class="bg-transparent border border-outline-variant text-on-surface-variant font-label-md text-label-md px-6 py-2.5 rounded hover:border-primary hover:text-primary transition-colors">Invite Members</button>
+</div>
+<!-- 4. No Approvals (Lantern / Guidance) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-[48px] flex flex-col items-center justify-center text-center shadow-[0_4px_12px_rgba(74,52,38,0.03)] transition-transform hover:-translate-y-1 duration-300 md:col-span-2 lg:col-span-1">
+<div class="w-20 h-20 rounded-full bg-surface-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-[40px] text-primary" data-icon="emoji_objects">emoji_objects</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">No Pending Approvals</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-0 max-w-[240px]">All mentorship requests have been reviewed. The path forward is fully illuminated for your team.</p>
+</div>
+<!-- 5. No Technical Stacks (Mountain Peaks) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-[48px] flex flex-col items-center justify-center text-center shadow-[0_4px_12px_rgba(74,52,38,0.03)] transition-transform hover:-translate-y-1 duration-300 md:col-span-2 lg:col-span-2 flex-row md:text-left md:items-start gap-8">
+<div class="w-24 h-24 rounded-full bg-surface-container flex-shrink-0 flex items-center justify-center self-center md:self-start">
+<span class="material-symbols-outlined text-[48px] text-tertiary-container" data-icon="terrain">terrain</span>
+</div>
+<div class="flex flex-col items-center md:items-start justify-center h-full">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">No Technical Stacks Defined</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 max-w-md text-center md:text-left">You haven't outlined the technical peaks your mentees need to conquer. Establishing core technology stacks provides crucial structure and high-value goals for the journey ahead.</p>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-6 py-2.5 rounded hover:bg-tertiary-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                            Define Core Stack
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

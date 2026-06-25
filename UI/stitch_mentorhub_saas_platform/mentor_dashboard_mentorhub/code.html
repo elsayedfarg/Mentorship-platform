@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MentorHub - Mentor Dashboard</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dcdad7",
+                        "background": "#fcf9f6",
+                        "tertiary": "#50392b",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#e1c0ac",
+                        "secondary": "#7b5900",
+                        "surface-container-low": "#f6f3f0",
+                        "primary": "#553722",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#eabda0",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#79573f",
+                        "surface-variant": "#e5e2df",
+                        "outline-variant": "#d4c3ba",
+                        "on-background": "#1c1c1a",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#5f402a",
+                        "tertiary-fixed": "#ffdbc7",
+                        "secondary-fixed-dim": "#f0bf5c",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#eae8e5",
+                        "on-surface-variant": "#50453e",
+                        "on-surface": "#1c1c1a",
+                        "inverse-primary": "#eabda0",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#755400",
+                        "secondary-container": "#fcca66",
+                        "secondary-fixed": "#ffdea4",
+                        "primary-container": "#6f4e37",
+                        "on-tertiary-container": "#e6c4b0",
+                        "on-primary-fixed": "#2d1604",
+                        "inverse-surface": "#31302f",
+                        "on-tertiary-fixed-variant": "#594233",
+                        "outline": "#82746d",
+                        "surface-container": "#f0edea",
+                        "on-secondary-fixed": "#261900",
+                        "primary-fixed": "#ffdcc6",
+                        "on-tertiary-fixed": "#29170b",
+                        "surface": "#fcf9f6",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#eec1a4",
+                        "surface-container-highest": "#e5e2df",
+                        "inverse-on-surface": "#f3f0ed",
+                        "on-secondary-fixed-variant": "#5d4200",
+                        "tertiary-container": "#695041",
+                        "surface-bright": "#fcf9f6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "base-unit": "8px",
+                        "sidebar-width": "280px",
+                        "top-nav-height": "72px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-sm": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #fcf9f6; color: #1c1c1a; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .card-shadow { box-shadow: 0 4px 12px rgba(74, 52, 38, 0.08); }
+    </style>
+</head>
+<body class="flex bg-background h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low dark:bg-inverse-surface border-r border-outline-variant py-6 z-20">
+<div class="px-6 mb-8">
+<h1 class="font-headline-sm text-headline-sm text-primary">MentorHub</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Mentor Portal</p>
+</div>
+<div class="flex flex-col flex-1 gap-2">
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-6 py-3 bg-surface-container-high text-primary border-l-4 border-primary font-label-md text-label-md transition-all active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>Availability</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">video_chat</span>
+<span>Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">visibility</span>
+<span>Public Profile</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-sidebar-width h-screen relative">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center w-full px-gutter h-top-nav-height bg-surface border-b border-outline-variant z-10 sticky top-0">
+<div class="flex items-center gap-4">
+<!-- Mobile Menu Toggle (Visible only on mobile) -->
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="md:hidden font-headline-md text-headline-md font-bold text-primary">MentorHub</div>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors flex items-center gap-2">
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a seasoned executive mentor in a high-end office setting. The lighting is warm and cinematic, reflecting a luxurious corporate environment. Subtle, rich brown tones dominate the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD4nKYLrnC4TnvrVB3tYShkMdYg2xJ9xUtOp0OVn2LpLvEbOf8CTrfaX-fmR36KDdLSr1ii5pEVUVLbh4XdbFx0vikoeUg7fwtIFcQOJnL5O-aeif6LL7putZ5mt5y5Ri2Ryn--QtoOpDO-7dKp32ZlYxGfQPAd2vTwpb5RQPAoup3krrTwxWEcDWhKglqSCS2H_0xZQDHzeunurym9SIPr7MbmXDxIfes8YlmEUh03JOCg87nDBtfZ1SYiBK0XuSkTyXsxK2L23A"/>
+</button>
+</div>
+</header>
+<!-- Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-gutter lg:p-10 max-w-container-max mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-12">
+<h2 class="font-display-lg text-display-lg text-primary mb-2">Welcome back, Dr. Sterling.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">You have 3 strategy sessions scheduled today. Your next meeting is in 45 minutes.</p>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<!-- Stat Card 1: Revenue -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant card-shadow flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Revenue</p>
+<span class="material-symbols-outlined text-secondary-container">diamond</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-1">$12,450</h3>
+<p class="font-body-sm text-body-sm text-primary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +12% this month
+                        </p>
+</div>
+</div>
+<!-- Stat Card 2: Rating -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant card-shadow flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Average Rating</p>
+<span class="material-symbols-outlined text-secondary-container">star</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-1">4.9<span class="text-headline-sm text-outline">/5.0</span></h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Based on 142 reviews</p>
+</div>
+</div>
+<!-- Stat Card 3: Sessions -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant card-shadow flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Total Sessions</p>
+<span class="material-symbols-outlined text-secondary-container">event_note</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-1">148</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Completed across all tiers</p>
+</div>
+</div>
+<!-- Stat Card 4: Students -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border border-outline-variant card-shadow flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Active Mentees</p>
+<span class="material-symbols-outlined text-secondary-container">group</span>
+</div>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-1">24</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Currently engaged</p>
+</div>
+</div>
+</div>
+<!-- Content Area: Lists -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Upcoming Meetings (Takes 2 columns on lg) -->
+<div class="lg:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-primary">Upcoming Sessions</h3>
+<a class="font-label-md text-label-md text-primary-container hover:underline flex items-center gap-1" href="#">
+                            View Calendar <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg card-shadow overflow-hidden">
+<!-- Meeting Item 1 -->
+<div class="p-6 border-b border-outline-variant flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<img alt="Student Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A portrait of an ambitious young professional in a modern, well-lit startup environment. The aesthetic is clean and focused, utilizing a soft, warm light mode palette with beige and cream undertones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHTPgucL8zzu1jcXegGGi5cHV1eQ7agpHc5vsNdYE3qmh-JMtFhhv_Bgi_EZlwqGVAvJ3rNv_q3GINk6JzTARX11zYeylA97PUAZFoKnCjr1S2RqTxM07tbH3BfRWL-5zlGe6aFLdHVMJljz1JLw_WQTm1fmLEgQ8W4OKriGCmZY4OCqcPdOpxJgQT5jbr2xZKcJKHAGoiqXTUpWixu3XFywRd1N2KI4F3BMR2zkaOPv5W3pmyRjZZdaZPkxf7VZd6rLmwe3jEiWI"/>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Elena Rodriguez</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Today, 10:00 AM - 11:00 AM
+                                    </p>
+</div>
+</div>
+<div class="flex gap-3 w-full sm:w-auto mt-4 sm:mt-0">
+<button class="flex-1 sm:flex-none px-4 py-2 bg-primary-container text-white font-label-md text-label-md rounded hover:bg-tertiary transition-colors shadow-sm">
+                                    Join Room
+                                </button>
+</div>
+</div>
+<!-- Meeting Item 2 -->
+<div class="p-6 border-b border-outline-variant flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<img alt="Student Avatar" class="w-12 h-12 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a mid-level manager in a bright, modern corporate setting. The mood is determined and optimistic. The color palette features sophisticated warm greys and muted browns." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAS7GrILzR38kaYb7DITsxKrkyDDgjajg6eO1NP-El4KqDKF52MXsAtXLjVgZ_GAUj2GfBxQxnWbEzynYrrpQkK3y2icWKTpv7dlEBbVO4bzKTmI7291RsF8tMg9fjNwPGkOCWTaOUHnmWZUMkZEJm1atFpV3wT0Ppkq5iqQ0aAYWgIJRDPA6hcb1k7ygzZA6IPbKP8mkzA0e1x8Mr2sXTGSTpJcp5s80q8CerkUaN4iQols67BZK5d0YsBNsVSHOTE2f3RdxnmlY"/>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Marcus Chen</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Today, 1:30 PM - 2:30 PM
+                                    </p>
+</div>
+</div>
+<div class="flex gap-3 w-full sm:w-auto mt-4 sm:mt-0">
+<button class="flex-1 sm:flex-none px-4 py-2 border border-primary text-primary bg-transparent font-label-md text-label-md rounded hover:bg-surface-container transition-colors">
+                                    Review Notes
+                                </button>
+<button class="flex-1 sm:flex-none px-4 py-2 bg-primary-container text-white font-label-md text-label-md rounded hover:bg-tertiary transition-colors shadow-sm opacity-50 cursor-not-allowed">
+                                    Join Room
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Requests -->
+<div class="lg:col-span-1">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-primary">New Requests</h3>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg card-shadow p-6">
+<!-- Request Item -->
+<div class="mb-6 last:mb-0">
+<div class="flex items-start gap-3 mb-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary font-bold">SJ</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary">Sarah Jenkins</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">VP of Engineering at TechFlow</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4 italic border-l-2 border-outline-variant pl-3 py-1">
+                                "Seeking guidance on scaling our engineering team from 50 to 150 over the next 18 months."
+                            </p>
+<button class="w-full px-4 py-2 border border-primary text-primary bg-transparent font-label-md text-label-md rounded hover:bg-surface-container transition-colors">
+                                View Request Details
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

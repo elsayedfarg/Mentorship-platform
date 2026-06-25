@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Sessions - MentorHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#fcf9f6",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#50392b",
+                      "on-primary": "#ffffff",
+                      "on-surface-variant": "#50453e",
+                      "surface-container": "#f0edea",
+                      "on-tertiary-fixed": "#29170b",
+                      "on-secondary-fixed-variant": "#5d4200",
+                      "on-primary-container": "#eec1a4",
+                      "on-secondary-fixed": "#261900",
+                      "surface-container-low": "#f6f3f0",
+                      "outline": "#82746d",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-highest": "#e5e2df",
+                      "surface-bright": "#fcf9f6",
+                      "on-secondary-container": "#755400",
+                      "tertiary-fixed": "#ffdbc7",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed-variant": "#5f402a",
+                      "surface-dim": "#dcdad7",
+                      "tertiary-fixed-dim": "#e1c0ac",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#eabda0",
+                      "secondary-fixed-dim": "#f0bf5c",
+                      "primary-fixed": "#ffdcc6",
+                      "surface": "#fcf9f6",
+                      "primary-fixed-dim": "#eabda0",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#2d1604",
+                      "surface-variant": "#e5e2df",
+                      "surface-tint": "#79573f",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#695041",
+                      "surface-container-high": "#eae8e5",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffdea4",
+                      "inverse-surface": "#31302f",
+                      "on-tertiary-container": "#e6c4b0",
+                      "outline-variant": "#d4c3ba",
+                      "on-surface": "#1c1c1a",
+                      "secondary-container": "#fcca66",
+                      "primary": "#553722",
+                      "secondary": "#7b5900",
+                      "primary-container": "#6f4e37",
+                      "inverse-on-surface": "#f3f0ed",
+                      "on-background": "#1c1c1a",
+                      "on-tertiary-fixed-variant": "#594233"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "top-nav-height": "72px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "sidebar-width": "280px",
+                      "gutter": "24px",
+                      "base-unit": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "display-lg": ["Plus Jakarta Sans"],
+                      "body-lg": ["Inter"],
+                      "headline-sm": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(74, 52, 38, 0.08); }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden bg-background">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-sidebar-width bg-surface-container-low border-r border-outline-variant py-6">
+<div class="px-6 mb-8">
+<h1 class="font-headline-sm text-headline-sm text-primary mb-1">MentorHub</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Student Portal</p>
+</div>
+<div class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-label-md text-label-md">Browse Mentors</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 bg-surface-container-high text-primary border-l-4 border-primary translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="event_note" style="font-variation-settings: 'FILL' 1;">event_note</span>
+<span class="font-label-md text-label-md font-bold">My Sessions</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto pt-6 px-6 border-t border-outline-variant">
+<a class="flex items-center gap-3 py-3 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar-width h-full overflow-y-auto">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile h-[72px] bg-surface border-b border-outline-variant">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MentorHub</h1>
+<div class="flex gap-4 text-primary">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+</header>
+<!-- TopNavBar (Desktop) -->
+<header class="hidden md:flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-[72px] bg-surface border-b border-outline-variant">
+<div class="flex-1"></div> <!-- Spacer for left-aligned search if needed -->
+<div class="flex gap-4 text-primary items-center">
+<button class="hover:bg-surface-container-high p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="hover:bg-surface-container-high p-2 rounded-full transition-colors flex items-center">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A small, professional circular profile portrait of a confident mentor in a modern office setting. Warm, natural lighting highlights their approachable expression. High-end SaaS corporate photography style, crisp focus, subtle blurred background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXLe0x6B9OTxOtJQuAtShPfImqi-g5dr3aQ-YL76UfDJSvkR2fKNd47OHCQbe7LDtRViIYoF_OdbSkV92t8mYISETyyDMaUl6PhFuAIP7-_bK3hqYwaw174qodi0ElUoP-TA3DSGOExFCxpNEDJTaJrrVB1Euz9zyz7ojiWvWLfkBk0z4ZOD8R_kwi4_EIsoSVl105cNYOnQsIAZAOvBjrQzaOWPg8Kyk0FPYwzlt12EoVh-V5XUnG2vjCwxqQC2pTfdaRyEVr87A"/>
+</button>
+</div>
+</header>
+<div class="px-margin-mobile md:px-gutter max-w-container-max mx-auto py-8">
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-2">My Sessions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your upcoming and past mentoring engagements.</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 border border-outline text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container transition-colors">
+                        Filter
+                    </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity ambient-shadow">
+                        Book New
+                    </button>
+</div>
+</header>
+<!-- Tabs -->
+<div class="flex gap-8 border-b border-outline-variant mb-8 overflow-x-auto no-scrollbar">
+<button class="pb-3 border-b-2 border-primary font-label-md text-label-md text-primary font-bold whitespace-nowrap">Upcoming (2)</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Past (12)</button>
+<button class="pb-3 border-b-2 border-transparent font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors whitespace-nowrap">Cancelled</button>
+</div>
+<!-- Upcoming Sessions List (Bento-ish structured cards) -->
+<div class="flex flex-col gap-4">
+<!-- Session Card 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 hover:ambient-shadow transition-shadow flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
+<div class="flex gap-4 items-center">
+<img class="w-16 h-16 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a female executive mentor with a warm smile, wearing a dark blazer. Shot against a soft, bright cream background. High-fidelity corporate aesthetic, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDO6Zn74R1shdfW58gSSvtX6g5nahUiU9DIWgWm0lqEExtskYSpXabHQU3j7b0tdQtBa3E0NPSX-iTGRnU3b1U-nXI_BT7TYvSY1ZobepFOUthb54Jl-SKouOWnpiB1IRlwVQGwh3gXfAH3thSuiBOxBqOCGWwfibXp8hmnL9dVM6YZPZNm52az-ie6ILjIxp9CAAKdpPDh4wdpbonqft-Y6EsM4XOLRu57cStcUkANh2bXOXLkHVDLYHgqwkbfrKKTkJC3YuqDSFM"/>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background">Elena Rostova</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Strategic Leadership &amp; Scaling</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-6 md:gap-12 w-full md:w-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary" data-icon="event">event</span>
+<div>
+<p class="font-label-md text-label-md text-on-background">Oct 24, 2023</p>
+<p class="font-body-sm text-body-sm">10:00 AM - 11:00 AM</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary" data-icon="videocam">videocam</span>
+<div>
+<p class="font-label-md text-label-md text-on-background">Zoom</p>
+<p class="font-body-sm text-body-sm">60 mins</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto mt-4 md:mt-0">
+<button class="flex-1 md:flex-none px-4 py-2 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors text-center">
+                            Reschedule
+                        </button>
+<button class="flex-1 md:flex-none px-4 py-2 bg-primary-container text-on-primary font-label-md text-label-md rounded-lg hover:opacity-90 transition-opacity text-center ambient-shadow flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
+                            Join
+                        </button>
+</div>
+</article>
+<!-- Session Card 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 hover:ambient-shadow transition-shadow flex flex-col md:flex-row gap-6 items-start md:items-center justify-between opacity-90">
+<div class="flex gap-4 items-center">
+<img class="w-16 h-16 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a male technical mentor with glasses, wearing a crisp white shirt. Shot against a soft, bright cream background. High-fidelity corporate aesthetic, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ4o5LpJy3qN0d6U6wCP8UOf4XZnEH8mlR3nEA0bKZ_60IGcd5g10Y9bGT3Ng3cWeGYlHcqoiU3lF2-OvNAKX15fchalPB1Ba84n9_FOM-vhPkEq_rNQnowDxkist0OHniJrNRqDIyr4Llmv2kBRuYEKimfZcvh2S5UG95fKG_q3bRuZfaqw9g3Yv8XTqvKgBLooaNlxja2DvYXjMoU2fk2RsHfBmENS95VryhIhj6pyf4BX1TguxxHxuHLC0zD_xJ9PMRGMy98dU"/>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-background">Marcus Chen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Technical Architecture</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-6 md:gap-12 w-full md:w-auto">
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary" data-icon="event">event</span>
+<div>
+<p class="font-label-md text-label-md text-on-background">Oct 28, 2023</p>
+<p class="font-body-sm text-body-sm">2:00 PM - 2:30 PM</p>
+</div>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-tertiary" data-icon="videocam">videocam</span>
+<div>
+<p class="font-label-md text-label-md text-on-background">Google Meet</p>
+<p class="font-body-sm text-body-sm">30 mins</p>
+</div>
+</div>
+</div>
+<div class="flex gap-3 w-full md:w-auto mt-4 md:mt-0">
+<button class="flex-1 md:flex-none px-4 py-2 border border-primary text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container-low transition-colors text-center">
+                            Reschedule
+                        </button>
+<button class="flex-1 md:flex-none px-4 py-2 bg-surface-container text-on-surface-variant font-label-md text-label-md rounded-lg cursor-not-allowed text-center flex items-center justify-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[18px]" data-icon="login">login</span>
+                            Join
+                        </button>
+</div>
+</article>
+</div>
+</div>
+</main>
+</body></html>

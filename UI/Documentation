@@ -1,0 +1,376 @@
+# Academic Mentorship Platform — Project Context
+
+## Project Overview
+
+MentorHub is a full-stack Academic Mentorship Platform connecting students with professional mentors for technical guidance, code reviews, career advice, and learning support.
+
+Session Duration:
+
+* 45 minutes
+
+User Roles:
+
+* Student
+* Mentor
+* Admin
+
+Backend:
+
+* REST API already exists
+* Authentication implemented
+* Student APIs implemented
+* Mentor APIs implemented
+* Session APIs implemented
+* Admin APIs implemented
+* Technical Stack APIs implemented
+* Mentor Approval APIs implemented
+* AI Audit APIs implemented
+
+The frontend should be designed around the existing backend.
+
+---
+
+# Design System
+
+## Theme
+
+Luxury Brown SaaS
+
+Inspired by:
+
+* Linear
+* Notion
+* Raycast
+* Modern Editorial Design
+* Premium Coffee Brands
+
+The design should feel:
+
+* Premium
+* Professional
+* Trustworthy
+* Warm
+* Modern
+* Clean
+* Minimal
+
+Avoid:
+
+* Generic dashboard templates
+* Bright startup colors
+* Traditional blue SaaS designs
+
+---
+
+# Color Palette
+
+Primary Brown:
+#6F4E37
+
+Dark Brown:
+#4A3426
+
+Light Brown:
+#A67C52
+
+Cream Background:
+#F8F5F2
+
+Warm Beige:
+#EDE5DD
+
+Gold Accent:
+#C89B3C
+
+Text Primary:
+#1F1A17
+
+Text Secondary:
+#6B625C
+
+Border:
+#DDD6CF
+
+Success:
+#2E7D32
+
+Warning:
+#B7791F
+
+Error:
+#C53030
+
+---
+
+# Typography
+
+Headings:
+Poppins
+
+Body:
+Inter
+
+Border Radius:
+16px
+
+Style:
+Large whitespace
+Elegant spacing
+Soft shadows
+Modern cards
+
+---
+
+# Icon System
+
+Avoid generic dashboard icons.
+
+Preferred icon concepts:
+
+* Compass
+* Telescope
+* Coffee Bean
+* Diamond
+* Lantern
+* Spark
+* Feather
+* Mountain Peaks
+* Constellation
+* Hourglass
+
+These icons should reinforce the mentorship and learning journey.
+
+---
+
+# Global Navigation System
+
+Navigation must remain identical across the entire application.
+
+Never redesign navigation per page.
+
+Reuse the same components.
+
+---
+
+## Top Navigation
+
+Height:
+72px
+
+Background:
+#F8F5F2
+
+Contains:
+
+Left:
+
+* MentorHub Logo
+
+Center:
+
+* Global Search
+
+Right:
+
+* Notifications
+* User Avatar
+* User Menu
+
+---
+
+## Student Sidebar
+
+Width:
+280px
+
+Items:
+
+* Dashboard
+* Browse Mentors
+* My Sessions
+* Profile
+* Settings
+
+Bottom:
+
+* Logout
+
+---
+
+## Mentor Sidebar
+
+Width:
+280px
+
+Items:
+
+* Dashboard
+* Availability
+* Sessions
+* Public Profile
+* Settings
+
+Bottom:
+
+* Logout
+
+---
+
+## Admin Sidebar
+
+Width:
+280px
+
+Items:
+
+* Dashboard
+* Users
+* Mentor Approvals
+* Technical Stacks
+* Settings
+
+Bottom:
+
+* Logout
+
+---
+
+## Active Navigation State
+
+Background:
+#EDE5DD
+
+Left Border:
+4px solid #6F4E37
+
+Text:
+#4A3426
+
+---
+
+# Responsiveness
+
+Use one responsive layout.
+
+Desktop:
+Persistent sidebar.
+
+Tablet:
+Collapsible sidebar.
+
+Mobile:
+Hamburger drawer.
+
+Do not create separate mobile designs.
+
+All screens must be responsive.
+
+---
+
+# Existing Backend Features
+
+## Authentication
+
+* Login
+* Registration
+
+## Student
+
+* Student Profile
+* Browse Mentors
+* Search Mentors
+* Book Sessions
+* View Sessions
+* Session Details
+
+## Mentor
+
+* Mentor Profile
+* Availability Management
+* Session Requests
+* Session Management
+
+## Admin
+
+* User Management
+* Mentor Approval Workflow
+* Technical Stack Management
+* Dashboard Analytics
+
+## AI Features
+
+* AI Audit Logs
+* Session Analysis
+* Confidence Scores
+
+---
+
+# Final Screen Inventory
+
+Authentication
+
+1. Login
+2. Registration
+3. Profile Setup
+
+Student
+
+4. Student Dashboard
+5. Browse Mentors
+6. Mentor Profile
+7. Session Booking
+8. My Sessions
+9. Session Detail
+10. Edit Profile
+
+Mentor
+
+11. Mentor Dashboard
+12. Availability Management
+13. Public Profile Editor
+14. Session Request Detail
+
+Admin
+
+15. Admin Dashboard
+16. User Management
+17. Mentor Approvals
+18. Technical Stacks
+
+System
+
+19. 404 Page
+20. Empty State Library
+
+Total:
+20 Screens
+
+---
+
+# UX Rules
+
+Every screen must include:
+
+* Loading States
+* Empty States
+* Error States
+* Success States
+
+Use reusable components.
+
+Maintain visual consistency.
+
+Maintain navigation consistency.
+
+Use premium interactions.
+
+Avoid clutter.
+
+Focus on clarity and usability.
+
+---
+
+# Goal
+
+Create a production-ready academic mentorship platform UI that fully matches the existing backend APIs and provides a premium modern experience for students, mentors, and administrators.
+
