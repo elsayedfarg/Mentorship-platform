@@ -9,18 +9,6 @@ const schemas = require("../schemas/mentorSchemas");
 
 router.get("/", mentorController.getAllMentors);
 
-router.get(
-  "/:id",
-  validate(schemas.getMentorSchema),
-  mentorController.getMentorById,
-);
-
-router.get(
-  "/:id/availability",
-  validate(schemas.getAvailabilitySchema),
-  mentorController.getAvailability,
-);
-
 router.post(
   "/profile",
   authenticate,
@@ -64,6 +52,18 @@ router.delete(
   authenticate,
   restrictTo(["mentor"]),
   mentorController.removeAvailability,
+);
+
+router.get(
+  "/:id/availability",
+  validate(schemas.getAvailabilitySchema),
+  mentorController.getAvailability,
+);
+
+router.get(
+  "/:id",
+  validate(schemas.getMentorSchema),
+  mentorController.getMentorById,
 );
 
 module.exports = router;

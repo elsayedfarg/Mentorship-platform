@@ -7,7 +7,7 @@
   },
   "item": [
     {
-      "name": "🔐 Authentication",
+      "name": "Authentication",
       "item": [
         {
           "name": "Register as Student",
@@ -21,9 +21,9 @@
                   "    pm.environment.set('studentToken', jsonData.data.token);",
                   "    pm.environment.set('studentId', jsonData.data.user.id);",
                   "    pm.environment.set('currentToken', jsonData.data.token);",
-                  "    console.log('✅ Student Registered Successfully');",
-                  "    console.log('✅ Student Token:', jsonData.data.token.substring(0, 30) + '...');",
-                  "    console.log('✅ Student ID:', jsonData.data.user.id);",
+                  "    console.log('Student Registered Successfully');",
+                  "    console.log('Student Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Student ID:', jsonData.data.user.id);",
                   "}"
                 ]
               }
@@ -66,9 +66,9 @@
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('mentorToken', jsonData.data.token);",
                   "    pm.environment.set('mentorId', jsonData.data.user.id);",
-                  "    console.log('✅ Mentor Registered Successfully');",
-                  "    console.log('✅ Mentor Token:', jsonData.data.token.substring(0, 30) + '...');",
-                  "    console.log('✅ Mentor ID:', jsonData.data.user.id);",
+                  "    console.log('Mentor Registered Successfully');",
+                  "    console.log('Mentor Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Mentor ID:', jsonData.data.user.id);",
                   "}"
                 ]
               }
@@ -111,9 +111,9 @@
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('adminToken', jsonData.data.token);",
                   "    pm.environment.set('adminId', jsonData.data.user.id);",
-                  "    console.log('✅ Admin Registered Successfully');",
-                  "    console.log('✅ Admin Token:', jsonData.data.token.substring(0, 30) + '...');",
-                  "    console.log('✅ Admin ID:', jsonData.data.user.id);",
+                  "    console.log('Admin Registered Successfully');",
+                  "    console.log('Admin Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Admin ID:', jsonData.data.user.id);",
                   "}"
                 ]
               }
@@ -156,8 +156,8 @@
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('studentToken', jsonData.data.token);",
                   "    pm.environment.set('currentToken', jsonData.data.token);",
-                  "    console.log('✅ Student Logged In Successfully');",
-                  "    console.log('✅ Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Student Logged In Successfully');",
+                  "    console.log('Token:', jsonData.data.token.substring(0, 30) + '...');",
                   "}"
                 ]
               }
@@ -200,8 +200,8 @@
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('mentorToken', jsonData.data.token);",
                   "    pm.environment.set('currentToken', jsonData.data.token);",
-                  "    console.log('✅ Mentor Logged In Successfully');",
-                  "    console.log('✅ Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Mentor Logged In Successfully');",
+                  "    console.log('Token:', jsonData.data.token.substring(0, 30) + '...');",
                   "}"
                 ]
               }
@@ -244,8 +244,8 @@
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('adminToken', jsonData.data.token);",
                   "    pm.environment.set('currentToken', jsonData.data.token);",
-                  "    console.log('✅ Admin Logged In Successfully');",
-                  "    console.log('✅ Token:', jsonData.data.token.substring(0, 30) + '...');",
+                  "    console.log('Admin Logged In Successfully');",
+                  "    console.log('Token:', jsonData.data.token.substring(0, 30) + '...');",
                   "}"
                 ]
               }
@@ -304,7 +304,7 @@
       ]
     },
     {
-      "name": "👥 Student Management",
+      "name": "Student Management",
       "item": [
         {
           "name": "Get Student Profile",
@@ -398,7 +398,7 @@
       ]
     },
     {
-      "name": "📚 Technical Stacks",
+      "name": "Technical Stacks",
       "item": [
         {
           "name": "Create Stack (Admin Only)",
@@ -410,9 +410,9 @@
                   "if (pm.response.code === 201) {",
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('stackId', jsonData.data._id);",
-                  "    console.log('✅ Stack Created Successfully');",
-                  "    console.log('✅ Stack ID:', jsonData.data._id);",
-                  "    console.log('✅ Stack Name:', jsonData.data.name);",
+                  "    console.log('Stack Created Successfully');",
+                  "    console.log('Stack ID:', jsonData.data._id);",
+                  "    console.log('Stack Name:', jsonData.data.name);",
                   "}"
                 ]
               }
@@ -432,7 +432,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"React Engineering\",\n  \"description\": \"Master React development including hooks, state management, and advanced patterns\"\n}"
+              "raw": "{\n  \"name\": \"React Engineering\",\n  \"description\": \"Master React development including hooks, state management, and advanced patterns\",\n  \"icon\": \"react\",\n  \"color\": \"#0F766E\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/stacks",
@@ -453,13 +453,42 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/api/stacks",
+              "raw": "{{baseUrl}}/api/stacks?page=1&limit=10",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "api",
                 "stacks"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Stacks With Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/stacks/stats",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "stacks",
+                "stats"
               ]
             }
           },
@@ -500,7 +529,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"description\": \"Advanced React development with TypeScript and Next.js\"\n}"
+              "raw": "{\n  \"name\": \"React Engineering\",\n  \"description\": \"Advanced React development with TypeScript and Next.js\",\n  \"icon\": \"react\",\n  \"color\": \"#0F766E\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/stacks/{{stackId}}",
@@ -543,7 +572,7 @@
       ]
     },
     {
-      "name": "👨‍🏫 Mentor Management",
+      "name": "Mentor Management",
       "item": [
         {
           "name": "Create Mentor Profile",
@@ -555,9 +584,10 @@
                   "if (pm.response.code === 201) {",
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('mentorProfileId', jsonData.data._id);",
-                  "    console.log('✅ Mentor Profile Created');",
-                  "    console.log('✅ Mentor Profile ID:', jsonData.data._id);",
-                  "    console.log('✅ Mentor Name:', jsonData.data.name);",
+                  "    pm.environment.set('mentorListId', jsonData.data._id);",
+                  "    console.log('Mentor Profile Created');",
+                  "    console.log('Mentor Profile ID:', jsonData.data._id);",
+                  "    console.log('Mentor Name:', jsonData.data.name);",
                   "}"
                 ]
               }
@@ -633,7 +663,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Lead React Engineer\",\n  \"hourly_rate\": 75\n}"
+              "raw": "{\n  \"name\": \"Dr. Mohamed Ali\",\n  \"title\": \"Lead React Engineer\",\n  \"bio\": \"I have 10 years of experience in React development and love helping junior developers grow.\",\n  \"hourly_rate\": 75,\n  \"stack_id\": \"{{stackId}}\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/mentors/profile",
@@ -650,86 +680,6 @@
           "response": []
         },
         {
-          "name": "Get All Mentors (Public)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "if (pm.response.code === 200) {",
-                  "    var jsonData = pm.response.json();",
-                  "    if (jsonData.data && jsonData.data.length > 0) {",
-                  "        pm.environment.set('mentorListId', jsonData.data[0]._id);",
-                  "        console.log('✅ Mentors Retrieved');",
-                  "        console.log('✅ First Mentor ID:', jsonData.data[0]._id);",
-                  "        console.log('✅ Total Mentors:', jsonData.data.length);",
-                  "    }",
-                  "}"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/mentors?page=1&limit=10&sort_by=average_rating",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "mentors"
-              ],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "limit",
-                  "value": "10"
-                },
-                {
-                  "key": "sort_by",
-                  "value": "average_rating",
-                  "disabled": false
-                },
-                {
-                  "key": "stack",
-                  "value": "{{stackId}}",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "react",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Single Mentor",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/mentors/{{mentorListId}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "mentors",
-                "{{mentorListId}}"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
           "name": "Add Mentor Availability Block",
           "event": [
             {
@@ -739,10 +689,10 @@
                   "if (pm.response.code === 201) {",
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('availabilityId', jsonData.data._id);",
-                  "    console.log('✅ Availability Block Added');",
-                  "    console.log('✅ Availability ID:', jsonData.data._id);",
-                  "    console.log('✅ Day:', jsonData.data.day_of_week);",
-                  "    console.log('✅ Time:', jsonData.data.start_time + ' - ' + jsonData.data.end_time);",
+                  "    console.log('Availability Block Added');",
+                  "    console.log('Availability ID:', jsonData.data._id);",
+                  "    console.log('Day:', jsonData.data.day_of_week);",
+                  "    console.log('Time:', jsonData.data.start_time + ' - ' + jsonData.data.end_time);",
                   "}"
                 ]
               }
@@ -762,7 +712,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"day_of_week\": \"Monday\",\n  \"start_time\": \"09:00\",\n  \"end_time\": \"17:00\"\n}"
+              "raw": "{\n  \"day_of_week\": \"Thursday\",\n  \"start_time\": \"09:00\",\n  \"end_time\": \"17:00\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/api/mentors/availability",
@@ -773,32 +723,6 @@
                 "api",
                 "mentors",
                 "availability"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Mentor Availability for Date",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{baseUrl}}/api/mentors/{{mentorListId}}/availability?date=2024-12-23",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "mentors",
-                "{{mentorListId}}",
-                "availability"
-              ],
-              "query": [
-                {
-                  "key": "date",
-                  "value": "2024-12-23"
-                }
               ]
             }
           },
@@ -853,11 +777,118 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Get All Mentors (Public)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.length > 0) {",
+                  "        pm.environment.set('mentorListId', jsonData.data[0]._id);",
+                  "        console.log('Mentors Retrieved');",
+                  "        console.log('First Mentor ID:', jsonData.data[0]._id);",
+                  "        console.log('Total Mentors:', jsonData.data.length);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mentors?page=1&limit=10&sort_by=average_rating",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mentors"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "sort_by",
+                  "value": "average_rating",
+                  "description": "Options: average_rating, hourly_rate, newest"
+                },
+                {
+                  "key": "stack",
+                  "value": "{{stackId}}",
+                  "disabled": true
+                },
+                {
+                  "key": "keyword",
+                  "value": "react",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Mentor",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mentors/{{mentorProfileId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mentors",
+                "{{mentorProfileId}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Mentor Availability for Date",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/mentors/{{mentorProfileId}}/availability?date=2026-06-25",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "mentors",
+                "{{mentorProfileId}}",
+                "availability"
+              ],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-06-25",
+                  "description": "YYYY-MM-DD format; day must match an availability block day_of_week"
+                }
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
     {
-      "name": "📅 Review Sessions",
+      "name": "Review Sessions",
       "item": [
         {
           "name": "Book Review Session",
@@ -869,14 +900,14 @@
                   "if (pm.response.code === 201) {",
                   "    var jsonData = pm.response.json();",
                   "    pm.environment.set('sessionId', jsonData.data._id);",
-                  "    console.log('✅ Session Booked Successfully');",
-                  "    console.log('✅ Session ID:', jsonData.data._id);",
-                  "    console.log('✅ Status:', jsonData.data.status);",
+                  "    console.log('Session Booked Successfully');",
+                  "    console.log('Session ID:', jsonData.data._id);",
+                  "    console.log('Status:', jsonData.data.status);",
                   "    if (jsonData.data.sessionAuditLog) {",
                   "        pm.environment.set('auditLogId', jsonData.data.sessionAuditLog._id);",
-                  "        console.log('✅ AI Audit Log ID:', jsonData.data.sessionAuditLog._id);",
-                  "        console.log('✅ AI Prediction:', jsonData.data.sessionAuditLog.predicted_tag);",
-                  "        console.log('✅ Confidence Score:', jsonData.data.sessionAuditLog.confidence_score);",
+                  "        console.log('AI Audit Log ID:', jsonData.data.sessionAuditLog._id);",
+                  "        console.log('AI Prediction:', jsonData.data.sessionAuditLog.predicted_tag);",
+                  "        console.log('Confidence Score:', jsonData.data.sessionAuditLog.confidence_score);",
                   "    }",
                   "}"
                 ]
@@ -997,7 +1028,7 @@
       ]
     },
     {
-      "name": "🔧 Admin Management",
+      "name": "Admin Management",
       "item": [
         {
           "name": "Get All Platform Users",
