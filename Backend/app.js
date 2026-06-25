@@ -10,6 +10,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const authRouter = require("./routes/auth.routes");
 const studentRouter = require("./routes/student.routes");
 const mentorRouter = require("./routes/mentor.routes");
+const stackRouter = require("./routes/stack.routes");
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(xss());
 app.use("/api/auth", authRouter);
 app.use("/api/students", studentRouter);
 app.use("/api/mentors", mentorRouter);
+app.use("/api/stacks", stackRouter);
 
 // Global error handler
 app.use(errorHandler);
