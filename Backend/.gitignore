@@ -1,6 +1,4 @@
-node_modules/
-.env
+# Runtime logs (winston — utils/logger.js)
 error.log
 combined.log
-npm-debug.log
-.DS_Store
+logs/
