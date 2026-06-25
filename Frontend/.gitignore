@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Build output (Vite)
+dist/
+dist-ssr/
+
+# Vite cache
+.vite/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Tooling caches
+.eslintcache
+
+# Test coverage
+coverage/
