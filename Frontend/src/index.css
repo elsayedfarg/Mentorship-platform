@@ -49,6 +49,14 @@
 }
 
 :root {
+    --brand-teal: #0F766E;
+    --brand-teal-dark: #0d655e;
+    --brand-purple: #7C3AED;
+    --brand-brown: #553722;
+    --brand-brown-light: #6f4e37;
+    --brand-surface: #fcf9f6;
+    --brand-surface-muted: #f6f3f0;
+    --brand-outline: #d4c3ba;
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
