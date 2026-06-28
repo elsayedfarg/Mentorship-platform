@@ -11,6 +11,8 @@ const authRouter = require("./routes/auth.routes");
 const studentRouter = require("./routes/student.routes");
 const mentorRouter = require("./routes/mentor.routes");
 const stackRouter = require("./routes/stack.routes");
+const sessionRouter = require("./routes/session.routes");
+const adminRouter = require("./routes/admin.routes");
 
 const app = express();
 
@@ -25,6 +27,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/students", studentRouter);
 app.use("/api/mentors", mentorRouter);
 app.use("/api/stacks", stackRouter);
+app.use("/api/sessions", sessionRouter);
+app.use("/api/admin", adminRouter);
 
 // Global error handler
 app.use(errorHandler);
