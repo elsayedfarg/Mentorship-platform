@@ -66,11 +66,6 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
       end_time: session.end_time,
       description: session.description,
       created_at: session.created_at,
-      sessionAuditLog: {
-        _id: auditLog._id,
-        predicted_tag: auditLog.predicted_tag,
-        confidence_score: auditLog.confidence_score,
-      },
     };
   } catch (err) {
     logger.error("Book session error:", err);

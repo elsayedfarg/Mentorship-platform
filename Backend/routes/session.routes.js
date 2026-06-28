@@ -35,12 +35,4 @@ router.put(
   sessionController.updateSessionStatus,
 );
 
-router.get(
-  "/:sessionId/audit",
-  authenticate,
-  restrictTo(["student", "mentor", "admin"]),
-  validate(schemas.sessionIdParamSchema),
-  sessionController.getSessionAuditLog,
-);
-
 module.exports = router;
