@@ -2,16 +2,18 @@ const Session = require("../models/session.model");
 const { VALID_TRANSITIONS } = require("../models/session.model");
 const MentorProfile = require("../models/mentorProfile.model");
 const StudentProfile = require("../models/studentProfile.model");
+const MentorAvailability = require("../models/mentorAvailability.model");
 const APIError = require("../utils/APIError");
 const logger = require("../utils/logger");
 const throwIfNotFound = require("../utils/throwIfNotFound");
 
+const BUFFER_MINUTES = 10;
+
 const bookSession = async (studentUserId, { mentor_id, start_time, end_time, description }) => {
   try {
-
+    // 1. Validate profiles
     const studentProfile = await StudentProfile.findOne({ user_id: studentUserId });
     throwIfNotFound(studentProfile, "Student profile not found. Please complete your profile first.");
-
 
     const mentorProfile = await MentorProfile.findById(mentor_id);
     throwIfNotFound(mentorProfile, "Mentor not found");
@@ -20,41 +22,67 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
       throw new APIError("This mentor is not yet verified and cannot accept sessions", 400);
     }
 
+    // 2. Parse dates — Joi already validated format/order/future, but we still need Date objects
     const startDate = new Date(start_time);
     const endDate = new Date(end_time);
 
-    if (startDate >= endDate) {
-      throw new APIError("end_time must be after start_time", 400);
+    // 3. Derive date from start_time (UTC midnight) — never trust a separate date field
+    const sessionDate = new Date(
+      Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth(), startDate.getUTCDate())
+    );
+
+
+
+    const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayOfWeek = DAY_NAMES[startDate.getUTCDay()];
+
+    const toHHMM = (d) =>
+      `${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`;
+
+    const requestedStart = toHHMM(startDate); // e.g. "10:00"
+    const requestedEnd = toHHMM(endDate);
+
+    const availability = await MentorAvailability.findOne({
+      mentor_id,
+      day_of_week: dayOfWeek,
+      start_time: { $lte: requestedStart },
+      end_time: { $gte: requestedEnd },
+    });
+
+    if (!availability) {
+      throw new APIError(
+        `Mentor is not available on ${dayOfWeek}s between ${requestedStart} and ${requestedEnd}`,
+        400
+      );
     }
 
-    if (startDate < new Date()) {
-      throw new APIError("Session cannot be booked in the past", 400);
-    }
+    const bufferMs = BUFFER_MINUTES * 60 * 1000;
+    const bufferedStart = new Date(startDate.getTime() - bufferMs);
+    const bufferedEnd = new Date(endDate.getTime() + bufferMs);
 
-    
     const conflict = await Session.findOne({
       mentor_id,
       status: { $in: ["Pending", "Accepted"] },
-      $or: [
-        { start_time: { $lt: endDate }, end_time: { $gt: startDate } },
-      ],
+      start_time: { $lt: bufferedEnd },
+      end_time: { $gt: bufferedStart },
     });
 
     if (conflict) {
       throw new APIError(
-        "The selected time slot is not available. The mentor already has a session during this period.",
-        409,
+        `Time slot unavailable. Sessions require a ${BUFFER_MINUTES}-minute gap before and after.`,
+        409
       );
     }
 
+    // 6. Create session
     const session = await Session.create({
       student_id: studentProfile._id,
       mentor_id,
       start_time: startDate,
       end_time: endDate,
+      date: sessionDate,
       description,
     });
-
 
     logger.info(`Session booked: ${session._id} by student ${studentUserId}`);
 
@@ -64,6 +92,7 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
       mentor_id: session.mentor_id,
       start_time: session.start_time,
       end_time: session.end_time,
+      date: session.date,
       description: session.description,
       created_at: session.created_at,
     };
@@ -73,9 +102,6 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
   }
 };
 
-/**
- * Get all sessions belonging to a student user.
- */
 const getUserSessions = async (studentUserId) => {
   try {
     const studentProfile = await StudentProfile.findOne({ user_id: studentUserId });
