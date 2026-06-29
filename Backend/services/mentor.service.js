@@ -129,14 +129,29 @@ const updateMentorProfile = async (userId, updateData) => {
   }
 };
 
-const addAvailabilityBlock = async (userId, availabilityData) => {
+const addAvailabilityBlock = async (userId, { day_of_week, start_time, end_time }) => {
   try {
     const mentor = await MentorProfile.findOne({ user_id: userId });
     throwIfNotFound(mentor, "Mentor profile not found");
+    const conflict = await MentorAvailability.findOne({
+      mentor_id: mentor._id,
+      day_of_week,
+      start_time: { $lt: end_time },
+      end_time: { $gt: start_time },
+    });
+
+    if (conflict) {
+      throw new APIError(
+        `Availability block conflicts with an existing block on ${day_of_week} (${conflict.start_time}–${conflict.end_time})`,
+        409
+      );
+    }
 
     const availability = await MentorAvailability.create({
       mentor_id: mentor._id,
-      ...availabilityData,
+      day_of_week,
+      start_time,
+      end_time,
     });
 
     return availability;

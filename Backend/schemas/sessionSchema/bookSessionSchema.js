@@ -5,14 +5,16 @@ const bookSessionSchema = {
         mentor_id: Joi.string().required().trim().messages({
             "any.required": "Mentor ID is required",
         }),
-        start_time: Joi.date().iso().required().messages({
+        start_time: Joi.date().iso().greater("now").required().messages({
             "date.base": "Start time must be a valid date",
             "date.format": "Start time must be in ISO 8601 format",
+            "date.greater": "Start time must be in the future",
             "any.required": "Start time is required",
         }),
-        end_time: Joi.date().iso().required().messages({
+        end_time: Joi.date().iso().greater(Joi.ref("start_time")).required().messages({
             "date.base": "End time must be a valid date",
             "date.format": "End time must be in ISO 8601 format",
+            "date.greater": "End time must be after start time",
             "any.required": "End time is required",
         }),
         description: Joi.string().min(10).max(500).required().trim().messages({
