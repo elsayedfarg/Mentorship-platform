@@ -7,11 +7,14 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkCircle02Icon } from "@hugeicons/core-free-icons";
 import { Spinner } from "@/components/ui/spinner";
 import api from "@/lib/apiClient";
+import useAuthStore from "@/store/authStore";
+import { getDashboardPath } from "@/lib/routes";
 import { mentorProfileSchema } from "@/lib/validations/profile";
 import { cn } from "@/lib/utils";
 
 export default function MentorProfileSetup() {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
   const [submitting, setSubmitting] = useState(false);
   const [completed, setCompleted] = useState(false);
 
@@ -72,7 +75,7 @@ export default function MentorProfileSetup() {
           </p>
           <button
             type="button"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(getDashboardPath(user?.role))}
             className="mt-8 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
           >
             Go to Dashboard

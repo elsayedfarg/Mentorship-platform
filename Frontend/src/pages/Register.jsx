@@ -10,6 +10,7 @@ import PasswordField from "@/components/auth/PasswordField";
 import { Spinner } from "@/components/ui/spinner";
 import useAuth from "@/hooks/useAuth";
 import { registerSchema } from "@/lib/validations/auth";
+import { resolvePostAuthPath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 export default function Register() {
@@ -41,7 +42,7 @@ export default function Register() {
 
     if (result.success) {
       toast.success("Account created! Let's set up your profile.");
-      navigate("/profile-setup");
+      navigate(await resolvePostAuthPath());
       return;
     }
 

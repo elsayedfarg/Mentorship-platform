@@ -9,6 +9,7 @@ import PasswordField from "@/components/auth/PasswordField";
 import { Spinner } from "@/components/ui/spinner";
 import useAuth from "@/hooks/useAuth";
 import { loginSchema } from "@/lib/validations/auth";
+import { resolvePostAuthPath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 export default function Login() {
@@ -35,7 +36,7 @@ export default function Login() {
 
     if (result.success) {
       toast.success("Welcome back!");
-      navigate("/profile-setup");
+      navigate(await resolvePostAuthPath());
       return;
     }
 
