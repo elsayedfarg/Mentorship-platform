@@ -18,7 +18,10 @@ const bookSession = async (req, res, next) => {
 
 const getUserSessions = async (req, res, next) => {
   try {
-    const sessions = await sessionService.getUserSessions(req.user.userId);
+    const sessions = await sessionService.getUserSessions(
+      req.user.userId,
+      req.user.role,
+    );
 
     res.status(200).json({
       success: true,

@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import useAuthStore from "@/store/authStore";
 import useStudentStore from "@/store/studentStore";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { getId, getMentorFromSession, getSessionStart, formatTime } from "@/lib/format";
+import { getId, getMentorFromSession, getSessionStart, formatTime, formatDate } from "@/lib/format";
 
 // Mock chart data for now since backend doesn't provide history yet
 const chartData = [
@@ -159,7 +159,7 @@ const StudentDashboard = () => {
                       </div>
                     </div>
                     <span className="bg-[var(--brand-teal)] text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">
-                      {startTime ? new Date(startTime).toLocaleDateString() : 'Upcoming'}
+                      {startTime ? formatDate(startTime) : 'Upcoming'}
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-1 pt-3 border-t border-[var(--brand-outline)]/50">

@@ -1,10 +1,17 @@
 const MentorProfile = require("../models/mentorProfile.model");
 const MentorAvailability = require("../models/mentorAvailability.model");
+const Session = require("../models/session.model");
 const Stack = require("../models/stack.model");
 const User = require("../models/user.model");
 const APIError = require("../utils/APIError");
 const logger = require("../utils/logger");
 const throwIfNotFound = require("../utils/throwIfNotFound");
+const {
+  getDayOfWeekFromDateString,
+  buildWallClockDateTime,
+  generateHourlySlots,
+  timeToMinutes,
+} = require("../utils/timeUtils");
 
 const getMentorProfile = async (userId) => {
   try {
@@ -133,6 +140,15 @@ const addAvailabilityBlock = async (userId, { day_of_week, start_time, end_time 
   try {
     const mentor = await MentorProfile.findOne({ user_id: userId });
     throwIfNotFound(mentor, "Mentor profile not found");
+
+    if (start_time >= end_time) {
+      throw new APIError("End time must be after start time", 400);
+    }
+
+    if (timeToMinutes(end_time) - timeToMinutes(start_time) < 60) {
+      throw new APIError("Availability block must be at least 1 hour long", 400);
+    }
+
     const conflict = await MentorAvailability.findOne({
       mentor_id: mentor._id,
       day_of_week,
@@ -169,20 +185,40 @@ const getMentorAvailability = async (mentorId, date) => {
     const mentorProfile = await MentorProfile.findById(mentorId);
     throwIfNotFound(mentorProfile, "Mentor not found");
 
-    // Get day of week from date (YYYY-MM-DD)
-    const dateObj = new Date(date);
-    const dayOfWeek = dateObj.toLocaleDateString("en-US", { weekday: "long" });
+    if (!date) {
+      const availabilityBlocks = await MentorAvailability.find({
+        mentor_id: mentorId,
+      }).sort({ day_of_week: 1, start_time: 1 });
 
-    // Get availability blocks for that day
+      return {
+        availability_blocks: availabilityBlocks,
+      };
+    }
+
+    const dayOfWeek = getDayOfWeekFromDateString(date);
+
     const availabilityBlocks = await MentorAvailability.find({
       mentor_id: mentorId,
       day_of_week: dayOfWeek,
+    }).sort({ start_time: 1 });
+
+    const dayStart = buildWallClockDateTime(date, "00:00");
+    const dayEnd = buildWallClockDateTime(date, "23:59");
+
+    const bookedSessions = await Session.find({
+      mentor_id: mentorId,
+      status: { $in: ["Pending", "Accepted"] },
+      start_time: { $lt: dayEnd },
+      end_time: { $gt: dayStart },
     });
+
+    const slots = generateHourlySlots(availabilityBlocks, date, bookedSessions);
 
     return {
       date,
       day_of_week: dayOfWeek,
       availability_blocks: availabilityBlocks,
+      slots,
     };
   } catch (err) {
     logger.error("Get mentor availability error:", err);

@@ -6,8 +6,15 @@ const MentorAvailability = require("../models/mentorAvailability.model");
 const APIError = require("../utils/APIError");
 const logger = require("../utils/logger");
 const throwIfNotFound = require("../utils/throwIfNotFound");
+const {
+  getWallClockTime,
+  getWallClockDayOfWeek,
+} = require("../utils/timeUtils");
 
 const BUFFER_MINUTES = 10;
+
+const STUDENT_ALLOWED_STATUSES = ["Completed", "Cancelled"];
+const MENTOR_ALLOWED_STATUSES = ["Accepted", "Rejected", "Completed", "Cancelled"];
 
 const bookSession = async (studentUserId, { mentor_id, start_time, end_time, description }) => {
   try {
@@ -33,14 +40,10 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
 
 
 
-    const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const dayOfWeek = DAY_NAMES[startDate.getUTCDay()];
+    const dayOfWeek = getWallClockDayOfWeek(startDate);
 
-    const toHHMM = (d) =>
-      `${String(d.getUTCHours()).padStart(2, "0")}:${String(d.getUTCMinutes()).padStart(2, "0")}`;
-
-    const requestedStart = toHHMM(startDate); // e.g. "10:00"
-    const requestedEnd = toHHMM(endDate);
+    const requestedStart = getWallClockTime(startDate);
+    const requestedEnd = getWallClockTime(endDate);
 
     const availability = await MentorAvailability.findOne({
       mentor_id,
@@ -102,14 +105,29 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
   }
 };
 
-const getUserSessions = async (studentUserId) => {
+const getUserSessions = async (userId, role) => {
   try {
-    const studentProfile = await StudentProfile.findOne({ user_id: studentUserId });
+    if (role === "mentor") {
+      const mentorProfile = await MentorProfile.findOne({ user_id: userId });
+      throwIfNotFound(mentorProfile, "Mentor profile not found");
+
+      const sessions = await Session.find({ mentor_id: mentorProfile._id })
+        .populate({
+          path: "student_id",
+          select: "name",
+          populate: { path: "user_id", select: "email" },
+        })
+        .sort({ start_time: 1 });
+
+      return sessions;
+    }
+
+    const studentProfile = await StudentProfile.findOne({ user_id: userId });
     throwIfNotFound(studentProfile, "Student profile not found");
 
     const sessions = await Session.find({ student_id: studentProfile._id })
       .populate("mentor_id", "name title hourly_rate average_rating")
-      .sort({ created_at: -1 });
+      .sort({ start_time: 1 });
 
     return sessions;
   } catch (err) {
@@ -124,12 +142,35 @@ const updateSessionStatus = async (sessionId, newStatus, requestingUser) => {
     const session = await Session.findById(sessionId);
     throwIfNotFound(session, "Session not found");
 
+    if (requestingUser.role === "student") {
+      const studentProfile = await StudentProfile.findOne({ user_id: requestingUser.userId });
+      throwIfNotFound(studentProfile, "Student profile not found");
+
+      if (!session.student_id.equals(studentProfile._id)) {
+        throw new APIError("You are not authorized to update this session", 403);
+      }
+
+      if (!STUDENT_ALLOWED_STATUSES.includes(newStatus)) {
+        throw new APIError(
+          `Students can only set status to: ${STUDENT_ALLOWED_STATUSES.join(", ")}`,
+          400,
+        );
+      }
+    }
+
     if (requestingUser.role === "mentor") {
       const mentorProfile = await MentorProfile.findOne({ user_id: requestingUser.userId });
       throwIfNotFound(mentorProfile, "Mentor profile not found");
 
       if (!session.mentor_id.equals(mentorProfile._id)) {
         throw new APIError("You are not authorized to update this session", 403);
+      }
+
+      if (!MENTOR_ALLOWED_STATUSES.includes(newStatus)) {
+        throw new APIError(
+          `Mentors can only set status to: ${MENTOR_ALLOWED_STATUSES.join(", ")}`,
+          400,
+        );
       }
     }
 

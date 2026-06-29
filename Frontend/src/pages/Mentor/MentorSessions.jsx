@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { Link } from "react-router";
 import useMentorStore from "@/store/mentorStore";
 import {
@@ -5,10 +6,20 @@ import {
   getId,
   getSessionStart,
   getSessionStatus,
+  getStudentFromSession,
 } from "@/lib/format";
 
 const MentorSessions = () => {
-  const { sessions } = useMentorStore();
+  const { sessions, updateSessionStatus } = useMentorStore();
+
+  const handleStatusUpdate = async (sessionId, status) => {
+    const result = await updateSessionStatus(sessionId, status);
+    if (result.success) {
+      toast.success(`Session marked as ${status}.`);
+    } else {
+      toast.error(result.error || "Failed to update session.");
+    }
+  };
 
   return (
     <div className="max-w-[1440px] mx-auto w-full flex flex-col gap-6 pb-12">
@@ -34,10 +45,13 @@ const MentorSessions = () => {
       ) : (
         <div className="flex flex-col gap-3">
           {sessions.map((session) => {
-            const student = session.student || session.student_id || {};
+            const student = getStudentFromSession(session);
+            const sessionId = getId(session);
+            const status = getSessionStatus(session);
+
             return (
               <div
-                key={getId(session)}
+                key={sessionId}
                 className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 shadow-sm"
               >
                 <div className="flex items-center gap-3 flex-1">
@@ -58,9 +72,39 @@ const MentorSessions = () => {
                     )}
                   </div>
                 </div>
-                <span className="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide bg-[var(--brand-teal)] text-white">
-                  {getSessionStatus(session)}
-                </span>
+
+                <div className="flex items-center gap-3 flex-wrap">
+                  <span className="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide bg-[var(--brand-teal)] text-white">
+                    {status}
+                  </span>
+                  {status === "Pending" && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => handleStatusUpdate(sessionId, "Accepted")}
+                        className="text-xs font-semibold text-[var(--brand-teal)] hover:underline"
+                      >
+                        Accept
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleStatusUpdate(sessionId, "Rejected")}
+                        className="text-xs font-semibold text-destructive hover:underline"
+                      >
+                        Reject
+                      </button>
+                    </>
+                  )}
+                  {status === "Accepted" && (
+                    <button
+                      type="button"
+                      onClick={() => handleStatusUpdate(sessionId, "Completed")}
+                      className="text-xs font-semibold text-[var(--brand-teal)] hover:underline"
+                    >
+                      Mark Complete
+                    </button>
+                  )}
+                </div>
               </div>
             );
           })}
