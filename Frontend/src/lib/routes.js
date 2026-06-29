@@ -134,6 +134,7 @@ export const NAV_LINKS = {
     { label: "Dashboard", path: DASHBOARD_PATHS.admin, icon: "dashboard" },
     { label: "Users Management", path: "/dashboard/admin/users", icon: "group" },
     { label: "Reports", path: "/dashboard/admin/reports", icon: "assessment" },
+    { label: "Stacks", path: "/dashboard/admin/stacks", icon: "category" },
     {
       label: "Settings",
       path: "/dashboard/admin/settings",

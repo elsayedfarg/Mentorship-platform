@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const MentorProfile = require("../models/mentorProfile.model");
+const StudentProfile = require("../models/studentProfile.model");
 const APIError = require("../utils/APIError");
 const logger = require("../utils/logger");
 const throwIfNotFound = require("../utils/throwIfNotFound");
@@ -10,19 +11,32 @@ const getAllUsers = async ({ page = 1, limit = 10, role } = {}) => {
     if (role) {
       query.role = role;
     }
-
     const skip = (page - 1) * limit;
-
     const users = await User.find(query)
       .select("-password_hash")
       .sort({ created_at: -1 })
       .skip(skip)
       .limit(limit);
-
     const total = await User.countDocuments(query);
 
+    const enrichedUsers = await Promise.all(
+      users.map(async (user) => {
+        const userObj = user.toObject();
+        if (user.role === "mentor") {
+          const mentorProfile = await MentorProfile.findOne({ user_id: user._id })
+            .populate("stack_id", "name color icon")
+            .lean();
+          userObj.profile = mentorProfile || null;
+        } else if (user.role === "student") {
+          const studentProfile = await StudentProfile.findOne({ user_id: user._id }).lean();
+          userObj.profile = studentProfile || null;
+        }
+        return userObj;
+      })
+    );
+
     return {
-      data: users,
+      data: enrichedUsers,
       pagination: {
         total,
         page,
@@ -35,7 +49,6 @@ const getAllUsers = async ({ page = 1, limit = 10, role } = {}) => {
     throw err;
   }
 };
-
 
 const updateUserStatus = async (userId, is_verified) => {
   try {

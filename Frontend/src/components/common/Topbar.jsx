@@ -1,7 +1,8 @@
 import useAuthStore from "@/store/authStore";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { NAV_LINKS } from "@/lib/routes";
+import { NAV_LINKS, DASHBOARD_PATHS } from "@/lib/routes";
+import { getProfilePath, isNavActive } from "@/lib/format";
 
 const Topbar = () => {
   const { user, logout } = useAuthStore();
@@ -59,13 +60,17 @@ const Topbar = () => {
           </span>
           <span className="absolute top-2 right-2 w-2 h-2 bg-destructive rounded-full border border-white"></span>
         </button>
-        <button className="w-10 h-10 rounded-full overflow-hidden border border-[var(--brand-outline)] hover:border-[var(--brand-brown)] transition-colors focus:outline-none">
+        <Link
+          to={getProfilePath(role)}
+          className="w-10 h-10 rounded-full overflow-hidden border border-[var(--brand-outline)] hover:border-[var(--brand-brown)] transition-colors focus:outline-none"
+          aria-label="Go to profile"
+        >
           <img
             alt="User Profile"
             className="w-full h-full object-cover"
             src={avatarUrl}
           />
-        </button>
+        </Link>
       </div>
 
       {mobileMenuOpen && (
@@ -95,7 +100,8 @@ const Topbar = () => {
 
             <div className="flex flex-col p-2 gap-1">
               {links.map((link) => {
-                const isActive = location.pathname === link.path;
+                const dashboardPath = DASHBOARD_PATHS[role];
+                const isActive = isNavActive(location.pathname, link.path, dashboardPath);
                 return (
                   <Link
                     key={link.path}

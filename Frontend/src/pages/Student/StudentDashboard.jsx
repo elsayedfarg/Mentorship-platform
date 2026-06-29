@@ -1,6 +1,8 @@
+import { Link } from "react-router";
 import useAuthStore from "@/store/authStore";
 import useStudentStore from "@/store/studentStore";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { getId, getMentorFromSession, getSessionStart, formatTime } from "@/lib/format";
 
 // Mock chart data for now since backend doesn't provide history yet
 const chartData = [
@@ -45,9 +47,12 @@ const StudentDashboard = () => {
               </span>
               Learning Progress
             </h3>
-            <button className="text-[var(--brand-brown-light)] text-sm font-semibold hover:underline">
+            <Link
+              to="/dashboard/student/sessions"
+              className="text-[var(--brand-brown-light)] text-sm font-semibold hover:underline"
+            >
               View Detailed Report
-            </button>
+            </Link>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-2 z-10">
@@ -120,30 +125,41 @@ const StudentDashboard = () => {
               </span>
               Upcoming Sessions
             </h3>
-            <button className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors text-muted-foreground">
+            <Link
+              to="/dashboard/student/mentors"
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors text-muted-foreground"
+              aria-label="Book new session"
+            >
               <span className="material-symbols-outlined">add</span>
-            </button>
+            </Link>
           </div>
           <div className="flex flex-col gap-3">
             {sessions?.length > 0 ? (
-              sessions.slice(0, 3).map((session, i) => (
-                <div key={session._id || i} className="bg-[var(--brand-surface-muted)] p-4 rounded-lg border border-[var(--brand-outline)] flex flex-col gap-3 hover:border-[var(--brand-brown-light)] transition-colors cursor-pointer group">
+              sessions.slice(0, 3).map((session, i) => {
+                const mentor = getMentorFromSession(session);
+                const startTime = getSessionStart(session);
+                return (
+                <Link
+                  key={getId(session) || i}
+                  to="/dashboard/student/sessions"
+                  className="bg-[var(--brand-surface-muted)] p-4 rounded-lg border border-[var(--brand-outline)] flex flex-col gap-3 hover:border-[var(--brand-brown-light)] transition-colors cursor-pointer group"
+                >
                   <div className="flex justify-between items-start">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[var(--brand-outline)] text-[var(--brand-brown)] font-bold uppercase">
-                        {session.mentor?.name?.[0] || 'M'}
+                        {mentor.name?.[0] || 'M'}
                       </div>
                       <div>
                         <h4 className="text-sm font-semibold text-gray-900">
-                          {session.mentor?.name || "Unknown Mentor"}
+                          {mentor.name || "Unknown Mentor"}
                         </h4>
                         <p className="text-xs text-muted-foreground">
-                          {session.mentor?.title || "Mentorship Session"}
+                          {mentor.title || "Mentorship Session"}
                         </p>
                       </div>
                     </div>
                     <span className="bg-[var(--brand-teal)] text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">
-                      {session.startTime ? new Date(session.startTime).toLocaleDateString() : 'Upcoming'}
+                      {startTime ? new Date(startTime).toLocaleDateString() : 'Upcoming'}
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-1 pt-3 border-t border-[var(--brand-outline)]/50">
@@ -152,15 +168,16 @@ const StudentDashboard = () => {
                         schedule
                       </span>
                       <span className="text-xs font-semibold">
-                        {session.startTime ? new Date(session.startTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) : 'TBD'}
+                        {formatTime(startTime)}
                       </span>
                     </div>
-                    <button className="text-[var(--brand-brown-light)] group-hover:text-[var(--brand-brown)] text-sm font-bold transition-colors">
-                      Join
-                    </button>
+                    <span className="text-[var(--brand-brown-light)] group-hover:text-[var(--brand-brown)] text-sm font-bold transition-colors">
+                      View
+                    </span>
                   </div>
-                </div>
-              ))
+                </Link>
+              );
+              })
             ) : (
               <p className="text-sm text-muted-foreground p-4 border border-dashed border-[var(--brand-outline)] rounded-lg text-center">
                 No upcoming sessions. Time to book one!
@@ -180,14 +197,17 @@ const StudentDashboard = () => {
               </span>
               Recommended Mentors
             </h3>
-            <button className="text-[var(--brand-brown-light)] text-sm font-semibold hover:underline">
+            <Link
+              to="/dashboard/student/mentors"
+              className="text-[var(--brand-brown-light)] text-sm font-semibold hover:underline"
+            >
               Browse All
-            </button>
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {mentors?.length > 0 ? (
               mentors.slice(0, 3).map((mentor, i) => (
-                <div key={mentor._id || i} className="bg-white rounded-lg border border-[var(--brand-outline)] p-5 flex flex-col items-center text-center gap-3 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div key={getId(mentor) || i} className="bg-white rounded-lg border border-[var(--brand-outline)] p-5 flex flex-col items-center text-center gap-3 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                   <div className="w-16 h-16 rounded-full flex items-center justify-center border-2 border-[var(--brand-surface-muted)] bg-[var(--brand-surface-muted)] text-[var(--brand-brown)] text-2xl font-bold uppercase mb-1">
                     {mentor.name?.[0] || 'M'}
                   </div>
@@ -207,9 +227,12 @@ const StudentDashboard = () => {
                       Career
                     </span>
                   </div>
-                  <button className="mt-3 w-full py-2 bg-transparent border border-[var(--brand-brown-light)] text-[var(--brand-brown-light)] text-sm font-bold rounded hover:bg-[var(--brand-brown-light)] hover:text-white transition-colors">
+                  <Link
+                    to={`/dashboard/student/mentors/${getId(mentor)}`}
+                    className="mt-3 w-full py-2 text-center bg-transparent border border-[var(--brand-brown-light)] text-[var(--brand-brown-light)] text-sm font-bold rounded hover:bg-[var(--brand-brown-light)] hover:text-white transition-colors"
+                  >
                     View Profile
-                  </button>
+                  </Link>
                 </div>
               ))
             ) : (

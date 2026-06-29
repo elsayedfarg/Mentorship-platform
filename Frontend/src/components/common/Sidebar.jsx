@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router";
 import useAuthStore from "@/store/authStore";
-import { NAV_LINKS } from "@/lib/routes";
+import { NAV_LINKS, DASHBOARD_PATHS } from "@/lib/routes";
+import { isNavActive } from "@/lib/format";
 
 const Sidebar = () => {
   const { user, logout } = useAuthStore();
@@ -34,7 +35,8 @@ const Sidebar = () => {
       </div>
       <div className="flex-1 px-4 flex flex-col gap-1">
         {navLinks.map((link) => {
-          const isActive = location.pathname === link.path;
+          const dashboardPath = DASHBOARD_PATHS[role];
+          const isActive = isNavActive(location.pathname, link.path, dashboardPath);
           return (
             <Link
               key={link.path}
