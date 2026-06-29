@@ -1,36 +1,23 @@
 import { redirect } from "react-router";
-import useAuthStore from "@/store/authStore";
+import { requireAuth, resolvePostAuthPath } from "@/lib/routes";
 
-/**
- * Loader that hydrates the auth state from a stored token.
- * Runs before every page render; redirects to /login if the
- * route is protected and the user is not authenticated.
- */
 export async function requireAuthLoader() {
-  // Hydrate store from localStorage / API
-  await useAuthStore.getState().hydrate();
-
-  const token = useAuthStore.getState().token;
-
-  if (!token) {
-    throw redirect("/login");
-  }
-
+  await requireAuth();
   return null;
 }
 
-/**
- * Loader for public-only routes (login / register).
- * Redirects authenticated users to the home page.
- */
 export async function guestOnlyLoader() {
-  await useAuthStore.getState().hydrate();
-
-  const token = useAuthStore.getState().token;
-
-  if (token) {
-    throw redirect("/");
+  const destination = await resolvePostAuthPath();
+  if (destination !== "/login") {
+    throw redirect(destination);
   }
+  return null;
+}
 
+export async function homeLoader() {
+  const destination = await resolvePostAuthPath();
+  if (destination !== "/login") {
+    throw redirect(destination);
+  }
   return null;
 }

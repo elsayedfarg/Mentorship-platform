@@ -11,6 +11,8 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Spinner } from "@/components/ui/spinner";
 import api from "@/lib/apiClient";
+import useAuthStore from "@/store/authStore";
+import { getDashboardPath } from "@/lib/routes";
 import {
   studentProfileSchema,
   studentStepFields,
@@ -37,6 +39,7 @@ function getStepForErrors(errors) {
 
 export default function StudentProfileSetup() {
   const navigate = useNavigate();
+  const { user } = useAuthStore();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
 
@@ -375,7 +378,7 @@ export default function StudentProfileSetup() {
                 </p>
                 <button
                   type="button"
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate(getDashboardPath(user?.role))}
                   className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
                 >
                   Go to Dashboard
