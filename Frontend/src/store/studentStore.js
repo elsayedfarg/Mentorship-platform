@@ -13,8 +13,8 @@ const useStudentStore = create((set) => ({
 
     try {
       const [sessionsRes, mentorsRes] = await Promise.all([
-        api.get("/api/session"),
-        api.get("/api/mentor?limit=3") // just get a few mentors for recommended
+        api.get("/api/sessions"),
+        api.get("/api/mentors?limit=3") // just get a few mentors for recommended
       ]);
 
       set({
