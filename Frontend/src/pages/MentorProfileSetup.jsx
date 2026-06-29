@@ -1,67 +1,43 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkCircle02Icon } from "@hugeicons/core-free-icons";
 import { Spinner } from "@/components/ui/spinner";
 import api from "@/lib/apiClient";
+import { mentorProfileSchema } from "@/lib/validations/profile";
 import { cn } from "@/lib/utils";
 
 export default function MentorProfileSetup() {
   const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
   const [completed, setCompleted] = useState(false);
-  const [form, setForm] = useState({
-    name: "",
-    title: "",
-    bio: "",
-    hourly_rate: "",
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(mentorProfileSchema),
+    defaultValues: {
+      name: "",
+      title: "",
+      bio: "",
+      hourly_rate: "",
+    },
   });
-  const [errors, setErrors] = useState({});
 
-  const updateField = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-    setErrors((prev) => ({ ...prev, [field]: "" }));
-  };
-
-  const validate = () => {
-    const nextErrors = {};
-
-    if (!form.name.trim() || form.name.trim().length < 2) {
-      nextErrors.name = "Full name is required (at least 2 characters)";
-    }
-
-    if (form.title.trim() && form.title.trim().length < 3) {
-      nextErrors.title = "Title must be at least 3 characters";
-    }
-
-    if (form.bio.trim() && form.bio.trim().length < 10) {
-      nextErrors.bio = "Bio must be at least 10 characters";
-    }
-
-    if (form.hourly_rate && Number(form.hourly_rate) <= 0) {
-      nextErrors.hourly_rate = "Hourly rate must be a positive number";
-    }
-
-    setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!validate()) {
-      toast.error("Please fix the errors in the form.");
-      return;
-    }
-
+  const onSubmit = async (form) => {
     setSubmitting(true);
 
-    const payload = { name: form.name.trim() };
-
-    if (form.title.trim()) payload.title = form.title.trim();
-    if (form.bio.trim()) payload.bio = form.bio.trim();
-    if (form.hourly_rate) payload.hourly_rate = Number(form.hourly_rate);
+    const payload = {
+      name: form.name.trim(),
+      title: form.title.trim(),
+      bio: form.bio.trim(),
+      hourly_rate: Number(form.hourly_rate),
+    };
 
     try {
       await api.put("/api/mentors/profile", payload);
@@ -74,6 +50,10 @@ export default function MentorProfileSetup() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const onInvalid = () => {
+    toast.error("Please fix the errors in the form.");
   };
 
   if (completed) {
@@ -144,7 +124,7 @@ export default function MentorProfileSetup() {
         </div>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
           className="w-full rounded-xl border border-[var(--brand-outline)] bg-white p-8 shadow-[0_4px_12px_rgba(74,52,38,0.08)] md:p-12"
         >
           <div className="space-y-6">
@@ -158,8 +138,6 @@ export default function MentorProfileSetup() {
               <input
                 id="fullName"
                 type="text"
-                value={form.name}
-                onChange={(e) => updateField("name", e.target.value)}
                 placeholder="Jane Doe"
                 className={cn(
                   "w-full rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
@@ -167,9 +145,10 @@ export default function MentorProfileSetup() {
                     ? "border-destructive"
                     : "border-[var(--brand-outline)]",
                 )}
+                {...register("name")}
               />
               {errors.name && (
-                <p className="text-xs text-destructive">{errors.name}</p>
+                <p className="text-xs text-destructive">{errors.name.message}</p>
               )}
             </div>
 
@@ -183,8 +162,6 @@ export default function MentorProfileSetup() {
               <input
                 id="title"
                 type="text"
-                value={form.title}
-                onChange={(e) => updateField("title", e.target.value)}
                 placeholder="e.g. Senior Product Designer at TechCorp"
                 className={cn(
                   "w-full rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]",
@@ -192,9 +169,10 @@ export default function MentorProfileSetup() {
                     ? "border-destructive"
                     : "border-[var(--brand-outline)]",
                 )}
+                {...register("title")}
               />
               {errors.title && (
-                <p className="text-xs text-destructive">{errors.title}</p>
+                <p className="text-xs text-destructive">{errors.title.message}</p>
               )}
             </div>
 
@@ -207,8 +185,6 @@ export default function MentorProfileSetup() {
               </label>
               <textarea
                 id="bio"
-                value={form.bio}
-                onChange={(e) => updateField("bio", e.target.value)}
                 rows={4}
                 placeholder="Share your background and mentoring approach..."
                 className={cn(
@@ -217,9 +193,10 @@ export default function MentorProfileSetup() {
                     ? "border-destructive"
                     : "border-[var(--brand-outline)]",
                 )}
+                {...register("bio")}
               />
               {errors.bio && (
-                <p className="text-xs text-destructive">{errors.bio}</p>
+                <p className="text-xs text-destructive">{errors.bio.message}</p>
               )}
             </div>
 
@@ -238,8 +215,6 @@ export default function MentorProfileSetup() {
                   id="rate"
                   type="number"
                   min="0"
-                  value={form.hourly_rate}
-                  onChange={(e) => updateField("hourly_rate", e.target.value)}
                   placeholder="150"
                   className={cn(
                     "w-full rounded-lg border py-3 pr-4 pl-8 text-sm outline-none focus:border-[var(--brand-teal)]",
@@ -247,10 +222,13 @@ export default function MentorProfileSetup() {
                       ? "border-destructive"
                       : "border-[var(--brand-outline)]",
                   )}
+                  {...register("hourly_rate")}
                 />
               </div>
               {errors.hourly_rate && (
-                <p className="text-xs text-destructive">{errors.hourly_rate}</p>
+                <p className="text-xs text-destructive">
+                  {errors.hourly_rate.message}
+                </p>
               )}
             </div>
           </div>
