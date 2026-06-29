@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   LockIcon,
@@ -7,16 +7,18 @@ import {
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
 
-export default function PasswordField({
-  id,
-  label,
-  placeholder,
-  value,
-  onChange,
-  error,
-  showToggle = true,
-  className,
-}) {
+const PasswordField = forwardRef(function PasswordField(
+  {
+    id,
+    label,
+    placeholder,
+    error,
+    showToggle = true,
+    className,
+    ...inputProps
+  },
+  ref,
+) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -36,10 +38,9 @@ export default function PasswordField({
           />
         </div>
         <input
+          ref={ref}
           id={id}
           type={visible ? "text" : "password"}
-          value={value}
-          onChange={onChange}
           placeholder={placeholder}
           aria-invalid={!!error}
           className={cn(
@@ -48,6 +49,7 @@ export default function PasswordField({
               ? "border-destructive bg-destructive/5"
               : "border-[var(--brand-outline)]",
           )}
+          {...inputProps}
         />
         {showToggle && (
           <button
@@ -69,4 +71,6 @@ export default function PasswordField({
       )}
     </div>
   );
-}
+});
+
+export default PasswordField;

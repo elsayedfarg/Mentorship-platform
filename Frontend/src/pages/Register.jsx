@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -8,56 +9,31 @@ import RoleSelector from "@/components/auth/RoleSelector";
 import PasswordField from "@/components/auth/PasswordField";
 import { Spinner } from "@/components/ui/spinner";
 import useAuth from "@/hooks/useAuth";
+import { registerSchema } from "@/lib/validations/auth";
 import { cn } from "@/lib/utils";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function validateForm({ email, password, confirmPassword }) {
-  const errors = {};
-
-  if (!email.trim()) {
-    errors.email = "Email is required";
-  } else if (!EMAIL_REGEX.test(email.trim())) {
-    errors.email = "Invalid email format";
-  }
-
-  if (!password) {
-    errors.password = "Password is required";
-  } else if (password.length < 8) {
-    errors.password = "Password must be at least 8 characters";
-  }
-
-  if (!confirmPassword) {
-    errors.confirmPassword = "Please confirm your password";
-  } else if (password !== confirmPassword) {
-    errors.confirmPassword = "Passwords do not match";
-  }
-
-  return errors;
-}
 
 export default function Register() {
   const navigate = useNavigate();
-  const { register, loading } = useAuth();
+  const { register: registerUser, loading } = useAuth();
 
-  const [role, setRole] = useState("student");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [fieldErrors, setFieldErrors] = useState({});
+  const {
+    register,
+    control,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      role: "student",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const errors = validateForm({ email, password, confirmPassword });
-    setFieldErrors(errors);
-
-    if (Object.keys(errors).length > 0) {
-      toast.error("Please fix the errors in the form.");
-      return;
-    }
-
-    const result = await register({
+  const onSubmit = async ({ email, password, role }) => {
+    const result = await registerUser({
       email: email.trim(),
       password,
       role,
@@ -73,8 +49,12 @@ export default function Register() {
     toast.error(message);
 
     if (message.toLowerCase().includes("email")) {
-      setFieldErrors((prev) => ({ ...prev, email: message }));
+      setError("email", { message });
     }
+  };
+
+  const onInvalid = () => {
+    toast.error("Please fix the errors in the form.");
   };
 
   return (
@@ -92,9 +72,19 @@ export default function Register() {
       </div>
 
       <div className="rounded-xl border border-[var(--brand-outline)] bg-white/95 p-8 shadow-[0_4px_24px_rgba(74,52,38,0.08)] backdrop-blur-sm">
-        <RoleSelector value={role} onChange={setRole} />
+        <Controller
+          name="role"
+          control={control}
+          render={({ field }) => (
+            <RoleSelector value={field.value} onChange={field.onChange} />
+          )}
+        />
 
-        <form className="space-y-5" onSubmit={handleSubmit} noValidate>
+        <form
+          className="space-y-5"
+          onSubmit={handleSubmit(onSubmit, onInvalid)}
+          noValidate
+        >
           <div className="space-y-2">
             <label
               htmlFor="email"
@@ -113,26 +103,20 @@ export default function Register() {
               <input
                 id="email"
                 type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (fieldErrors.email) {
-                    setFieldErrors((prev) => ({ ...prev, email: "" }));
-                  }
-                }}
                 placeholder="you@example.com"
-                aria-invalid={!!fieldErrors.email}
+                aria-invalid={!!errors.email}
                 className={cn(
                   "w-full rounded-lg border bg-white py-3 pr-4 pl-10 text-sm shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] outline-none transition-all placeholder:text-muted-foreground focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
-                  fieldErrors.email
+                  errors.email
                     ? "border-destructive bg-destructive/5"
                     : "border-[var(--brand-outline)]",
                 )}
+                {...register("email")}
               />
             </div>
-            {fieldErrors.email && (
+            {errors.email && (
               <p className="text-xs font-medium text-destructive">
-                {fieldErrors.email}
+                {errors.email.message}
               </p>
             )}
           </div>
@@ -141,29 +125,17 @@ export default function Register() {
             id="password"
             label="Password"
             placeholder="Minimum 8 characters"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              if (fieldErrors.password) {
-                setFieldErrors((prev) => ({ ...prev, password: "" }));
-              }
-            }}
-            error={fieldErrors.password}
+            error={errors.password?.message}
+            {...register("password")}
           />
 
           <PasswordField
             id="confirmPassword"
             label="Confirm Password"
             placeholder="Re-enter your password"
-            value={confirmPassword}
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-              if (fieldErrors.confirmPassword) {
-                setFieldErrors((prev) => ({ ...prev, confirmPassword: "" }));
-              }
-            }}
-            error={fieldErrors.confirmPassword}
+            error={errors.confirmPassword?.message}
             showToggle={false}
+            {...register("confirmPassword")}
           />
 
           <button

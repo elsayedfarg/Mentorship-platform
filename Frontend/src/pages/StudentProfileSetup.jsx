@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -9,13 +11,11 @@ import {
 } from "@hugeicons/core-free-icons";
 import { Spinner } from "@/components/ui/spinner";
 import api from "@/lib/apiClient";
+import {
+  studentProfileSchema,
+  studentStepFields,
+} from "@/lib/validations/profile";
 import { cn } from "@/lib/utils";
-
-const STEPS = [
-  { id: 1, title: "Basic Info" },
-  { id: 2, title: "Your Journey" },
-  { id: 3, title: "Interests" },
-];
 
 const INTEREST_TAGS = [
   "Frontend Dev",
@@ -28,32 +28,47 @@ const INTEREST_TAGS = [
   "Leadership",
 ];
 
+function getStepForErrors(errors) {
+  if (errors.name) return 1;
+  if (errors.experience || errors.goals) return 2;
+  if (errors.interests) return 3;
+  return 1;
+}
+
 export default function StudentProfileSetup() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
-  const [name, setName] = useState("");
-  const [experience, setExperience] = useState("");
-  const [goals, setGoals] = useState("");
-  const [interests, setInterests] = useState([]);
-  const [nameError, setNameError] = useState("");
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(studentProfileSchema),
+    defaultValues: {
+      name: "",
+      experience: "",
+      goals: "",
+      interests: [],
+    },
+  });
 
   const progress = step <= 3 ? (step / 3) * 100 : 100;
 
-  const toggleInterest = (tag) => {
-    setInterests((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
-    );
-  };
-
-  const handleComplete = async () => {
-    if (!name.trim() || name.trim().length < 2) {
-      setNameError("Full name is required (at least 2 characters)");
-      setStep(1);
-      toast.error("Please enter your full name.");
+  const handleContinue = async (currentStep) => {
+    const valid = await trigger(studentStepFields[currentStep]);
+    if (valid) {
+      setStep(currentStep + 1);
       return;
     }
 
+    toast.error("Please complete the required fields before continuing.");
+  };
+
+  const onSubmit = async ({ name }) => {
     setSubmitting(true);
 
     try {
@@ -67,6 +82,18 @@ export default function StudentProfileSetup() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const onInvalid = (formErrors) => {
+    setStep(getStepForErrors(formErrors));
+    toast.error("Please complete all required fields before saving.");
+  };
+
+  const toggleInterest = (tag, currentInterests, onChange) => {
+    const next = currentInterests.includes(tag)
+      ? currentInterests.filter((item) => item !== tag)
+      : [...currentInterests, tag];
+    onChange(next);
   };
 
   return (
@@ -130,28 +157,26 @@ export default function StudentProfileSetup() {
                   <input
                     id="fullName"
                     type="text"
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                      setNameError("");
-                    }}
                     placeholder="Jane Doe"
                     className={cn(
                       "w-full rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
-                      nameError
+                      errors.name
                         ? "border-destructive"
                         : "border-[var(--brand-outline)]",
                     )}
+                    {...register("name")}
                   />
-                  {nameError && (
-                    <p className="text-xs text-destructive">{nameError}</p>
+                  {errors.name && (
+                    <p className="text-xs text-destructive">
+                      {errors.name.message}
+                    </p>
                   )}
                 </div>
 
                 <div className="mt-8 flex justify-end">
                   <button
                     type="button"
-                    onClick={() => setStep(2)}
+                    onClick={() => handleContinue(1)}
                     className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
                   >
                     Continue
@@ -182,9 +207,13 @@ export default function StudentProfileSetup() {
                     </label>
                     <select
                       id="experience"
-                      value={experience}
-                      onChange={(e) => setExperience(e.target.value)}
-                      className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]"
+                      className={cn(
+                        "w-full rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]",
+                        errors.experience
+                          ? "border-destructive"
+                          : "border-[var(--brand-outline)]",
+                      )}
+                      {...register("experience")}
                     >
                       <option value="">Select your level...</option>
                       <option value="beginner">Beginner (0-1 years)</option>
@@ -194,6 +223,11 @@ export default function StudentProfileSetup() {
                       <option value="advanced">Advanced (3+ years)</option>
                       <option value="career-switcher">Career Switcher</option>
                     </select>
+                    {errors.experience && (
+                      <p className="text-xs text-destructive">
+                        {errors.experience.message}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -205,12 +239,21 @@ export default function StudentProfileSetup() {
                     </label>
                     <textarea
                       id="goals"
-                      value={goals}
-                      onChange={(e) => setGoals(e.target.value)}
                       rows={4}
                       placeholder="What are you hoping to achieve with a mentor?"
-                      className="w-full resize-none rounded-lg border border-[var(--brand-outline)] px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]"
+                      className={cn(
+                        "w-full resize-none rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]",
+                        errors.goals
+                          ? "border-destructive"
+                          : "border-[var(--brand-outline)]",
+                      )}
+                      {...register("goals")}
                     />
+                    {errors.goals && (
+                      <p className="text-xs text-destructive">
+                        {errors.goals.message}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -225,7 +268,7 @@ export default function StudentProfileSetup() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setStep(3)}
+                    onClick={() => handleContinue(2)}
                     className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
                   >
                     Continue
@@ -246,27 +289,40 @@ export default function StudentProfileSetup() {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
-                  {INTEREST_TAGS.map((tag) => {
-                    const selected = interests.includes(tag);
+                <Controller
+                  name="interests"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="flex flex-wrap gap-3">
+                      {INTEREST_TAGS.map((tag) => {
+                        const selected = field.value.includes(tag);
 
-                    return (
-                      <button
-                        key={tag}
-                        type="button"
-                        onClick={() => toggleInterest(tag)}
-                        className={cn(
-                          "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-                          selected
-                            ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white"
-                            : "border-[var(--brand-outline)] text-muted-foreground hover:border-[var(--brand-brown-light)] hover:text-[var(--brand-brown)]",
-                        )}
-                      >
-                        {tag}
-                      </button>
-                    );
-                  })}
-                </div>
+                        return (
+                          <button
+                            key={tag}
+                            type="button"
+                            onClick={() =>
+                              toggleInterest(tag, field.value, field.onChange)
+                            }
+                            className={cn(
+                              "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                              selected
+                                ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white"
+                                : "border-[var(--brand-outline)] text-muted-foreground hover:border-[var(--brand-brown-light)] hover:text-[var(--brand-brown)]",
+                            )}
+                          >
+                            {tag}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                />
+                {errors.interests && (
+                  <p className="mt-2 text-xs text-destructive">
+                    {errors.interests.message}
+                  </p>
+                )}
 
                 <div className="mt-8 flex justify-between">
                   <button
@@ -279,7 +335,7 @@ export default function StudentProfileSetup() {
                   </button>
                   <button
                     type="button"
-                    onClick={handleComplete}
+                    onClick={handleSubmit(onSubmit, onInvalid)}
                     disabled={submitting}
                     className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
                   >
