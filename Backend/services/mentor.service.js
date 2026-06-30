@@ -272,6 +272,34 @@ const removeAvailabilityBlock = async (userId, blockId) => {
   }
 };
 
+
+const getMentorsByStackId = async (stackId, page = 1, limit = 10) => {
+  try {
+    const skip = (page - 1) * limit;
+
+    const mentors = await MentorProfile.find({ stack_id: stackId })
+      .skip(skip)
+      .limit(limit)
+      .sort({ created_at: -1 });
+
+    const total = await MentorProfile.countDocuments({ stack_id: stackId });
+
+    return {
+      data: mentors,
+      pagination: {
+        total,
+        page,
+        limit,
+        pages: Math.ceil(total / limit),
+      },
+    };
+  } catch (err) {
+    logger.error("Get mentors by stack ID error:", err);
+    throw err;
+  }
+};
+
+
 module.exports = {
   getMentorProfile,
   createMentorProfile,
@@ -282,4 +310,5 @@ module.exports = {
   getMentorAvailability,
   getMentorAllAvailability,
   removeAvailabilityBlock,
+  getMentorsByStackId,
 };

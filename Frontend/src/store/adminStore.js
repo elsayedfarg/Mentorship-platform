@@ -81,7 +81,7 @@ const useAdminStore = create((set) => ({
     try {
       const { page = 1, limit = 10 } = params;
       const query = new URLSearchParams({ page, limit });
-      const response = await api.get(`/api/stacks?${query}`);
+      const response = await api.get(`/api/stacks/stats?${query}`);
       const data = response.data.data;
       set({
         stacks: Array.isArray(data) ? data : data?.stacks || [],

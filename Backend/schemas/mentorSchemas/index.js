@@ -4,4 +4,5 @@ module.exports = {
   addAvailabilitySchema: require("./addAvailabilitySchema"),
   getMentorSchema: require("./getMentorSchema"),
   getAvailabilitySchema: require("./getAvailabilitySchema"),
+  getMentorsByStackIdSchema: require("./getMentorsByStackIdSchema"),
 };

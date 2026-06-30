@@ -167,7 +167,7 @@ function DeleteConfirmModal({ stack, onConfirm, onClose, deleting }) {
 // Main page
 // ---------------------------------------------------------------------------
 const AdminStacks = () => {
-    const { stacks, stacksLoading, fetchStacks, createStack, updateStack, deleteStack } = useAdminStore();
+    const { stacks, stacksLoading, fetchStacks, fetchStackStats, createStack, updateStack, deleteStack } = useAdminStore();
     useEffect(() => {
         fetchStacks();
     }, []);
@@ -319,7 +319,8 @@ const AdminStacks = () => {
                                         </td>
                                         <td className="px-4 py-3 text-center">
                                             <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-[var(--brand-teal)]/10 text-[var(--brand-teal)]">
-                                                {stack.mentor_count ?? stack.mentors_count ?? 0}
+                                                {stack.mentorCount}
+                                                {console.log(stack)}
                                             </span>
                                         </td>
                                         <td className="px-4 py-3 text-right">

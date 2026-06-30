@@ -85,7 +85,7 @@ const AdminReports = () => {
                     )}
                   </div>
                   <span className="text-sm font-bold text-[var(--brand-brown)]">
-                    {stack.mentor_count ?? stack.mentors_count ?? 0} mentors
+                    {stack.mentorCount ?? stack.mentors_count ?? 0} mentors
                   </span>
                 </div>
               ))}
