@@ -8,6 +8,7 @@ import {
   formatDate,
   formatSlotTime,
   getId,
+  SESSION_DURATION_MINUTES,
 } from "@/lib/format";
 
 const todayDateString = () => {
@@ -182,7 +183,8 @@ const MentorDetail = () => {
         <div>
           <h3 className="text-lg font-bold text-gray-900">Book a Session</h3>
           <p className="text-sm text-muted-foreground mt-1">
-            Choose a date, then pick one of the mentor&apos;s available time slots.
+            Choose a date, then pick a {SESSION_DURATION_MINUTES}-minute code evaluation slot
+            from the mentor&apos;s open schedule.
           </p>
         </div>
 
@@ -280,7 +282,7 @@ const MentorDetail = () => {
             rows={3}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="What would you like to discuss?"
+            placeholder="Describe what you'd like to review in this 45-minute code evaluation session"
             required
             minLength={10}
             className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)] resize-none"

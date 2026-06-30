@@ -1,3 +1,5 @@
+export const SESSION_DURATION_MINUTES = 45;
+
 export function getId(item) {
   return item?._id || item?.id;
 }
@@ -86,8 +88,8 @@ export function isEndTimeAfterStart(startTime, endTime) {
   return Boolean(startTime && endTime && endTime > startTime);
 }
 
-/** Minimum end time for availability blocks (default 1-hour sessions). */
-export function getMinEndTime(startTime, minDurationMinutes = 60) {
+/** Minimum end time for availability blocks. */
+export function getMinEndTime(startTime, minDurationMinutes = SESSION_DURATION_MINUTES) {
   return addMinutesToTime(startTime, minDurationMinutes);
 }
 

@@ -6,6 +6,7 @@ import {
   getId,
   getMinEndTime,
   isEndTimeAfterStart,
+  SESSION_DURATION_MINUTES,
   timeToMinutes,
 } from "@/lib/format";
 import { Spinner } from "@/components/ui/spinner";
@@ -53,8 +54,10 @@ const MentorAvailability = () => {
       return false;
     }
 
-    if (timeToMinutes(endTime) - timeToMinutes(startTime) < 60) {
-      setFormError("Each availability block must be at least 1 hour long.");
+    if (timeToMinutes(endTime) - timeToMinutes(startTime) < SESSION_DURATION_MINUTES) {
+      setFormError(
+        `Each availability block must be at least ${SESSION_DURATION_MINUTES} minutes long.`,
+      );
       return false;
     }
 
@@ -110,7 +113,7 @@ const MentorAvailability = () => {
       >
         <h3 className="text-lg font-bold text-gray-900">Add Availability Block</h3>
         <p className="text-sm text-muted-foreground -mt-2">
-          Choose a start time first. The end time will stay at least 1 hour later.
+          Choose a start time first. The end time will stay at least {SESSION_DURATION_MINUTES} minutes later.
         </p>
 
         <div className="space-y-1">

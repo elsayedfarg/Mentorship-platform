@@ -15,6 +15,7 @@ import {
   formatSlotTime,
   getMinEndTime,
   isEndTimeAfterStart,
+  SESSION_DURATION_MINUTES,
   timeToMinutes,
 } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -295,9 +296,9 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
     if (
       draft.start_time &&
       draft.end_time &&
-      timeToMinutes(draft.end_time) - timeToMinutes(draft.start_time) < 60
+      timeToMinutes(draft.end_time) - timeToMinutes(draft.start_time) < SESSION_DURATION_MINUTES
     )
-      e.end_time = "Block must be at least 1 hour long";
+      e.end_time = `Block must be at least ${SESSION_DURATION_MINUTES} minutes long`;
     setDraftErrors(e);
     return Object.keys(e).length === 0;
   };

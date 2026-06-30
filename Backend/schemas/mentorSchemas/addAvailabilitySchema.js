@@ -1,4 +1,5 @@
 const Joi = require("joi");
+const { SESSION_DURATION_MINUTES } = require("../../utils/timeUtils");
 
 const addAvailabilitySchema = {
   body: Joi.object()
@@ -43,8 +44,10 @@ const addAvailabilitySchema = {
       const durationMinutes =
         endHour * 60 + endMinute - (startHour * 60 + startMinute);
 
-      if (durationMinutes < 60) {
-        return helpers.message("Availability block must be at least 1 hour long");
+      if (durationMinutes < SESSION_DURATION_MINUTES) {
+        return helpers.message(
+          `Availability block must be at least ${SESSION_DURATION_MINUTES} minutes long`,
+        );
       }
 
       return value;

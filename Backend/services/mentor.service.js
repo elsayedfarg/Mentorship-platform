@@ -9,7 +9,8 @@ const throwIfNotFound = require("../utils/throwIfNotFound");
 const {
   getDayOfWeekFromDateString,
   buildWallClockDateTime,
-  generateHourlySlots,
+  generateSessionSlots,
+  SESSION_DURATION_MINUTES,
   timeToMinutes,
 } = require("../utils/timeUtils");
 
@@ -145,8 +146,11 @@ const addAvailabilityBlock = async (userId, { day_of_week, start_time, end_time 
       throw new APIError("End time must be after start time", 400);
     }
 
-    if (timeToMinutes(end_time) - timeToMinutes(start_time) < 60) {
-      throw new APIError("Availability block must be at least 1 hour long", 400);
+    if (timeToMinutes(end_time) - timeToMinutes(start_time) < SESSION_DURATION_MINUTES) {
+      throw new APIError(
+        `Availability block must be at least ${SESSION_DURATION_MINUTES} minutes long`,
+        400,
+      );
     }
 
     const conflict = await MentorAvailability.findOne({
@@ -212,12 +216,13 @@ const getMentorAvailability = async (mentorId, date) => {
       end_time: { $gt: dayStart },
     });
 
-    const slots = generateHourlySlots(availabilityBlocks, date, bookedSessions);
+    const slots = generateSessionSlots(availabilityBlocks, date, bookedSessions);
 
     return {
       date,
       day_of_week: dayOfWeek,
       availability_blocks: availabilityBlocks,
+      session_duration_minutes: SESSION_DURATION_MINUTES,
       slots,
     };
   } catch (err) {

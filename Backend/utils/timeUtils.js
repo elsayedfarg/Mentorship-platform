@@ -8,6 +8,9 @@ const DAY_NAMES = [
   "Saturday",
 ];
 
+const SESSION_DURATION_MINUTES = 45;
+const BUFFER_MINUTES = 10;
+
 const timeToMinutes = (time) => {
   const [hours, minutes] = time.split(":").map(Number);
   return hours * 60 + minutes;
@@ -33,11 +36,33 @@ const getWallClockDayOfWeek = (date) => {
   return DAY_NAMES[new Date(date).getUTCDay()];
 };
 
+const getWallClockDateString = (date) => {
+  const value = new Date(date);
+  const year = value.getUTCFullYear();
+  const month = String(value.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(value.getUTCDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 const buildWallClockDateTime = (dateStr, timeStr) => {
   return new Date(`${dateStr}T${timeStr}:00.000Z`);
 };
 
-const generateHourlySlots = (blocks, dateStr, bookedSessions = [], bufferMinutes = 10) => {
+const getSessionDurationMinutes = (startDate, endDate) => {
+  return Math.round((new Date(endDate) - new Date(startDate)) / (60 * 1000));
+};
+
+const isSameWallClockDay = (startDate, endDate) => {
+  return getWallClockDateString(startDate) === getWallClockDateString(endDate);
+};
+
+const generateSessionSlots = (
+  blocks,
+  dateStr,
+  bookedSessions = [],
+  slotDurationMinutes = SESSION_DURATION_MINUTES,
+  bufferMinutes = BUFFER_MINUTES,
+) => {
   const slots = [];
   const now = new Date();
 
@@ -45,9 +70,9 @@ const generateHourlySlots = (blocks, dateStr, bookedSessions = [], bufferMinutes
     let cursor = timeToMinutes(block.start_time);
     const blockEnd = timeToMinutes(block.end_time);
 
-    while (cursor + 60 <= blockEnd) {
+    while (cursor + slotDurationMinutes <= blockEnd) {
       const slotStart = minutesToTime(cursor);
-      const slotEnd = minutesToTime(cursor + 60);
+      const slotEnd = minutesToTime(cursor + slotDurationMinutes);
       const slotStartDate = buildWallClockDateTime(dateStr, slotStart);
       const slotEndDate = buildWallClockDateTime(dateStr, slotEnd);
 
@@ -62,10 +87,11 @@ const generateHourlySlots = (blocks, dateStr, bookedSessions = [], bufferMinutes
       slots.push({
         start_time: slotStart,
         end_time: slotEnd,
+        duration_minutes: slotDurationMinutes,
         available: !isPast && !isBooked,
       });
 
-      cursor += 60;
+      cursor += slotDurationMinutes;
     }
   }
 
@@ -74,11 +100,16 @@ const generateHourlySlots = (blocks, dateStr, bookedSessions = [], bufferMinutes
 
 module.exports = {
   DAY_NAMES,
+  SESSION_DURATION_MINUTES,
+  BUFFER_MINUTES,
   timeToMinutes,
   minutesToTime,
   getDayOfWeekFromDateString,
   getWallClockTime,
   getWallClockDayOfWeek,
+  getWallClockDateString,
   buildWallClockDateTime,
-  generateHourlySlots,
+  getSessionDurationMinutes,
+  isSameWallClockDay,
+  generateSessionSlots,
 };

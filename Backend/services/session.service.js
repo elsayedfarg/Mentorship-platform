@@ -9,9 +9,11 @@ const throwIfNotFound = require("../utils/throwIfNotFound");
 const {
   getWallClockTime,
   getWallClockDayOfWeek,
+  getSessionDurationMinutes,
+  isSameWallClockDay,
+  SESSION_DURATION_MINUTES,
+  BUFFER_MINUTES,
 } = require("../utils/timeUtils");
-
-const BUFFER_MINUTES = 10;
 
 const STUDENT_ALLOWED_STATUSES = ["Completed", "Cancelled"];
 const MENTOR_ALLOWED_STATUSES = ["Accepted", "Rejected", "Completed", "Cancelled"];
@@ -32,6 +34,18 @@ const bookSession = async (studentUserId, { mentor_id, start_time, end_time, des
     // 2. Parse dates — Joi already validated format/order/future, but we still need Date objects
     const startDate = new Date(start_time);
     const endDate = new Date(end_time);
+
+    if (!isSameWallClockDay(startDate, endDate)) {
+      throw new APIError("Start and end time must be on the same day", 400);
+    }
+
+    const durationMinutes = getSessionDurationMinutes(startDate, endDate);
+    if (durationMinutes !== SESSION_DURATION_MINUTES) {
+      throw new APIError(
+        `Session must be exactly ${SESSION_DURATION_MINUTES} minutes long`,
+        400,
+      );
+    }
 
     // 3. Derive date from start_time (UTC midnight) — never trust a separate date field
     const sessionDate = new Date(
