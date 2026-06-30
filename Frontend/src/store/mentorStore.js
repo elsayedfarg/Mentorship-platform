@@ -88,6 +88,24 @@ const useMentorStore = create((set) => ({
       return { success: false, error: message };
     }
   },
+
+  updateSessionStatus: async (sessionId, status) => {
+    try {
+      const response = await api.put(`/api/sessions/${sessionId}/status`, {
+        status,
+      });
+      const updated = response.data.data;
+      set((state) => ({
+        sessions: state.sessions.map((s) =>
+          (s._id || s.id) === sessionId ? { ...s, ...updated, status } : s,
+        ),
+      }));
+      return { success: true };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      return { success: false, error: message };
+    }
+  },
 }));
 
 export default useMentorStore;

@@ -86,7 +86,7 @@ const MySessions = () => {
                   <span className="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide bg-[var(--brand-surface-muted)] text-[var(--brand-brown)]">
                     {status}
                   </span>
-                  {status !== "Completed" && status !== "Cancelled" && (
+                  {status === "Accepted" && (
                     <button
                       type="button"
                       onClick={() => handleStatusUpdate(sessionId, "Completed")}
@@ -94,6 +94,11 @@ const MySessions = () => {
                     >
                       Mark Complete
                     </button>
+                  )}
+                  {status === "Pending" && (
+                    <span className="text-xs text-muted-foreground">
+                      Waiting for mentor acceptance
+                    </span>
                   )}
                 </div>
               </div>

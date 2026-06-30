@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import useAuthStore from "@/store/authStore";
 import useMentorStore from "@/store/mentorStore";
-import { formatDateTime, getId, getSessionStart, getSessionStatus } from "@/lib/format";
+import { formatDateTime, getId, getSessionStart, getSessionStatus, getStudentFromSession } from "@/lib/format";
 
 const MentorDashboard = () => {
   const { user } = useAuthStore();
@@ -96,7 +96,7 @@ const MentorDashboard = () => {
         ) : (
           <div className="flex flex-col gap-3">
             {sessions.slice(0, 5).map((session) => {
-              const student = session.student || session.student_id || {};
+              const student = getStudentFromSession(session);
               return (
                 <div
                   key={getId(session)}

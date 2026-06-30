@@ -66,4 +66,10 @@ router.get(
   mentorController.getMentorById,
 );
 
+router.get(
+  "/stack/:stackId",
+  validate(schemas.getMentorsByStackIdSchema),
+  mentorController.getMentorsByStackId,
+);
+
 module.exports = router;

@@ -6,6 +6,7 @@ const useStudentStore = create((set) => ({
   sessions: [],
   mentors: [],
   selectedMentor: null,
+  mentorAvailability: null,
   loading: false,
   error: null,
 
@@ -76,6 +77,20 @@ const useStudentStore = create((set) => ({
     } catch (error) {
       const message = error.response?.data?.message || error.message;
       set({ error: message, loading: false });
+      return { success: false, error: message };
+    }
+  },
+
+  fetchMentorAvailability: async (mentorId, date) => {
+    set({ loading: true, error: null });
+    try {
+      const query = date ? `?date=${date}` : "";
+      const response = await api.get(`/api/mentors/${mentorId}/availability${query}`);
+      set({ mentorAvailability: response.data.data, loading: false });
+      return { success: true, availability: response.data.data };
+    } catch (error) {
+      const message = error.response?.data?.message || error.message;
+      set({ error: message, loading: false, mentorAvailability: null });
       return { success: false, error: message };
     }
   },

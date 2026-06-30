@@ -11,6 +11,13 @@ import { Spinner } from "@/components/ui/spinner";
 import api from "@/lib/apiClient";
 import useAuthStore from "@/store/authStore";
 import { getDashboardPath } from "@/lib/routes";
+import {
+  formatSlotTime,
+  getMinEndTime,
+  isEndTimeAfterStart,
+  SESSION_DURATION_MINUTES,
+  timeToMinutes,
+} from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 const DAYS = [
@@ -283,9 +290,15 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
     if (
       draft.start_time &&
       draft.end_time &&
-      draft.start_time >= draft.end_time
+      !isEndTimeAfterStart(draft.start_time, draft.end_time)
     )
       e.end_time = "End time must be after start time";
+    if (
+      draft.start_time &&
+      draft.end_time &&
+      timeToMinutes(draft.end_time) - timeToMinutes(draft.start_time) < SESSION_DURATION_MINUTES
+    )
+      e.end_time = `Block must be at least ${SESSION_DURATION_MINUTES} minutes long`;
     setDraftErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -356,8 +369,15 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
               type="time"
               value={draft.start_time}
               onChange={(e) => {
-                setDraft((p) => ({ ...p, start_time: e.target.value }));
-                setDraftErrors((p) => ({ ...p, start_time: "" }));
+                const start_time = e.target.value;
+                setDraft((p) => {
+                  const next = { ...p, start_time };
+                  if (start_time && p.end_time && !isEndTimeAfterStart(start_time, p.end_time)) {
+                    next.end_time = getMinEndTime(start_time);
+                  }
+                  return next;
+                });
+                setDraftErrors((p) => ({ ...p, start_time: "", end_time: "" }));
               }}
               className={inputCls(draftErrors.start_time)}
             />
@@ -368,6 +388,7 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
               id="end"
               type="time"
               value={draft.end_time}
+              min={draft.start_time ? getMinEndTime(draft.start_time) : undefined}
               onChange={(e) => {
                 setDraft((p) => ({ ...p, end_time: e.target.value }));
                 setDraftErrors((p) => ({ ...p, end_time: "" }));
@@ -398,7 +419,7 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
                 {b.day_of_week}
               </span>
               <span className="text-muted-foreground">
-                {b.start_time} – {b.end_time}
+                {formatSlotTime(b.start_time)} – {formatSlotTime(b.end_time)}
               </span>
               <button
                 type="button"

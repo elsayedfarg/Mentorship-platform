@@ -148,6 +148,26 @@ const removeAvailability = async (req, res, next) => {
   }
 };
 
+const getMentorsByStackId = async (req, res, next) => {
+  try {
+    const { stackId } = req.params;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    const result = await mentorService.getMentorsByStackId(stackId, page, limit);
+
+    res.status(200).json({
+      status: "success",
+      data: result.data,
+      pagination: result.pagination,
+    });
+  }
+  catch (err) {
+    next(err);
+  }
+
+}
+
 module.exports = {
   getProfile,
   createProfile,
@@ -158,4 +178,5 @@ module.exports = {
   getAvailability,
   getAllAvailability,
   removeAvailability,
+  getMentorsByStackId,
 };

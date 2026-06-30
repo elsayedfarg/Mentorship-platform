@@ -20,14 +20,14 @@ router.post(
 router.get(
   "/",
   authenticate,
-  restrictTo(["student"]),
+  restrictTo(["student", "mentor"]),
   sessionController.getUserSessions,
 );
 
 router.put(
   "/:sessionId/status",
   authenticate,
-  restrictTo(["mentor", "admin"]),
+  restrictTo(["student", "mentor", "admin"]),
   validate({
     ...schemas.sessionIdParamSchema,
     ...schemas.updateSessionStatusSchema,

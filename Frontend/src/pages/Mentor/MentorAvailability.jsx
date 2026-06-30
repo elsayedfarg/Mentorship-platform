@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import useMentorStore from "@/store/mentorStore";
-import { getId } from "@/lib/format";
+import {
+  formatSlotTime,
+  getId,
+  getMinEndTime,
+  isEndTimeAfterStart,
+  SESSION_DURATION_MINUTES,
+  timeToMinutes,
+} from "@/lib/format";
 import { Spinner } from "@/components/ui/spinner";
 
 const DAYS = [
@@ -14,16 +21,54 @@ const DAYS = [
   "Sunday",
 ];
 
+const DEFAULT_START = "09:00";
+const DEFAULT_END = "17:00";
+
 const MentorAvailability = () => {
   const { availability, addAvailability, removeAvailability } = useMentorStore();
   const [dayOfWeek, setDayOfWeek] = useState("Monday");
-  const [startTime, setStartTime] = useState("09:00");
-  const [endTime, setEndTime] = useState("17:00");
+  const [startTime, setStartTime] = useState(DEFAULT_START);
+  const [endTime, setEndTime] = useState(DEFAULT_END);
+  const [formError, setFormError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [removingId, setRemovingId] = useState(null);
 
+  const minEndTime = getMinEndTime(startTime);
+
+  const handleStartChange = (value) => {
+    setStartTime(value);
+    setFormError("");
+    if (!isEndTimeAfterStart(value, endTime)) {
+      setEndTime(getMinEndTime(value));
+    }
+  };
+
+  const handleEndChange = (value) => {
+    setEndTime(value);
+    setFormError("");
+  };
+
+  const validateForm = () => {
+    if (!isEndTimeAfterStart(startTime, endTime)) {
+      setFormError("End time must be after start time.");
+      return false;
+    }
+
+    if (timeToMinutes(endTime) - timeToMinutes(startTime) < SESSION_DURATION_MINUTES) {
+      setFormError(
+        `Each availability block must be at least ${SESSION_DURATION_MINUTES} minutes long.`,
+      );
+      return false;
+    }
+
+    setFormError("");
+    return true;
+  };
+
   const handleAdd = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setSubmitting(true);
     const result = await addAvailability({
       day_of_week: dayOfWeek,
@@ -67,6 +112,9 @@ const MentorAvailability = () => {
         className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-4"
       >
         <h3 className="text-lg font-bold text-gray-900">Add Availability Block</h3>
+        <p className="text-sm text-muted-foreground -mt-2">
+          Choose a start time first. The end time will stay at least {SESSION_DURATION_MINUTES} minutes later.
+        </p>
 
         <div className="space-y-1">
           <label className="text-sm font-semibold text-[var(--brand-brown)]">
@@ -93,7 +141,8 @@ const MentorAvailability = () => {
             <input
               type="time"
               value={startTime}
-              onChange={(e) => setStartTime(e.target.value)}
+              onChange={(e) => handleStartChange(e.target.value)}
+              required
               className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
             />
           </div>
@@ -104,11 +153,17 @@ const MentorAvailability = () => {
             <input
               type="time"
               value={endTime}
-              onChange={(e) => setEndTime(e.target.value)}
+              min={minEndTime}
+              onChange={(e) => handleEndChange(e.target.value)}
+              required
               className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
             />
           </div>
         </div>
+
+        {formError && (
+          <p className="text-sm text-destructive">{formError}</p>
+        )}
 
         <button
           type="submit"
@@ -146,7 +201,7 @@ const MentorAvailability = () => {
                       {block.day_of_week}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      {block.start_time} – {block.end_time}
+                      {formatSlotTime(block.start_time)} – {formatSlotTime(block.end_time)}
                     </p>
                   </div>
                   <button
