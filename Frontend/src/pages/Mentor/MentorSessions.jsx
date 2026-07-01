@@ -33,7 +33,7 @@ const MentorSessions = () => {
       </div>
 
       {sessions.length === 0 ? (
-        <div className="bg-white border border-dashed border-[var(--brand-outline)] rounded-xl p-12 text-center">
+        <div className="bg-card border border-dashed border-[var(--brand-outline)] rounded-xl p-12 text-center">
           <p className="text-muted-foreground mb-4">No sessions scheduled yet.</p>
           <Link
             to="/dashboard/mentor/availability"
@@ -52,14 +52,14 @@ const MentorSessions = () => {
             return (
               <div
                 key={sessionId}
-                className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 shadow-sm"
+                className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 shadow-sm"
               >
                 <div className="flex items-center gap-3 flex-1">
                   <div className="w-10 h-10 rounded-full bg-[var(--brand-surface-muted)] flex items-center justify-center text-[var(--brand-brown)] font-bold uppercase">
                     {student.name?.[0] || student.email?.[0] || "S"}
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-gray-900">
+                    <h3 className="text-sm font-semibold text-card-foreground">
                       {student.name || student.email || "Student Session"}
                     </h3>
                     <p className="text-xs text-muted-foreground">

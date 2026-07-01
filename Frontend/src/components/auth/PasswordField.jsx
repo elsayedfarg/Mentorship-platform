@@ -44,7 +44,7 @@ const PasswordField = forwardRef(function PasswordField(
           placeholder={placeholder}
           aria-invalid={!!error}
           className={cn(
-            "w-full rounded-lg border bg-white py-3 pr-10 pl-10 text-sm text-foreground shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] outline-none transition-all placeholder:text-muted-foreground focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
+            "w-full rounded-lg border bg-card py-3 pr-10 pl-10 text-sm text-foreground shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] outline-none transition-all placeholder:text-muted-foreground focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
             error
               ? "border-destructive bg-destructive/5"
               : "border-[var(--brand-outline)]",

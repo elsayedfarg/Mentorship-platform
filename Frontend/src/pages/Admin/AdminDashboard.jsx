@@ -20,7 +20,7 @@ const AdminDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             Pending Approvals
           </p>
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
             Review pending mentors
           </Link>
         </div>
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             Technical Stacks
           </p>
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
             View stack stats
           </Link>
         </div>
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             User Management
           </p>
@@ -63,9 +63,9 @@ const AdminDashboard = () => {
       </div>
 
       {pendingMentors.length > 0 && (
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-xl font-bold text-gray-900">
+            <h3 className="text-xl font-bold text-card-foreground">
               Pending Mentor Approvals
             </h3>
             <Link

@@ -49,10 +49,10 @@ function StepBar({ current }) {
             className={cn(
               "rounded-lg border p-4",
               done && "border-[var(--brand-brown)] bg-[var(--brand-brown)]/5",
-              active && "border-b-4 border-[var(--brand-brown)] bg-white",
+              active && "border-b-4 border-[var(--brand-brown)] bg-card",
               !done &&
               !active &&
-              "border-[var(--brand-outline)] bg-white/60 opacity-60",
+              "border-[var(--brand-outline)] bg-card/60 opacity-60",
             )}
           >
             <span
@@ -195,7 +195,7 @@ function Step1({ data, onChange, onNext }) {
         <button
           type="button"
           onClick={handleNext}
-          className="rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+          className="rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
         >
           Next: Expertise →
         </button>
@@ -239,7 +239,7 @@ function Step2({ stackId, onChange, onNext, onBack, stacks, loadingStacks }) {
               onChange(e.target.value);
               setError("");
             }}
-            className={cn(inputCls(error), "cursor-pointer bg-white")}
+            className={cn(inputCls(error), "cursor-pointer bg-card")}
           >
             <option value="">— Select a stack —</option>
             {stacks.map((s) => (
@@ -262,7 +262,7 @@ function Step2({ stackId, onChange, onNext, onBack, stacks, loadingStacks }) {
         <button
           type="button"
           onClick={handleNext}
-          className="rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+          className="rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
         >
           Next: Availability →
         </button>
@@ -353,7 +353,7 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
               }}
               className={cn(
                 inputCls(draftErrors.day_of_week),
-                "bg-white cursor-pointer",
+                "bg-card cursor-pointer",
               )}
             >
               <option value="">— Day —</option>
@@ -413,7 +413,7 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
           {blocks.map((b, i) => (
             <li
               key={i}
-              className="flex items-center justify-between rounded-lg border border-[var(--brand-outline)] bg-white px-4 py-3 text-sm"
+              className="flex items-center justify-between rounded-lg border border-[var(--brand-outline)] bg-card px-4 py-3 text-sm"
             >
               <span className="font-medium text-[var(--brand-brown)]">
                 {b.day_of_week}
@@ -449,7 +449,7 @@ function Step3({ blocks, onChange, onBack, onSubmit, submitting }) {
           type="button"
           onClick={handleSubmit}
           disabled={submitting}
-          className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
+          className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] disabled:opacity-70"
         >
           {submitting ? (
             <>
@@ -536,7 +536,7 @@ export default function MentorProfileSetup() {
   if (done) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--brand-surface)] p-6">
-        <div className="w-full max-w-lg rounded-xl border border-[var(--brand-outline)] bg-white p-10 text-center shadow-sm">
+        <div className="w-full max-w-lg rounded-xl border border-[var(--brand-outline)] bg-card p-10 text-center shadow-sm">
           <div className="mx-auto mb-6 flex size-20 items-center justify-center rounded-full bg-[var(--brand-brown)]/10 text-[var(--brand-brown)]">
             <HugeiconsIcon icon={CheckmarkCircle02Icon} className="size-10" />
           </div>
@@ -550,7 +550,7 @@ export default function MentorProfileSetup() {
           <button
             type="button"
             onClick={() => navigate(getDashboardPath(user?.role))}
-            className="mt-8 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+            className="mt-8 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
           >
             Go to Dashboard
           </button>
@@ -564,7 +564,7 @@ export default function MentorProfileSetup() {
 
   return (
     <div className="min-h-screen bg-[var(--brand-surface)]">
-      <nav className="fixed top-0 z-50 flex h-[72px] w-full items-center border-b border-[var(--brand-outline)] bg-white">
+      <nav className="fixed top-0 z-50 flex h-[72px] w-full items-center border-b border-[var(--brand-outline)] bg-card">
         <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6">
           <span className="text-lg font-bold text-[var(--brand-brown)]">
             MentorHub
@@ -585,7 +585,7 @@ export default function MentorProfileSetup() {
 
         <StepBar current={step} />
 
-        <div className="w-full rounded-xl border border-[var(--brand-outline)] bg-white p-8 shadow-[0_4px_12px_rgba(74,52,38,0.08)] md:p-12">
+        <div className="w-full rounded-xl border border-[var(--brand-outline)] bg-card p-8 shadow-[0_4px_12px_rgba(74,52,38,0.08)] md:p-12">
           <h2 className="mb-6 text-lg font-bold text-[var(--brand-brown)]">
             {titles[step - 1]}
           </h2>

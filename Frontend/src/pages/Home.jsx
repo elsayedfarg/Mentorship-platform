@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 
 const stats = [
   { value: "2,400+", label: "Active mentors" },
@@ -54,7 +55,7 @@ export default function Home() {
       <header className="border-b border-black/5">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
-            <div className="flex size-9 items-center justify-center rounded-lg bg-[var(--brand-brown-light)] text-white">
+            <div className="flex size-9 items-center justify-center rounded-lg bg-[var(--brand-brown-light)] text-white dark:text-gray-900">
               <span className="material-symbols-outlined text-[20px] icon-fill">
                 school
               </span>
@@ -63,19 +64,22 @@ export default function Home() {
               MentorHub
             </span>
           </div>
-          <div className="hidden items-center gap-3 sm:flex">
-            <Link
-              to="/login"
-              className="rounded-lg px-4 py-2 text-sm font-semibold text-[var(--brand-brown)] hover:bg-black/5 transition-colors"
-            >
-              Sign in
-            </Link>
-            <Link
-              to="/register"
-              className="rounded-lg bg-[var(--brand-brown-light)] px-4 py-2 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] transition-colors"
-            >
-              Get started
-            </Link>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <div className="hidden items-center gap-3 sm:flex">
+              <Link
+                to="/login"
+                className="rounded-lg px-4 py-2 text-sm font-semibold text-[var(--brand-brown)] hover:bg-black/5 transition-colors"
+              >
+                Sign in
+              </Link>
+              <Link
+                to="/register"
+                className="rounded-lg bg-[var(--brand-brown-light)] px-4 py-2 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] transition-colors"
+              >
+                Get started
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -98,13 +102,13 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 to="/register"
-                className="rounded-lg bg-[var(--brand-brown-light)] px-7 py-3 text-center text-sm font-semibold text-white hover:bg-[var(--brand-brown)] transition-colors"
+                className="rounded-lg bg-[var(--brand-brown-light)] px-7 py-3 text-center text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] transition-colors"
               >
                 Find a mentor
               </Link>
               <Link
                 to="/login"
-                className="rounded-lg border border-[var(--brand-brown-light)] px-7 py-3 text-center text-sm font-semibold text-[var(--brand-brown-light)] hover:bg-[var(--brand-brown-light)] hover:text-white transition-colors"
+                className="rounded-lg border border-[var(--brand-brown-light)] dark:border-[var(--brand-teal)] px-7 py-3 text-center text-sm font-semibold text-[var(--brand-brown-light)] dark:text-[var(--brand-teal)] hover:bg-[var(--brand-brown-light)] dark:hover:bg-[var(--brand-teal)] hover:text-white transition-colors"
               >
                 Sign in
               </Link>
@@ -127,7 +131,7 @@ export default function Home() {
 
           {/* Signature element: session card mockup */}
           <div className="relative mx-auto w-full max-w-sm">
-            <div className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-black/5 bg-card p-6 shadow-sm">
               <div className="flex items-center gap-3">
                 <div className="flex size-12 items-center justify-center rounded-full bg-[var(--brand-brown-light)]/10 text-[var(--brand-brown-light)] font-semibold">
                   AK
@@ -155,7 +159,7 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-              <button className="mt-6 w-full rounded-lg bg-[var(--brand-brown-light)] py-2.5 text-sm font-semibold text-white">
+              <button className="mt-6 w-full rounded-lg bg-[var(--brand-brown-light)] py-2.5 text-sm font-semibold text-white dark:text-gray-900">
                 Book this session
               </button>
             </div>
@@ -165,7 +169,7 @@ export default function Home() {
       </section>
 
       {/* How it works */}
-      <section className="border-y border-black/5 bg-white/60">
+      <section className="border-y border-black/5 bg-card/60">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <h2 className="text-2xl font-bold text-[var(--brand-brown)] sm:text-3xl">
             How it works
@@ -201,7 +205,7 @@ export default function Home() {
           {features.map((f) => (
             <div
               key={f.title}
-              className="rounded-xl border border-black/5 bg-white p-6"
+              className="rounded-xl border border-black/5 bg-card p-6"
             >
               <div className="flex size-10 items-center justify-center rounded-lg bg-[var(--brand-brown-light)]/10 text-[var(--brand-brown-light)]">
                 <span className="material-symbols-outlined text-[20px]">
@@ -220,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="border-y border-black/5 bg-white/60">
+      <section className="border-y border-black/5 bg-card/60">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center">
           <p className="text-xl font-medium leading-relaxed text-[var(--brand-brown)] sm:text-2xl">
             "My mentor helped me see my blind spots in three sessions. I
@@ -244,7 +248,7 @@ export default function Home() {
           </h2>
           <Link
             to="/register"
-            className="rounded-lg bg-white px-8 py-3 text-sm font-semibold text-[var(--brand-brown)] hover:bg-white/90 transition-colors"
+            className="rounded-lg bg-card px-8 py-3 text-sm font-semibold text-[var(--brand-brown)] hover:bg-card/90 transition-colors"
           >
             Create your account
           </Link>

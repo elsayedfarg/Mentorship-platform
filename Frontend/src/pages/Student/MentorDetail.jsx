@@ -135,7 +135,7 @@ const MentorDetail = () => {
         Back to mentors
       </Link>
 
-      <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+      <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
         <div className="flex items-start gap-4">
           <div className="w-16 h-16 rounded-full bg-[var(--brand-surface-muted)] flex items-center justify-center text-[var(--brand-brown)] text-2xl font-bold uppercase">
             {mentor.name?.[0] || "M"}
@@ -156,13 +156,13 @@ const MentorDetail = () => {
       </div>
 
       {weeklyBlocks.length > 0 && (
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold text-gray-900 mb-3">Weekly Availability</h3>
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold text-card-foreground mb-3">Weekly Availability</h3>
           <div className="flex flex-col gap-2">
             {weeklyBlocks.map((block) => (
               <div
                 key={getId(block) || `${block.day_of_week}-${block.start_time}`}
-                className="flex items-center justify-between rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm"
+                className="flex items-center justify-between rounded-lg bg-card text-card-foreground border border-[var(--brand-outline)] px-4 py-2 text-sm"
               >
                 <span className="font-semibold text-[var(--brand-brown)]">
                   {block.day_of_week}
@@ -178,10 +178,10 @@ const MentorDetail = () => {
 
       <form
         onSubmit={handleBook}
-        className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-5"
+        className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-5"
       >
         <div>
-          <h3 className="text-lg font-bold text-gray-900">Book a Session</h3>
+          <h3 className="text-lg font-bold text-card-foreground">Book a Session</h3>
           <p className="text-sm text-muted-foreground mt-1">
             Choose a date, then pick a {SESSION_DURATION_MINUTES}-minute code evaluation slot
             from the mentor&apos;s open schedule.
@@ -202,7 +202,7 @@ const MentorDetail = () => {
             min={todayDateString()}
             onChange={(e) => setSelectedDate(e.target.value)}
             required
-            className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
+            className="w-full rounded-lg bg-card text-card-foreground border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
           />
         </div>
 
@@ -226,7 +226,7 @@ const MentorDetail = () => {
                 Loading available times...
               </div>
             ) : slots.length === 0 ? (
-              <p className="rounded-lg border border-dashed border-[var(--brand-outline)] px-4 py-6 text-sm text-muted-foreground text-center">
+              <p className="rounded-lg bg-card text-card-foreground border border-dashed border-[var(--brand-outline)] px-4 py-6 text-sm text-muted-foreground text-center">
                 No availability on this day. Please choose another date.
               </p>
             ) : (
@@ -285,14 +285,14 @@ const MentorDetail = () => {
             placeholder="Describe what you'd like to review in this 45-minute code evaluation session"
             required
             minLength={10}
-            className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)] resize-none"
+            className="w-full rounded-lg bg-card text-card-foreground border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)] resize-none"
           />
         </div>
 
         <button
           type="submit"
           disabled={booking || !selectedSlot || availableSlots.length === 0}
-          className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
+          className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] disabled:opacity-70"
         >
           {booking ? (
             <>

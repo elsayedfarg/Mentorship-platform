@@ -91,10 +91,10 @@ const StudentDashboard = () => {
         {/* Top Row: Learning Progress (col 8) & Upcoming Sessions (col 4) */}
 
         {/* Learning Progress */}
-        <div className="md:col-span-8 bg-white border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden shadow-sm">
+        <div className="md:col-span-8 bg-card border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 relative overflow-hidden shadow-sm">
           <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[var(--brand-surface-muted)] to-transparent rounded-bl-[100px] -z-0 opacity-50"></div>
           <div className="flex justify-between items-center z-10">
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-card-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
                 trending_up
               </span>
@@ -182,9 +182,9 @@ const StudentDashboard = () => {
         </div>
 
         {/* Upcoming Sessions */}
-        <div className="md:col-span-4 bg-white border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-4 shadow-sm">
+        <div className="md:col-span-4 bg-card border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-4 shadow-sm">
           <div className="flex justify-between items-center mb-2">
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-card-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
                 calendar_month
               </span>
@@ -217,7 +217,7 @@ const StudentDashboard = () => {
                           {mentor.name?.[0] || 'M'}
                         </div>
                         <div>
-                          <h4 className="text-sm font-semibold text-gray-900">
+                          <h4 className="text-sm font-semibold text-card-foreground">
                             {mentor.name || "Unknown Mentor"}
                           </h4>
                           <p className="text-xs text-muted-foreground">
@@ -266,9 +266,9 @@ const StudentDashboard = () => {
         {/* Bottom Row: Recommended Mentors (col 8) & Activity Feed (col 4) */}
 
         {/* Recommended Mentors */}
-        <div className="md:col-span-8 bg-white border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
+        <div className="md:col-span-8 bg-card border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
           <div className="flex justify-between items-center">
-            <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+            <h3 className="text-xl font-bold text-card-foreground flex items-center gap-2">
               <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
                 lightbulb
               </span>
@@ -284,12 +284,12 @@ const StudentDashboard = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {mentors?.length > 0 ? (
               mentors.slice(0, 3).map((mentor, i) => (
-                <div key={getId(mentor) || i} className="bg-white rounded-lg border border-[var(--brand-outline)] p-5 flex flex-col items-center text-center gap-3 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
+                <div key={getId(mentor) || i} className="bg-card rounded-lg border border-[var(--brand-outline)] p-5 flex flex-col items-center text-center gap-3 hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                   <div className="w-16 h-16 rounded-full flex items-center justify-center border-2 border-[var(--brand-surface-muted)] bg-[var(--brand-surface-muted)] text-[var(--brand-brown)] text-2xl font-bold uppercase mb-1">
                     {mentor.name?.[0] || 'M'}
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-900">
+                    <h4 className="text-sm font-semibold text-card-foreground">
                       {mentor.name || "Mentor Name"}
                     </h4>
                     <p className="text-sm text-muted-foreground">
@@ -306,7 +306,7 @@ const StudentDashboard = () => {
                   </div>
                   <Link
                     to={`/dashboard/student/mentors/${getId(mentor)}`}
-                    className="mt-3 w-full py-2 text-center bg-transparent border border-[var(--brand-brown-light)] text-[var(--brand-brown-light)] text-sm font-bold rounded hover:bg-[var(--brand-brown-light)] hover:text-white transition-colors"
+                    className="mt-3 w-full py-2 text-center bg-transparent border border-[var(--brand-brown-light)] dark:border-[var(--brand-teal)] text-[var(--brand-brown-light)] dark:text-[var(--brand-teal)] text-sm font-bold rounded hover:bg-[var(--brand-brown-light)] dark:hover:bg-[var(--brand-teal)] hover:text-white dark:hover:text-white transition-colors"
                   >
                     View Profile
                   </Link>
@@ -321,8 +321,8 @@ const StudentDashboard = () => {
         </div>
 
         {/* Activity Feed */}
-        <div className="md:col-span-4 bg-white border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
-          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+        <div className="md:col-span-4 bg-card border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
+          <h3 className="text-xl font-bold text-card-foreground flex items-center gap-2">
             <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
               history
             </span>
@@ -331,7 +331,7 @@ const StudentDashboard = () => {
           <div className="relative border-l border-[var(--brand-outline)] ml-3 pl-5 flex flex-col gap-6">
             <div className="relative">
               <div className="absolute -left-[26px] top-1 w-[11px] h-[11px] rounded-full bg-[var(--brand-brown-light)] border-2 border-white"></div>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-card-foreground">
                 You logged in successfully to your student portal.
               </p>
               <span className="text-xs text-muted-foreground mt-1 block">
@@ -342,7 +342,7 @@ const StudentDashboard = () => {
             {upcomingSessions.length > 0 && (
               <div className="relative">
                 <div className="absolute -left-[26px] top-1 w-[11px] h-[11px] rounded-full bg-[var(--brand-outline)] border-2 border-white"></div>
-                <p className="text-sm text-gray-900">
+                <p className="text-sm text-card-foreground">
                   You have{" "}
                   <span className="text-sm font-semibold">
                     {upcomingSessions.length}
@@ -357,7 +357,7 @@ const StudentDashboard = () => {
 
             <div className="relative">
               <div className="absolute -left-[26px] top-1 w-[11px] h-[11px] rounded-full bg-[var(--brand-outline)] border-2 border-white"></div>
-              <p className="text-sm text-gray-900">
+              <p className="text-sm text-card-foreground">
                 <span className="text-sm font-semibold">Account created</span> and profile setup complete.
               </p>
               <span className="text-xs text-muted-foreground mt-2 block">

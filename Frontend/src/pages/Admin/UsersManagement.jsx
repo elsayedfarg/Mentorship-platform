@@ -48,8 +48,8 @@ const UsersManagement = () => {
             type="button"
             onClick={() => handleRoleChange(role)}
             className={`px-4 py-2 rounded-lg text-sm font-semibold capitalize transition-colors ${roleFilter === role
-              ? "bg-[var(--brand-brown-light)] text-white"
-              : "bg-white border border-[var(--brand-outline)] text-muted-foreground hover:text-[var(--brand-brown)]"
+              ? "bg-[var(--brand-brown-light)] text-white dark:text-gray-900"
+              : "bg-card border border-[var(--brand-outline)] text-muted-foreground hover:text-[var(--brand-brown)]"
               }`}
           >
             {role}s
@@ -64,7 +64,7 @@ const UsersManagement = () => {
           No {roleFilter}s found.
         </p>
       ) : (
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl overflow-hidden shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl overflow-hidden shadow-sm">
           <table className="w-full text-sm">
             <thead className="bg-[var(--brand-surface-muted)] border-b border-[var(--brand-outline)]">
               <tr>

@@ -26,7 +26,7 @@ const MentorDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             Upcoming Sessions
           </p>
@@ -40,7 +40,7 @@ const MentorDashboard = () => {
             View all sessions
           </Link>
         </div>
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             Availability Blocks
           </p>
@@ -54,7 +54,7 @@ const MentorDashboard = () => {
             Manage availability
           </Link>
         </div>
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-5 shadow-sm">
           <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             Total Sessions
           </p>
@@ -70,9 +70,9 @@ const MentorDashboard = () => {
         </div>
       </div>
 
-      <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+      <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-card-foreground flex items-center gap-2">
             <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
               event_note
             </span>
@@ -103,7 +103,7 @@ const MentorDashboard = () => {
                   className="flex items-center justify-between p-4 rounded-lg border border-[var(--brand-outline)] bg-[var(--brand-surface-muted)]"
                 >
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-card-foreground">
                       {student.name || student.email || "Student"}
                     </p>
                     <p className="text-xs text-muted-foreground">

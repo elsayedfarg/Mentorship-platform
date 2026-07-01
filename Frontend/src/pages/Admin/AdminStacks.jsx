@@ -40,7 +40,7 @@ function StackFormModal({ initial = EMPTY_FORM, onSave, onClose, saving }) {
         >
             {/* Panel */}
             <div
-                className="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 flex flex-col gap-5"
+                className="bg-card rounded-2xl shadow-xl w-full max-w-md mx-4 p-6 flex flex-col gap-5"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-center justify-between">
@@ -71,7 +71,7 @@ function StackFormModal({ initial = EMPTY_FORM, onSave, onClose, saving }) {
                             value={form.name}
                             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                             placeholder="e.g. React, Node.js, Data Science"
-                            className="border border-[var(--brand-outline)] rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition"
+                            className="border border-[var(--brand-outline)] rounded-lg bg-card text-card-foreground px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition"
                             disabled={saving}
                             autoFocus
                         />
@@ -92,7 +92,7 @@ function StackFormModal({ initial = EMPTY_FORM, onSave, onClose, saving }) {
                                 setForm((f) => ({ ...f, description: e.target.value }))
                             }
                             placeholder="Short description of this technical stack…"
-                            className="border border-[var(--brand-outline)] rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition resize-none"
+                            className="border border-[var(--brand-outline)] rounded-lg bg-card text-card-foreground px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition resize-none"
                             disabled={saving}
                         />
                     </div>
@@ -109,7 +109,7 @@ function StackFormModal({ initial = EMPTY_FORM, onSave, onClose, saving }) {
                         <button
                             type="submit"
                             disabled={saving}
-                            className="flex-1 bg-[var(--brand-brown-light)] text-white rounded-lg py-2 text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                            className="flex-1 bg-[var(--brand-brown-light)] text-white dark:text-gray-900 rounded-lg py-2 text-sm font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
                         >
                             {saving ? "Saving…" : isEdit ? "Save Changes" : "Create Stack"}
                         </button>
@@ -127,7 +127,7 @@ function DeleteConfirmModal({ stack, onConfirm, onClose, deleting }) {
             onClick={onClose}
         >
             <div
-                className="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 p-6 flex flex-col gap-5"
+                className="bg-card rounded-2xl shadow-xl w-full max-w-sm mx-4 p-6 flex flex-col gap-5"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex flex-col gap-1">
@@ -136,7 +136,7 @@ function DeleteConfirmModal({ stack, onConfirm, onClose, deleting }) {
                     </h3>
                     <p className="text-sm text-muted-foreground">
                         Delete{" "}
-                        <span className="font-semibold text-gray-800">"{stack.name}"</span>
+                        <span className="font-semibold text-foreground">"{stack.name}"</span>
                         ? This cannot be undone.
                     </p>
                 </div>
@@ -238,7 +238,7 @@ const AdminStacks = () => {
                     <button
                         type="button"
                         onClick={() => setShowCreate(true)}
-                        className="flex items-center gap-2 bg-[var(--brand-brown-light)] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
+                        className="flex items-center gap-2 bg-[var(--brand-brown-light)] text-white dark:text-gray-900 px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
                     >
                         <span className="material-symbols-outlined text-base leading-none">
                             add
@@ -257,7 +257,7 @@ const AdminStacks = () => {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Search stacks…"
-                        className="w-full border border-[var(--brand-outline)] rounded-lg pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition"
+                        className="w-full border border-[var(--brand-outline)] rounded-lg bg-card text-card-foreground pl-9 pr-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[var(--brand-brown-light)]/40 transition"
                     />
                 </div>
 
@@ -285,7 +285,7 @@ const AdminStacks = () => {
                         )}
                     </div>
                 ) : (
-                    <div className="bg-white border border-[var(--brand-outline)] rounded-xl overflow-hidden shadow-sm">
+                    <div className="bg-card border border-[var(--brand-outline)] rounded-xl overflow-hidden shadow-sm">
                         <table className="w-full text-sm">
                             <thead className="bg-[var(--brand-surface-muted)] border-b border-[var(--brand-outline)]">
                                 <tr>
@@ -309,7 +309,7 @@ const AdminStacks = () => {
                                         key={getId(stack)}
                                         className="border-b border-[var(--brand-outline)] last:border-0 hover:bg-[var(--brand-surface-muted)]/50 transition-colors"
                                     >
-                                        <td className="px-4 py-3 font-medium text-gray-900">
+                                        <td className="px-4 py-3 font-medium text-card-foreground">
                                             {stack.name}
                                         </td>
                                         <td className="px-4 py-3 text-muted-foreground hidden sm:table-cell max-w-xs truncate">

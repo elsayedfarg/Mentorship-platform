@@ -92,6 +92,14 @@
 }
 
 .dark {
+    --brand-teal: #0d655e;
+    --brand-teal-dark: #0F766E;
+    --brand-purple: #9a66ff;
+    --brand-brown: #d4c3ba;
+    --brand-brown-light: #f6f3f0;
+    --brand-surface: oklch(0.145 0 0);
+    --brand-surface-muted: oklch(0.205 0 0);
+    --brand-outline: oklch(0.269 0 0);
     --background: oklch(0.145 0 0);
     --foreground: oklch(0.985 0 0);
     --card: oklch(0.205 0 0);
