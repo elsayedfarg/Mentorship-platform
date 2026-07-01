@@ -15,4 +15,5 @@ export default defineConfig({
       "@": path.resolve("src"),
     },
   },
+  base: "/Mentorship-platform/",
 });

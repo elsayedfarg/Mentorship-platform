@@ -52,141 +52,144 @@ import {
   adminSettingsLoader,
 } from "@/loaders/dashboardLoaders";
 
-const router = createBrowserRouter([
-  {
-    element: <RootLayout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        loader: homeLoader,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-        loader: guestOnlyLoader,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-        loader: guestOnlyLoader,
-      },
-      {
-        path: "/profile-setup",
-        loader: profileSetupRedirectLoader,
-      },
-      {
-        path: "/profile-setup/student",
-        element: <StudentProfileSetup />,
-        loader: studentProfileSetupLoader,
-      },
-      {
-        path: "/profile-setup/mentor",
-        element: <MentorProfileSetup />,
-        loader: mentorProfileSetupLoader,
-      },
-      {
-        path: "/dashboard",
-        element: <MainLayout />,
-        loader: requireAuthLoader,
-        children: [
-          {
-            index: true,
-            loader: dashboardIndexLoader,
-            element: null,
-          },
-          {
-            path: "student",
-            element: <StudentDashboard />,
-            loader: studentDashboardLoader,
-          },
-          {
-            path: "student/mentors",
-            element: <BrowseMentors />,
-            loader: studentMentorsLoader,
-          },
-          {
-            path: "student/mentors/:mentorId",
-            element: <MentorDetail />,
-            loader: studentMentorDetailLoader,
-          },
-          {
-            path: "student/sessions",
-            element: <MySessions />,
-            loader: studentSessionsLoader,
-          },
-          {
-            path: "student/profile",
-            element: <StudentProfile />,
-            loader: studentProfileLoader,
-          },
-          {
-            path: "student/settings",
-            element: <StudentSettings />,
-            loader: studentSettingsLoader,
-          },
-          {
-            path: "admin/stacks",
-            element: <AdminStacks />,
-            loader: adminReportsLoader,
-          },
-          {
-            path: "mentor",
-            element: <MentorDashboard />,
-            loader: mentorDashboardLoader,
-          },
-          {
-            path: "mentor/sessions",
-            element: <MentorSessions />,
-            loader: mentorSessionsLoader,
-          },
-          {
-            path: "mentor/availability",
-            element: <MentorAvailability />,
-            loader: mentorAvailabilityLoader,
-          },
-          {
-            path: "mentor/profile",
-            element: <MentorProfile />,
-            loader: mentorProfileLoader,
-          },
-          {
-            path: "mentor/settings",
-            element: <MentorSettings />,
-            loader: mentorSettingsLoader,
-          },
-          {
-            path: "admin",
-            element: <AdminDashboard />,
-            loader: adminDashboardLoader,
-          },
-          {
-            path: "admin/users",
-            element: <UsersManagement />,
-            loader: adminUsersLoader,
-          },
-          {
-            path: "admin/reports",
-            element: <AdminReports />,
-            loader: adminReportsLoader,
-          },
-          {
-            path: "admin/settings",
-            element: <AdminSettings />,
-            loader: adminSettingsLoader,
-          },
-          {
-            path: "*",
-            element: <NotFound />,
-          },
-        ],
-      },
-      {
-        path: "*",
-        element: <NotFound />,
-      },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      element: <RootLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+          loader: homeLoader,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+          loader: guestOnlyLoader,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+          loader: guestOnlyLoader,
+        },
+        {
+          path: "/profile-setup",
+          loader: profileSetupRedirectLoader,
+        },
+        {
+          path: "/profile-setup/student",
+          element: <StudentProfileSetup />,
+          loader: studentProfileSetupLoader,
+        },
+        {
+          path: "/profile-setup/mentor",
+          element: <MentorProfileSetup />,
+          loader: mentorProfileSetupLoader,
+        },
+        {
+          path: "/dashboard",
+          element: <MainLayout />,
+          loader: requireAuthLoader,
+          children: [
+            {
+              index: true,
+              loader: dashboardIndexLoader,
+              element: null,
+            },
+            {
+              path: "student",
+              element: <StudentDashboard />,
+              loader: studentDashboardLoader,
+            },
+            {
+              path: "student/mentors",
+              element: <BrowseMentors />,
+              loader: studentMentorsLoader,
+            },
+            {
+              path: "student/mentors/:mentorId",
+              element: <MentorDetail />,
+              loader: studentMentorDetailLoader,
+            },
+            {
+              path: "student/sessions",
+              element: <MySessions />,
+              loader: studentSessionsLoader,
+            },
+            {
+              path: "student/profile",
+              element: <StudentProfile />,
+              loader: studentProfileLoader,
+            },
+            {
+              path: "student/settings",
+              element: <StudentSettings />,
+              loader: studentSettingsLoader,
+            },
+            {
+              path: "admin/stacks",
+              element: <AdminStacks />,
+              loader: adminReportsLoader,
+            },
+            {
+              path: "mentor",
+              element: <MentorDashboard />,
+              loader: mentorDashboardLoader,
+            },
+            {
+              path: "mentor/sessions",
+              element: <MentorSessions />,
+              loader: mentorSessionsLoader,
+            },
+            {
+              path: "mentor/availability",
+              element: <MentorAvailability />,
+              loader: mentorAvailabilityLoader,
+            },
+            {
+              path: "mentor/profile",
+              element: <MentorProfile />,
+              loader: mentorProfileLoader,
+            },
+            {
+              path: "mentor/settings",
+              element: <MentorSettings />,
+              loader: mentorSettingsLoader,
+            },
+            {
+              path: "admin",
+              element: <AdminDashboard />,
+              loader: adminDashboardLoader,
+            },
+            {
+              path: "admin/users",
+              element: <UsersManagement />,
+              loader: adminUsersLoader,
+            },
+            {
+              path: "admin/reports",
+              element: <AdminReports />,
+              loader: adminReportsLoader,
+            },
+            {
+              path: "admin/settings",
+              element: <AdminSettings />,
+              loader: adminSettingsLoader,
+            },
+            {
+              path: "*",
+              element: <NotFound />,
+            },
+          ],
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
+      ],
+    },
+  ],
+  { basename: "/Mentorship-platform/" },
+);
 
 export default router;
