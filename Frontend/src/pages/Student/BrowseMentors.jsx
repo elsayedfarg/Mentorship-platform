@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import useStudentStore from "@/store/studentStore";
 import { getId } from "@/lib/format";
@@ -7,6 +7,20 @@ const BrowseMentors = () => {
   const { mentors, loading, fetchMentors } = useStudentStore();
   const [keyword, setKeyword] = useState("");
   const [sortBy, setSortBy] = useState("average_rating");
+  const initialRender = useRef(true);
+
+  useEffect(() => {
+    if (initialRender.current) {
+      initialRender.current = false;
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      fetchMentors({ keyword, sort_by: sortBy });
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [keyword, sortBy, fetchMentors]);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -88,7 +102,9 @@ const BrowseMentors = () => {
                   </p>
                   {mentor.average_rating != null && (
                     <p className="mt-0.5 flex items-center justify-end gap-1 text-xs text-muted-foreground">
-                      <span className="material-symbols-outlined text-[14px]">star</span>
+                      <span className="material-symbols-outlined text-[14px]">
+                        star
+                      </span>
                       {Number(mentor.average_rating).toFixed(1)}
                     </p>
                   )}
