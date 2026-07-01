@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <AuthLayout>
       <div className="mb-8 flex flex-col items-center text-center">
-        <div className="mb-4 flex size-16 items-center justify-center rounded-xl border border-[var(--brand-outline)] bg-white shadow-sm">
+        <div className="mb-4 flex size-16 items-center justify-center rounded-xl border border-[var(--brand-outline)] bg-card shadow-sm">
           <span className="text-2xl font-bold text-[var(--brand-brown)]">M</span>
         </div>
         <h1 className="text-2xl font-bold text-[var(--brand-brown)]">
@@ -61,7 +61,7 @@ export default function Login() {
         </p>
       </div>
 
-      <div className="rounded-xl border border-[var(--brand-outline)] bg-white/95 p-8 shadow-[0_4px_24px_rgba(74,52,38,0.08)] backdrop-blur-sm">
+      <div className="rounded-xl border border-[var(--brand-outline)] bg-card/95 p-8 shadow-[0_4px_24px_rgba(74,52,38,0.08)] backdrop-blur-sm">
         <form
           className="space-y-6"
           onSubmit={handleSubmit(onSubmit, onInvalid)}
@@ -88,7 +88,7 @@ export default function Login() {
                 placeholder="you@example.com"
                 aria-invalid={!!errors.email}
                 className={cn(
-                  "w-full rounded-lg border bg-white py-3 pr-4 pl-10 text-sm shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] outline-none transition-all placeholder:text-muted-foreground focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
+                  "w-full rounded-lg border bg-card py-3 pr-4 pl-10 text-sm shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] outline-none transition-all placeholder:text-muted-foreground focus:border-[var(--brand-teal)] focus:ring-1 focus:ring-[var(--brand-teal)]",
                   errors.email
                     ? "border-destructive bg-destructive/5"
                     : "border-[var(--brand-outline)]",
@@ -114,7 +114,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--brand-brown-light)] py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-brown)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--brand-brown-light)] py-3 text-sm font-semibold text-white dark:text-gray-900 transition-colors hover:bg-[var(--brand-brown)] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {loading ? (
               <>

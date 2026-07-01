@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ThemeToggle } from "@/components/common/ThemeToggle";
 
 export default function AuthLayout({ children, maxWidth = "max-w-md" }) {
   return (
@@ -10,13 +11,16 @@ export default function AuthLayout({ children, maxWidth = "max-w-md" }) {
       <div className="absolute top-4 left-4 z-10">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-outline)] bg-white/95 px-4 py-2 text-sm font-semibold text-[var(--brand-brown)] shadow-sm transition-colors hover:bg-white"
+          className="inline-flex items-center gap-2 rounded-full border border-[var(--brand-outline)] bg-card/95 px-4 py-2 text-sm font-semibold text-[var(--brand-brown)] shadow-sm transition-colors hover:bg-card"
         >
           <span className="material-symbols-outlined text-base">
             arrow_back
           </span>
           Home
         </Link>
+      </div>
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
       </div>
 
       <div className={`relative z-10 w-full ${maxWidth}`}>{children}</div>

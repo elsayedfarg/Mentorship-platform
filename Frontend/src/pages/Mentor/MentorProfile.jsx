@@ -63,7 +63,7 @@ const MentorProfile = () => {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-4"
+        className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-4"
       >
         {loading && !profile ? (
           <div className="flex justify-center py-8">
@@ -134,7 +134,7 @@ const MentorProfile = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
+              className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] disabled:opacity-70"
             >
               {submitting ? (
                 <>

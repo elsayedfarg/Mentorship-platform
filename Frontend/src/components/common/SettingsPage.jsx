@@ -23,7 +23,7 @@ const SettingsPage = ({ title = "Settings" }) => {
         </p>
       </div>
 
-      <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
+      <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 flex flex-col gap-6 shadow-sm">
         <div>
           <h3 className="text-sm font-semibold text-[var(--brand-brown)] uppercase tracking-wider mb-4">
             Account
@@ -31,11 +31,11 @@ const SettingsPage = ({ title = "Settings" }) => {
           <div className="space-y-4">
             <div>
               <label className="text-xs text-muted-foreground">Email</label>
-              <p className="text-sm font-medium text-gray-900">{user?.email}</p>
+              <p className="text-sm font-medium text-card-foreground">{user?.email}</p>
             </div>
             <div>
               <label className="text-xs text-muted-foreground">Role</label>
-              <p className="text-sm font-medium text-gray-900 capitalize">
+              <p className="text-sm font-medium text-card-foreground capitalize">
                 {role}
               </p>
             </div>

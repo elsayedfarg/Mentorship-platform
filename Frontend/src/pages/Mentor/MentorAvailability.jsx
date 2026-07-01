@@ -109,9 +109,9 @@ const MentorAvailability = () => {
 
       <form
         onSubmit={handleAdd}
-        className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-4"
+        className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm flex flex-col gap-4"
       >
-        <h3 className="text-lg font-bold text-gray-900">Add Availability Block</h3>
+        <h3 className="text-lg font-bold text-card-foreground">Add Availability Block</h3>
         <p className="text-sm text-muted-foreground -mt-2">
           Choose a start time first. The end time will stay at least {SESSION_DURATION_MINUTES} minutes later.
         </p>
@@ -123,7 +123,7 @@ const MentorAvailability = () => {
           <select
             value={dayOfWeek}
             onChange={(e) => setDayOfWeek(e.target.value)}
-            className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
+            className="w-full rounded-lg border border-[var(--brand-outline)] bg-card text-card-foreground px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
           >
             {DAYS.map((day) => (
               <option key={day} value={day}>
@@ -143,7 +143,7 @@ const MentorAvailability = () => {
               value={startTime}
               onChange={(e) => handleStartChange(e.target.value)}
               required
-              className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
+              className="w-full rounded-lg border border-[var(--brand-outline)] bg-card text-card-foreground px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
             />
           </div>
           <div className="space-y-1">
@@ -156,7 +156,7 @@ const MentorAvailability = () => {
               min={minEndTime}
               onChange={(e) => handleEndChange(e.target.value)}
               required
-              className="w-full rounded-lg border border-[var(--brand-outline)] px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
+              className="w-full rounded-lg border border-[var(--brand-outline)] bg-card text-card-foreground px-4 py-2 text-sm outline-none focus:border-[var(--brand-teal)]"
             />
           </div>
         </div>
@@ -168,7 +168,7 @@ const MentorAvailability = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
+          className="self-start flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] disabled:opacity-70"
         >
           {submitting ? (
             <>
@@ -181,8 +181,8 @@ const MentorAvailability = () => {
         </button>
       </form>
 
-      <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
-        <h3 className="text-lg font-bold text-gray-900 mb-4">Your Schedule</h3>
+      <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+        <h3 className="text-lg font-bold text-card-foreground mb-4">Your Schedule</h3>
         {availability.length === 0 ? (
           <p className="text-sm text-muted-foreground">
             No availability blocks yet. Add one above.
@@ -197,7 +197,7 @@ const MentorAvailability = () => {
                   className="flex items-center justify-between p-3 rounded-lg border border-[var(--brand-outline)] bg-[var(--brand-surface-muted)]"
                 >
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p className="text-sm font-semibold text-card-foreground">
                       {block.day_of_week}
                     </p>
                     <p className="text-xs text-muted-foreground">

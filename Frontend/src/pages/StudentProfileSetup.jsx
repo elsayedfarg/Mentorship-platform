@@ -103,7 +103,7 @@ export default function StudentProfileSetup() {
     <div className="flex min-h-screen bg-[var(--brand-surface)]">
       <aside className="fixed top-0 left-0 z-20 hidden h-full w-[280px] flex-col border-r border-[var(--brand-outline)] bg-[var(--brand-surface-muted)] py-6 md:flex">
         <div className="mb-8 flex items-center gap-4 px-6">
-          <div className="flex size-10 items-center justify-center rounded-full bg-[var(--brand-brown-light)] text-sm font-bold text-white">
+          <div className="flex size-10 items-center justify-center rounded-full bg-[var(--brand-brown-light)] text-sm font-bold text-white dark:text-gray-900">
             M
           </div>
           <div>
@@ -115,21 +115,21 @@ export default function StudentProfileSetup() {
         </div>
 
         <nav className="flex flex-1 flex-col gap-1 px-2">
-          <span className="mx-2 flex items-center gap-3 rounded-md border-l-4 border-[var(--brand-brown)] bg-white px-4 py-3 text-sm font-semibold text-[var(--brand-brown)]">
+          <span className="mx-2 flex items-center gap-3 rounded-md border-l-4 border-[var(--brand-brown)] bg-card px-4 py-3 text-sm font-semibold text-[var(--brand-brown)]">
             Profile Setup
           </span>
         </nav>
       </aside>
 
       <div className="flex min-h-screen flex-1 flex-col md:ml-[280px]">
-        <header className="sticky top-0 z-10 flex h-[72px] items-center justify-between border-b border-[var(--brand-outline)] bg-white px-6">
+        <header className="sticky top-0 z-10 flex h-[72px] items-center justify-between border-b border-[var(--brand-outline)] bg-card px-6">
           <h2 className="text-lg font-bold text-[var(--brand-brown)]">
             Profile Setup
           </h2>
         </header>
 
         <main className="flex flex-1 items-center justify-center p-6 md:p-10">
-          <div className="relative w-full max-w-2xl overflow-hidden rounded-xl border border-[var(--brand-outline)] bg-white p-6 shadow-sm md:p-8">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-xl border border-[var(--brand-outline)] bg-card p-6 shadow-sm md:p-8">
             {step <= 3 && (
               <div className="absolute top-0 left-0 h-1 w-full bg-[var(--brand-outline)]/40">
                 <div
@@ -180,7 +180,7 @@ export default function StudentProfileSetup() {
                   <button
                     type="button"
                     onClick={() => handleContinue(1)}
-                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
                   >
                     Continue
                     <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" />
@@ -211,7 +211,7 @@ export default function StudentProfileSetup() {
                     <select
                       id="experience"
                       className={cn(
-                        "w-full rounded-lg border px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]",
+                        "w-full rounded-lg border bg-card text-card-foreground px-4 py-3 text-sm outline-none focus:border-[var(--brand-teal)]",
                         errors.experience
                           ? "border-destructive"
                           : "border-[var(--brand-outline)]",
@@ -272,7 +272,7 @@ export default function StudentProfileSetup() {
                   <button
                     type="button"
                     onClick={() => handleContinue(2)}
-                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
                   >
                     Continue
                     <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" />
@@ -310,7 +310,7 @@ export default function StudentProfileSetup() {
                             className={cn(
                               "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                               selected
-                                ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white"
+                                ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white dark:text-gray-900"
                                 : "border-[var(--brand-outline)] text-muted-foreground hover:border-[var(--brand-brown-light)] hover:text-[var(--brand-brown)]",
                             )}
                           >
@@ -340,7 +340,7 @@ export default function StudentProfileSetup() {
                     type="button"
                     onClick={handleSubmit(onSubmit, onInvalid)}
                     disabled={submitting}
-                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)] disabled:opacity-70"
+                    className="flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-6 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)] disabled:opacity-70"
                   >
                     {submitting ? (
                       <>
@@ -379,7 +379,7 @@ export default function StudentProfileSetup() {
                 <button
                   type="button"
                   onClick={() => navigate(getDashboardPath(user?.role))}
-                  className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--brand-brown)]"
+                  className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[var(--brand-brown-light)] px-8 py-3 text-sm font-semibold text-white dark:text-gray-900 hover:bg-[var(--brand-brown)]"
                 >
                   Go to Dashboard
                 </button>

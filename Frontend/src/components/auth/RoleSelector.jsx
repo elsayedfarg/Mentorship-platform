@@ -38,19 +38,19 @@ export default function RoleSelector({ value, onChange }) {
               className={cn(
                 "flex flex-col items-center justify-center gap-2 rounded-lg border p-4 transition-all duration-200 hover:scale-[1.02] hover:shadow-md",
                 isActive
-                  ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white shadow-md"
-                  : "border-[var(--brand-outline)] bg-white text-muted-foreground hover:border-[var(--brand-brown-light)] hover:text-[var(--brand-brown)]",
+                  ? "border-[var(--brand-brown)] bg-[var(--brand-brown)] text-white dark:text-gray-900 shadow-md"
+                  : "border-[var(--brand-outline)] bg-card text-muted-foreground hover:border-[var(--brand-brown-light)] hover:text-[var(--brand-brown)]",
               )}
             >
               <HugeiconsIcon
                 icon={role.icon}
                 strokeWidth={2}
-                className={cn("size-8", isActive ? "text-white" : "text-[var(--brand-brown-light)]")}
+                className={cn("size-8", isActive ? "text-white dark:text-gray-900" : "text-[var(--brand-brown-light)]")}
               />
               <span
                 className={cn(
                   "text-sm font-semibold",
-                  isActive ? "text-white" : "text-[var(--brand-brown)]",
+                  isActive ? "text-white dark:text-gray-900" : "text-[var(--brand-brown)]",
                 )}
               >
                 {role.label}

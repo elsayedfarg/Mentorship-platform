@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { NAV_LINKS, DASHBOARD_PATHS } from "@/lib/routes";
 import { getProfilePath, isNavActive } from "@/lib/format";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Topbar = () => {
   const { user, logout } = useAuthStore();
@@ -32,7 +33,7 @@ const Topbar = () => {
           search
         </span>
         <input
-          className="w-full bg-[var(--brand-surface-muted)] border border-[var(--brand-outline)] rounded-full py-2 pl-10 pr-4 text-sm text-gray-900 focus:outline-none focus:border-[var(--brand-brown-light)] focus:ring-1 focus:ring-[var(--brand-brown-light)] transition-colors"
+          className="w-full bg-[var(--brand-surface-muted)] border border-[var(--brand-outline)] rounded-full py-2 pl-10 pr-4 text-sm text-card-foreground focus:outline-none focus:border-[var(--brand-brown-light)] focus:ring-1 focus:ring-[var(--brand-brown-light)] transition-colors"
           placeholder="Search mentors, skills, or sessions..."
           type="text"
         />
@@ -54,7 +55,8 @@ const Topbar = () => {
       </div>
 
       <div className="flex items-center gap-4 ml-auto">
-        <button className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:bg-gray-100 transition-colors relative">
+        <ThemeToggle />
+        <button className="w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:bg-[var(--brand-surface-muted)] transition-colors relative">
           <span className="material-symbols-outlined" data-icon="notifications">
             notifications
           </span>
@@ -79,7 +81,7 @@ const Topbar = () => {
             className="fixed inset-0 top-[72px] bg-black/40 z-[9998] md:hidden"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed top-[72px] left-0 w-full bg-white border-b border-[var(--brand-outline)] shadow-xl md:hidden flex flex-col z-[9999]">
+          <div className="fixed top-[72px] left-0 w-full bg-card border-b border-[var(--brand-outline)] shadow-xl md:hidden flex flex-col z-[9999]">
             <div className="p-3 border-b border-[var(--brand-outline)] bg-[var(--brand-surface-muted)]">
               <div className="flex items-center gap-3 px-2">
                 <img

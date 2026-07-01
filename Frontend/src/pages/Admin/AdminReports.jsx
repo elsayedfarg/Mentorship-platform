@@ -26,8 +26,8 @@ const AdminReports = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold text-card-foreground mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
               pending_actions
             </span>
@@ -60,8 +60,8 @@ const AdminReports = () => {
           )}
         </div>
 
-        <div className="bg-white border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+        <div className="bg-card border border-[var(--brand-outline)] rounded-xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold text-card-foreground mb-4 flex items-center gap-2">
             <span className="material-symbols-outlined text-[var(--brand-brown-light)]">
               stacked_bar_chart
             </span>

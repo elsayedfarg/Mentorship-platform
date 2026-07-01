@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <nav className="hidden md:flex bg-[var(--brand-surface-muted)] fixed left-0 top-0 h-full w-[280px] border-r border-[var(--brand-outline)] flex-col py-6 z-20">
       <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-lg bg-[var(--brand-brown-light)] flex items-center justify-center text-white">
+        <div className="w-10 h-10 rounded-lg bg-[var(--brand-brown-light)] flex items-center justify-center text-white dark:text-gray-900">
           <span className="material-symbols-outlined icon-fill">school</span>
         </div>
         <div>
@@ -43,8 +43,8 @@ const Sidebar = () => {
               to={link.path}
               className={`text-sm font-semibold flex items-center gap-3 px-4 py-3 rounded-r-lg border-l-4 transition-all ${
                 isActive
-                  ? "bg-white text-[var(--brand-brown)] border-[var(--brand-brown)] shadow-sm"
-                  : "text-muted-foreground border-transparent hover:bg-white hover:text-[var(--brand-brown)]"
+                  ? "bg-card text-[var(--brand-brown)] border-[var(--brand-brown)] shadow-sm"
+                  : "text-muted-foreground border-transparent hover:bg-card hover:text-[var(--brand-brown)]"
               }`}
             >
               <span
@@ -61,7 +61,7 @@ const Sidebar = () => {
       <div className="px-4 mt-auto">
         <button
           onClick={handleLogout}
-          className="w-full text-muted-foreground text-sm font-semibold flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white hover:text-[var(--brand-brown)] transition-all"
+          className="w-full text-muted-foreground text-sm font-semibold flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-card hover:text-[var(--brand-brown)] transition-all"
         >
           <span className="material-symbols-outlined" data-icon="logout">
             logout
